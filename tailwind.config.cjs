@@ -47,8 +47,6 @@ const config = {
 				red: "#BB061A"
 			},
 			gridTemplateColumns: {
-				4: "repeat(4, minmax(0, 1fr))",
-				12: "repeat(12, minmax(0, 1fr))",
 				16: "repeat(16, minmax(0, 1fr))"
 			},
 			screens: {

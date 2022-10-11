@@ -36,8 +36,6 @@
 	$: $currentSettings = ((): IGridSettings | undefined => {
 		if (viewportWidth === null) return undefined;
 
-		console.log(viewportWidth);
-
 		let settings = undefined;
 		if (viewportWidth >= gridSettings.desktop.minWidth) settings = gridSettings.desktop;
 		else if (viewportWidth >= gridSettings.tablet.minWidth) settings = gridSettings.tablet;
@@ -58,9 +56,9 @@
 <!-- Alternaitve use resize, since binding seems stop working sometimes -->
 <!-- <svelte:window on:resize={() => handleResize()} /> -->
 
-<div class="px-15 h-screen w-screen" bind:clientWidth={viewportWidth}>
+<div class="h-screen w-screen" bind:clientWidth={viewportWidth}>
 	{#if $currentSettings !== undefined}
-		<div id="reference" class="grid-settings h-full w-full fixed">
+		<div id="reference" class="px-15 grid-settings h-full w-full fixed">
 			{#each new Array($currentSettings.gridCols) as col, index}
 				<!-- {index} -->
 				{#if index === 0}

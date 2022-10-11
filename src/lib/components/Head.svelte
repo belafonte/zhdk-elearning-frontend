@@ -39,7 +39,7 @@
 			>
 		</div>
 		{#if menuOpened}
-			<div id="menu" class="w-full h-full grid grid-rows-2 sm:grid-cols-2">
+			<div id="menu" class="w-full h-full grid grid-cols-1 lg:grid-cols-2">
 				<div class="flex flex-col ">
 					<a>Leitfragen</a>
 					<a>Events</a>

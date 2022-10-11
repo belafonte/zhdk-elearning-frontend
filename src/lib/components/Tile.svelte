@@ -8,8 +8,8 @@
 	export let size: string;
 	export let color: string;
 	export let title: string = "Title Missing";
-	export let image: string = "sample-image.jpg";
-	export let mask: string = "mask-sample.svg";
+	export let image: string = "/sample-image.jpg";
+	export let mask: string = "/mask-sample.svg";
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
@@ -40,10 +40,12 @@
 			tileWidth = $currentSettings.colWidth * colSpan;
 		}
 	}
+
+	console.log(color);
 </script>
 
 {#if $currentSettings !== undefined}
-	<div class="p-15 {color} title font-serif" style="flex: 0 0 {tileWidth}px">
+	<div class="p-15 title font-serif" style="flex: 0 0 {tileWidth}px; background-color: {color}">
 		<h1
 			class="mb-15"
 			class:title-large={size === "l"}
@@ -95,5 +97,6 @@
 		width: 100%;
 		mask-position: center;
 		mask-type: alpha;
+		mask-size: cover;
 	}
 </style>

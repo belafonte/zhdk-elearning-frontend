@@ -9,3 +9,9 @@ export interface IGridSettings {
 }
 
 export const gridSettingsKey = Symbol();
+
+export interface ICategory {
+	category: string;
+	title: string;
+	color: { color: [5] };
+}

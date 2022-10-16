@@ -1,5 +1,7 @@
 <script lang="ts">
 	import arrow from "$lib/assets/icons/arrow.svg";
+
+	export let text: string = "";
 	export let rounded: boolean = false;
 	export let icon: boolean = false;
 </script>
@@ -10,7 +12,7 @@
 	class:rounded-full={rounded}
 >
 	<div class="flex">
-		<p>hello</p>
+		<p>{text}</p>
 		{#if icon}
 			<img class="arrow" src={arrow} alt="Open Section" />
 		{/if}

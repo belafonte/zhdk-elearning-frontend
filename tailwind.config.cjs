@@ -3,6 +3,7 @@ const config = {
 
 	theme: {
 		fontSize: {
+			130: ["130px", "130px"],
 			110: ["110px", "110px"],
 			68: ["68px", "68px"],
 			60: ["60px", "60px"],
@@ -47,7 +48,8 @@ const config = {
 				red: "#BB061A"
 			},
 			gridTemplateColumns: {
-				16: "repeat(16, minmax(0, 1fr))"
+				16: "repeat(16, minmax(0, 1fr))",
+				24: "repeat(24, minmax(0, 1fr))"
 			},
 			screens: {
 				tablet: "640px",

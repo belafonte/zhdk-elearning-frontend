@@ -17,7 +17,8 @@
 	const gridSettings = {
 		mobile: { type: "mobile", minWidth: 0, gridCols: 4, colWidth: 0, colStart: 0, height: 0 },
 		tablet: { type: "tablet", minWidth: 640, gridCols: 12, colWidth: 0, colStart: 0, height: 0 },
-		desktop: { type: "desktop", minWidth: 1024, gridCols: 16, colWidth: 0, colStart: 0, height: 0 }
+		laptop: { type: "laptop", minWidth: 1024, gridCols: 16, colWidth: 0, colStart: 0, height: 0 },
+		desktop: { type: "desktop", minWidth: 1280, gridCols: 24, colWidth: 0, colStart: 0, height: 0 }
 	};
 
 	// stores
@@ -38,6 +39,7 @@
 
 		let settings = undefined;
 		if (viewportWidth >= gridSettings.desktop.minWidth) settings = gridSettings.desktop;
+		else if (viewportWidth >= gridSettings.laptop.minWidth) settings = gridSettings.laptop;
 		else if (viewportWidth >= gridSettings.tablet.minWidth) settings = gridSettings.tablet;
 		else settings = gridSettings.mobile;
 
@@ -80,7 +82,7 @@
 
 <style>
 	:global(.grid-settings) {
-		@apply grid grid-cols-4 tablet:grid-cols-12 laptop:grid-cols-16;
+		@apply grid grid-cols-4 tablet:grid-cols-12 laptop:grid-cols-16 desktop:grid-cols-24;
 	}
 
 	#reference div:first-child {

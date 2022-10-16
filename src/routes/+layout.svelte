@@ -11,7 +11,7 @@
 <GridReference>
 	<Scrollbars />
 	<Head />
-	<main>
+	<main class="px-15 w-screen">
 		<slot />
 	</main>
 	<Footer />

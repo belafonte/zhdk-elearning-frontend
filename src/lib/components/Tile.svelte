@@ -2,14 +2,24 @@
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
-
+	import { PUBLIC_ASSETS } from "$env/static/public";
 	import Tag from "$lib/components/Tag.svelte";
 
+	interface ITileData {
+		_id: string;
+		color: { colors: [string] };
+		title: string;
+		category: string;
+		mask: string;
+		title_image: string;
+		tags: [string];
+		rotation: string;
+	}
+
 	export let size: string;
-	export let color: string;
-	export let title: string = "Title Missing";
-	export let image: string = "/sample-image.jpg";
-	export let mask: string = "/mask-sample.svg";
+	export let tags: [string] | null = null;
+
+	export let data: ITileData;
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
@@ -18,16 +28,19 @@
 		l: {
 			mobile: 4,
 			tablet: 7,
+			laptop: 7,
 			desktop: 7
 		},
 		m: {
 			mobile: 3,
 			tablet: 5,
+			laptop: 5,
 			desktop: 5
 		},
 		s: {
 			mobile: 2,
 			tablet: 4,
+			laptop: 4,
 			desktop: 4
 		}
 	};
@@ -41,29 +54,59 @@
 		}
 	}
 
-	console.log(color);
+	$: console.log(data, size);
 </script>
 
 {#if $currentSettings !== undefined}
-	<div class="p-15 title font-serif" style="flex: 0 0 {tileWidth}px; background-color: {color}">
+	<a
+		href={`/${data.category.toLocaleLowerCase()}/${data._id}`}
+		class="p-15 title font-serif"
+		style="flex: 0 0 {tileWidth}px; background-color: {data.color.colors[0]}"
+	>
 		<h1
 			class="mb-15"
 			class:title-large={size === "l"}
 			class:title-medium={size === "m"}
 			class:title-small={size === "s"}
 		>
-			{title}
+			{data.title}
 		</h1>
-		<img src={image} class="mask mb-15" />
-		<div class="flex">
-			<Tag rounded={true} />
+		<div>
+			<img
+				alt="person"
+				src={PUBLIC_ASSETS + data.title_image.path}
+				style="--url: url({PUBLIC_ASSETS + data.mask?.path})"
+				class="mb-15"
+				class:mask={data.mask !== null}
+				class:rotate-left={data.rotation === "Links"}
+				class:rotate-right={data.rotation === "Rechts"}
+			/>
 		</div>
-	</div>
+		<!-- <img src={PUBLIC_ASSETS + data.mask?.path} /> -->
+		<div class="flex">
+			<Tag text={data.category} />
+			{#if tags !== null}
+				{#each data.tags as tag}
+					<Tag text={tag} rounded={true} />
+				{/each}
+			{/if}
+		</div>
+	</a>
 {:else}
 	settings are undefined
 {/if}
 
 <style>
+	.rotate-right {
+		rotate: 15deg;
+		scale: 0.7;
+	}
+
+	.rotate-left {
+		rotate: -15deg;
+		scale: 0.7;
+	}
+
 	.title-large {
 		@apply text-36;
 	}
@@ -92,11 +135,14 @@
 	} */
 
 	.mask {
-		mask-image: url(mask-sample.svg);
+		mask-image: var(--url);
 		mask-repeat: no-repeat;
 		width: 100%;
 		mask-position: center;
 		mask-type: alpha;
 		mask-size: cover;
+
+		aspect-ratio: 1/1;
+		object-fit: scale-down;
 	}
 </style>

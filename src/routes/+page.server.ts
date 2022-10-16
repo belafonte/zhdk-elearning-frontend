@@ -9,8 +9,9 @@ interface IResponse {
 	kosmos: ICategory;
 }
 
-export async function load(params: PageServerLoad) {
-	const fields = "fields={ category: true, title: true, color: true }";
+export const load: PageServerLoad = async (params) => {
+	const fields =
+		"fields={ category: true, title: true, color: true, title_image: true, rotation: true, mask: true }";
 
 	const res = await fetch(`${PUBLIC_ENDPOINT}/content/items/content?${fields}`, {
 		method: "GET",
@@ -37,4 +38,4 @@ export async function load(params: PageServerLoad) {
 	} as IResponse;
 
 	return data;
-}
+};

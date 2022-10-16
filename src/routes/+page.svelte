@@ -22,21 +22,21 @@
 		{#if data.knowledge.length > 0}
 			<Row title="Knowledge in use" url="knowledge-in-use" catData={data.knowledge}>
 				{#each data.knowledge as entry}
-					<Tile size="l" title={entry.title} color={entry.color.colors[0]} />
+					<Tile size="l" data={entry} />
 				{/each}
 			</Row>
 		{/if}
 		{#if data.community.length > 0}
 			<Row title="Community" url="community" catData={data.community}>
 				{#each data.community as entry}
-					<Tile size="l" title={entry.title} color={entry.color.colors[0]} />
+					<Tile size="l" data={entry} />
 				{/each}
 			</Row>
 		{/if}
 		{#if data.kosmos.length > 0}
 			<Row title="Kosmos" url="kosmos" catData={data.kosmos}>
 				{#each data.kosmos as entry}
-					<Tile size="l" title={entry.title} color={entry.color.colors[0]} />
+					<Tile size="s" data={entry} />
 				{/each}
 			</Row>
 		{/if}

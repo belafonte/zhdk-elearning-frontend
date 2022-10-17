@@ -15,3 +15,19 @@ export interface ICategory {
 	title: string;
 	color: { color: [5] };
 }
+
+export interface ITileData {
+	_id: string;
+	color: { colors: [string] };
+	title: string;
+	category: string;
+	mask: string;
+	title_image: string;
+	tags: [string];
+	rotation: string;
+}
+
+export interface IDetailData extends ITileData {
+	body: string;
+	image: [];
+}

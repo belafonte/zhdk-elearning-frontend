@@ -11,7 +11,9 @@ const config = {
 			42: ["42px", "43px"],
 			30: ["30px", "32px"],
 			36: ["36px", "36px"],
+			26: ["26px", "32px"],
 			24: ["24px", "26px"],
+			20: ["20px", "25px"],
 			19: ["19px", "21px"],
 			14: ["14px", "17px"],
 			12: ["12px", "17px"]
@@ -20,19 +22,19 @@ const config = {
 			sans: ["Helvetica"],
 			serif: ["Georgia"]
 		},
-		spacing: {
-			0: "0px",
-			1: "1px",
-			5: "5px",
-			8: "8px",
-			10: "10px",
-			15: "15px",
-			32: "32px",
-			50: "50px",
-			60: "60px",
-			84: "84px"
-		},
 		extend: {
+			spacing: {
+				0: "0px",
+				1: "1px",
+				5: "5px",
+				8: "8px",
+				10: "10px",
+				15: "15px",
+				32: "32px",
+				50: "50px",
+				60: "60px",
+				84: "84px"
+			},
 			colors: {
 				"light-gray": "#EEEEEE",
 				"dark-gray": "#BFBFBF",

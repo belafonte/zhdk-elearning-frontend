@@ -14,12 +14,10 @@
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 </script>
 
-<div class="flex">
+<a class="flex" href="/{url}/overview">
 	<h1 class="text-36 sm:text-50 font-sans">{title}</h1>
-	<a class="w-[30px] sm:w-[40px] ml-auto mr-15 sm:mt-5" href="/{url}/overview"
-		><img src={arrow} /></a
-	>
-</div>
+	<div class="w-[30px] sm:w-[40px] ml-auto mr-15 sm:mt-5"><img src={arrow} /></div>
+</a>
 <div
 	id="row"
 	class="relative mb-32 sm:mb-84  pb-15 w-screen overflow-x-auto flex items-start transition-all"

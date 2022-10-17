@@ -3,6 +3,9 @@
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 	import { PUBLIC_ASSETS } from "$env/static/public";
+
+	// Component imports
+	import MainImage from "$lib/components/MainImage.svelte";
 	import Tag from "$lib/components/Tag.svelte";
 
 	interface ITileData {
@@ -69,10 +72,10 @@
 			class:title-medium={size === "m"}
 			class:title-small={size === "s"}
 		>
-			{data.title}
+			{@html data.title}
 		</h1>
-		<div>
-			<img
+		<div class="flex justify-center mb-15">
+			<!-- <img
 				alt="person"
 				src={PUBLIC_ASSETS + data.title_image.path}
 				style="--url: url({PUBLIC_ASSETS + data.mask?.path})"
@@ -80,6 +83,11 @@
 				class:mask={data.mask !== null}
 				class:rotate-left={data.rotation === "Links"}
 				class:rotate-right={data.rotation === "Rechts"}
+			/> -->
+			<MainImage
+				path={PUBLIC_ASSETS + data.title_image.path}
+				mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null}
+				rotation={data.rotation !== "Keine" ? data.rotation : null}
 			/>
 		</div>
 		<!-- <img src={PUBLIC_ASSETS + data.mask?.path} /> -->

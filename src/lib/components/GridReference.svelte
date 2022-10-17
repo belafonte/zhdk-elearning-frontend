@@ -13,6 +13,9 @@
 	import { setContext } from "svelte";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 
+	//  import components
+	import GridBackground from "$lib/components/GridBackground.svelte";
+
 	// datatypes
 	const gridSettings = {
 		mobile: { type: "mobile", minWidth: 0, gridCols: 4, colWidth: 0, colStart: 0, height: 0 },
@@ -60,16 +63,16 @@
 
 <div class="h-screen w-screen" bind:clientWidth={viewportWidth}>
 	{#if $currentSettings !== undefined}
-		<div id="reference" class="px-15 grid-settings h-full w-full fixed">
+		<GridBackground fixed={true} bind:column numColumns={$currentSettings.gridCols} />
+		<!-- <div id="reference" class="px-15 grid-settings h-full w-full fixed">
 			{#each new Array($currentSettings.gridCols) as col, index}
-				<!-- {index} -->
 				{#if index === 0}
 					<div bind:this={column} class="border-r border-r-light-gray" />
 				{:else}
 					<div class="border-r border-r-light-gray" />
 				{/if}
 			{/each}
-		</div>
+		</div> -->
 		<div
 			class="absolute top-0 left-0 flex flex-col min-h-full"
 			bind:offsetHeight

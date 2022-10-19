@@ -42,5 +42,7 @@ export const load: PageServerLoad = async (params) => {
 				return response;
 			});
 	}
+
+	data.highlightColor = data.color.colors[0];
 	return data;
 };

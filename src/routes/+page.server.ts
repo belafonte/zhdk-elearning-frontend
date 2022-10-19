@@ -13,28 +13,53 @@ export const load: PageServerLoad = async (params) => {
 	const fields =
 		"fields={ category: true, title: true, color: true, title_image: true, rotation: true, mask: true }";
 
-	const res = await fetch(`${PUBLIC_ENDPOINT}/content/items/content?${fields}`, {
-		method: "GET",
-		headers: {
-			"api-key": API_KEY
+	const community = await fetch(
+		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Community"}&limit=8`,
+		{
+			method: "GET",
+			headers: {
+				"api-key": API_KEY
+			}
 		}
-	})
+	)
+		.then((response) => response.json())
+		.then((response) => {
+			return response;
+		});
+
+	const kosmos = await fetch(
+		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Kosmos"}&limit=8`,
+		{
+			method: "GET",
+			headers: {
+				"api-key": API_KEY
+			}
+		}
+	)
+		.then((response) => response.json())
+		.then((response) => {
+			return response;
+		});
+
+	const knowledge = await fetch(
+		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Knowledge in use"}&limit=8`,
+		{
+			method: "GET",
+			headers: {
+				"api-key": API_KEY
+			}
+		}
+	)
 		.then((response) => response.json())
 		.then((response) => {
 			return response;
 		});
 
 	const data = {
-		community: res.filter((el: ICategory) => {
-			return el.category === "Community";
-		}),
-
-		knowledge: res.filter((el: ICategory) => {
-			return el.category === "Knowledge in use";
-		}),
-		kosmos: res.filter((el: ICategory) => {
-			return el.category === "Kosmos";
-		})
+		highlightColor: "#EEEEEE",
+		community: community,
+		knowledge: knowledge,
+		kosmos: kosmos
 	} as IResponse;
 
 	return data;

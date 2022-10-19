@@ -3,15 +3,13 @@
 	import Head from "$lib/components/Head.svelte";
 	import Footer from "$lib/components/Footer.svelte";
 	import GridReference from "$lib/components/GridReference.svelte";
-	import Row from "$lib/components/Row.svelte";
-	import Tile from "$lib/components/Tile.svelte";
 	import Scrollbars from "$lib/components/Scrollbars.svelte";
 </script>
 
 <GridReference>
 	<Scrollbars />
 	<Head />
-	<main class="px-15 w-screen">
+	<main class="w-screen z-20 px-15">
 		<slot />
 	</main>
 	<Footer />

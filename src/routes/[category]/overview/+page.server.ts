@@ -28,8 +28,6 @@ export const load: PageServerLoad = async ({ params }) => {
 			return response;
 		});
 
-	console.log(res);
-
 	switch (params.category) {
 		case "community":
 			cols = { mobile: 1, desktop: 2 };
@@ -41,9 +39,10 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	// const data = Object.assign(cols, res);
 
-	const data = { cols: {}, data: [] };
+	const data = { cols: {}, data: [], highlightColor: "" };
+
 	data.cols = cols;
 	data.data = res;
-
+	data.highlightColor = "#EEEEEE";
 	return data;
 };

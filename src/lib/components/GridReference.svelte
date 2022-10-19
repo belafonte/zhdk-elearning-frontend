@@ -9,6 +9,7 @@
  -->
 <script lang="ts">
 	// imports
+	import { page } from "$app/stores";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
@@ -18,10 +19,42 @@
 
 	// datatypes
 	const gridSettings = {
-		mobile: { type: "mobile", minWidth: 0, gridCols: 4, colWidth: 0, colStart: 0, height: 0 },
-		tablet: { type: "tablet", minWidth: 640, gridCols: 12, colWidth: 0, colStart: 0, height: 0 },
-		laptop: { type: "laptop", minWidth: 1024, gridCols: 16, colWidth: 0, colStart: 0, height: 0 },
-		desktop: { type: "desktop", minWidth: 1280, gridCols: 24, colWidth: 0, colStart: 0, height: 0 }
+		mobile: {
+			type: "mobile",
+			minWidth: 0,
+			gridCols: 4,
+			colWidth: 0,
+			colStart: 0,
+			colsEnd: 0,
+			barCount: 2
+		},
+		tablet: {
+			type: "tablet",
+			minWidth: 640,
+			gridCols: 12,
+			colWidth: 0,
+			colStart: 0,
+			colsEnd: 0,
+			barCount: 2
+		},
+		laptop: {
+			type: "laptop",
+			minWidth: 1024,
+			gridCols: 16,
+			colWidth: 0,
+			colStart: 0,
+			colsEnd: 0,
+			barCount: 2
+		},
+		desktop: {
+			type: "desktop",
+			minWidth: 1280,
+			gridCols: 24,
+			colWidth: 0,
+			colStart: 0,
+			colsEnd: 0,
+			barCount: 2
+		}
 	};
 
 	// stores
@@ -29,10 +62,8 @@
 
 	// variables
 	let viewportWidth: number | null = null;
-	let offsetHeight: number = 0;
 
 	let column: HTMLElement | null = null;
-	let content: HTMLElement | null = null;
 
 	setContext(gridSettingsKey, currentSettings);
 
@@ -51,11 +82,34 @@
 
 			settings.colWidth = columnDimensions.width;
 			settings.colStart = columnDimensions.x;
-			settings.height = offsetHeight;
+			settings.colsEnd = columnDimensions.x + settings.gridCols * settings.colWidth;
 		}
 
+		if (settings.type === "mobile") {
+			if ($page.routeId === "") {
+				settings.barCount = 2;
+			} else {
+				settings.barCount = 3;
+			}
+		} else {
+			if ($page.routeId === "") {
+				settings.barCount = 2;
+			} else if (
+				$page.params.category === "community" ||
+				$page.params.category === "leitfragen" ||
+				$page.params.hasOwnProperty("detail")
+			) {
+				settings.barCount = 3;
+			} else {
+				settings.barCount = 5;
+			}
+		}
+
+		console.log(settings);
 		return settings;
 	})();
+
+	$: console.log($page);
 </script>
 
 <!-- Alternaitve use resize, since binding seems stop working sometimes -->
@@ -63,32 +117,14 @@
 
 <div class="h-screen w-screen" bind:clientWidth={viewportWidth}>
 	{#if $currentSettings !== undefined}
-		<GridBackground fixed={true} bind:column numColumns={$currentSettings.gridCols} />
-		<!-- <div id="reference" class="px-15 grid-settings h-full w-full fixed">
-			{#each new Array($currentSettings.gridCols) as col, index}
-				{#if index === 0}
-					<div bind:this={column} class="border-r border-r-light-gray" />
-				{:else}
-					<div class="border-r border-r-light-gray" />
-				{/if}
-			{/each}
-		</div> -->
-		<div
-			class="absolute top-0 left-0 flex flex-col min-h-full"
-			bind:offsetHeight
-			bind:this={content}
-		>
+		<GridBackground fixed={true} bind:column padding={true}>
 			<slot />
-		</div>
+		</GridBackground>
 	{/if}
 </div>
 
 <style>
 	:global(.grid-settings) {
 		@apply grid grid-cols-4 tablet:grid-cols-12 laptop:grid-cols-16 desktop:grid-cols-24;
-	}
-
-	#reference div:first-child {
-		@apply border-l border-l-gray-200;
 	}
 </style>

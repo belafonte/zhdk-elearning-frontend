@@ -5,7 +5,8 @@ export interface IGridSettings {
 	gridCols: number;
 	colWidth: number;
 	colStart: number;
-	height: number;
+	colsEnd: number;
+	barCount: number;
 }
 
 export const gridSettingsKey = Symbol();

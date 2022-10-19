@@ -2,7 +2,7 @@
 	import logo from "$lib/assets/zhdk-logo.png";
 </script>
 
-<footer class="mt-auto">
+<footer class="mt-auto z-40">
 	<div class="mt-32 sm:mt-84 border-t flex flex-col bg-white ">
 		<h1 class="text-24 sm:text-50 p-50 self-center">Recherche zu digitalem Lehren und Lernen</h1>
 		<div class="footer-links px-15 border-t grid grid-cols-2 sm:grid-cols-4">

@@ -63,7 +63,7 @@
 {#if $currentSettings !== undefined}
 	<a
 		href={`/${data.category.toLocaleLowerCase()}/${data._id}`}
-		class="p-15 title font-serif"
+		class="p-15 title font-serif h-min"
 		style="flex: 0 0 {tileWidth}px; background-color: {data.color.colors[0]}"
 	>
 		<h1
@@ -75,15 +75,6 @@
 			{@html data.title}
 		</h1>
 		<div class="flex justify-center mb-15">
-			<!-- <img
-				alt="person"
-				src={PUBLIC_ASSETS + data.title_image.path}
-				style="--url: url({PUBLIC_ASSETS + data.mask?.path})"
-				class="mb-15"
-				class:mask={data.mask !== null}
-				class:rotate-left={data.rotation === "Links"}
-				class:rotate-right={data.rotation === "Rechts"}
-			/> -->
 			<MainImage
 				path={PUBLIC_ASSETS + data.title_image.path}
 				mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null}

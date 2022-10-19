@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { getContext, onMount } from "svelte";
+	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 	import Scrollbar from "$lib/components/Scrollbar.svelte";
-
-	export let barCount = 2;
+	import { page } from "$app/stores";
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 	let scrollY = 0;
@@ -14,7 +13,7 @@
 	let winHeight = 0;
 	let barPosY = 0;
 
-	let color = "orange";
+	let showBars = false;
 
 	function clamp(input: number, min: number, max: number): number {
 		return input < min ? min : input > max ? max : input;
@@ -32,22 +31,40 @@
 	}
 
 	$: {
+		let location = $page.routeId;
+		console.log(location);
 		let scrollHeight = document.documentElement.scrollHeight;
 		let scroll = scrollHeight - winHeight;
 		barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);
+
+		// console.log(scroll);
+		showBars = scroll > 0 ? true : false;
 	}
+
+	$: center = ($currentSettings.colsEnd + $currentSettings.colStart) / 2;
+
+	$: barPositions = [
+		$currentSettings.colStart,
+		$currentSettings.colsEnd,
+		center,
+		center / 2 + barWidth / 2,
+		center + center / 2 - barWidth / 2
+	];
+
+	console.log(showBars, barPosY);
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight={winHeight} />
 
-<div class="absolute z-40">
-	{#each new Array(barCount) as bar, index}
-		<Scrollbar
-			bind:height={barHeight}
-			bind:width={barWidth}
-			postionX={$currentSettings.colStart - barWidth / 2}
-			positionY={barPosY}
-			color="bg-{color}"
-		/>
-	{/each}
-</div>
+{#if showBars}
+	<div class="absolute z-[60] mix-blend-multiply">
+		{#each new Array($currentSettings.barCount) as bar, index}
+			<Scrollbar
+				bind:height={barHeight}
+				bind:width={barWidth}
+				postionX={barPositions[index]}
+				positionY={barPosY}
+			/>
+		{/each}
+	</div>
+{/if}

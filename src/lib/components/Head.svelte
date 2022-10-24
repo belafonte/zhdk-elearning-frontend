@@ -58,7 +58,7 @@
 						<a class="mt-auto mb-10 text-12 sm:!text-14 !text-black uppercase ">Journal</a>
 					</div>
 					<div class="flex flex-col border-t sm:border-l ">
-						<a href="/angebot">Angebot</a>
+						<a href="/offer">Angebot</a>
 						<a href="/information">Information</a>
 
 						<a class="mt-auto mb-10 text-12 sm:!text-14 !text-black uppercase ">Hintergrund</a>

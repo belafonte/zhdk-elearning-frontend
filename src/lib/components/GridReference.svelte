@@ -49,7 +49,7 @@
 		desktop: {
 			type: "desktop",
 			minWidth: 1280,
-			gridCols: 24,
+			gridCols: 16,
 			colWidth: 0,
 			colStart: 0,
 			colsEnd: 0,
@@ -122,6 +122,6 @@
 
 <style>
 	:global(.grid-settings) {
-		@apply grid grid-cols-4 tablet:grid-cols-12 laptop:grid-cols-16 desktop:grid-cols-24;
+		@apply grid grid-cols-4 tablet:grid-cols-12 laptop:grid-cols-16 desktop:grid-cols-16;
 	}
 </style>

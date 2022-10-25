@@ -20,10 +20,15 @@
 		event: any;
 	}
 
-	export let size: string;
+	// export let size: string;
+
 	export let tags: [string] | null = null;
 
 	export let data: ITileData;
+
+	export let offset: string | null = null;
+
+	let size: string;
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
@@ -50,6 +55,13 @@
 	};
 
 	$: {
+		if (data.category === "Community") {
+			size = "l";
+		} else if (data.category === "Knowledge in use") {
+			size = "m";
+		} else {
+			size = "s";
+		}
 		let type = $currentSettings.type as keyof Object;
 		let colSpan = tileSizes[size as keyof Object][type];
 
@@ -62,13 +74,15 @@
 {#if $currentSettings !== undefined}
 	<a
 		href={`/${data.category.toLocaleLowerCase()}/${data._id}`}
-		class="p-15 title font-serif h-min"
+		class="p-15 title font-serif h-min overflow-hidden"
+		class:ml-auto={offset === "l"}
+		class:mr-auto={offset === "r"}
 		style="flex: 0 0 {tileWidth}px; background-color: {data.color !== null
 			? data.color.colors[0]
 			: '#EEEEEE'}"
 	>
 		<h1
-			class="mb-15"
+			class="mb-15 overflow-hidden text-ellipsis pb-5"
 			class:title-large={size === "l"}
 			class:title-medium={size === "m"}
 			class:title-small={size === "s"}

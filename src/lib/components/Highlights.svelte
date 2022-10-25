@@ -1,4 +1,7 @@
 <script lang="ts">
+	import Tile from "./Tile.svelte";
 </script>
 
-<div />
+<div class="flex">
+	<Tile />
+</div>

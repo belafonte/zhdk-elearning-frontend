@@ -13,6 +13,7 @@
 	import Row from "$lib/components/Row.svelte";
 	import Tile from "$lib/components/Tile.svelte";
 	import Tag from "$lib/components/Tag.svelte";
+	import Event from "$lib/components/Event.svelte";
 	import type { PageServerData } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
 	import { getContext } from "svelte";
@@ -29,6 +30,7 @@
 	import "swiper/css/navigation";
 	import "swiper/css/pagination";
 	import "swiper/css/scrollbar";
+	import MainImage from "$lib/components/MainImage.svelte";
 
 	export let data: PageServerData;
 
@@ -38,41 +40,69 @@
 </script>
 
 {#if data !== null}
-	<div class="grid grid-cols-2" style:margin="0 {$currentSettings.colWidth}px">
+	<div
+		class="hidden sm:grid sm:grid-cols-2"
+		style:margin="0 {$currentSettings.colWidth}px 84px {$currentSettings.colWidth}px"
+	>
 		<div>
 			<div class="flex flex-col items-center mb-72">
 				<img src={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path} />
 				<Tag ref="/questions/overview" rounded={true} text="Zu allen Leitfragen" icon={true} />
 			</div>
-			<div class="flex w-max">
-				<Tile data={data.highlights.highlight02} size="l" />
-			</div>
+			{#if data.highlights.highlight02}
+				<div class="flex">
+					<Tile data={data.highlights.highlight02} />
+				</div>
+			{/if}
+
+			{#if data.highlights.highlight05}
+				<!-- Highlights -->
+				<div class="flex">
+					<Tile data={data.highlights.highlight05} offset="l" />
+				</div>
+			{/if}
 		</div>
 
-		<div class="flex flex-col" style:margin-left="{$currentSettings.colWidth}px">
-			<div class="flex ml-auto">
-				<Tile data={data.highlights.highlight03} size="m" />
+		<!-- Second Column in Desktop -->
+		<div class="flex flex-col space-y-84" style:margin-left="{$currentSettings.colWidth}px">
+			<!-- Events Tile -->
+			<div>
+				<Event eventData={data.event} />
 			</div>
+			{#if data.highlights.highlight03}
+				<!-- Highlights -->
+				<div class="flex">
+					<Tile data={data.highlights.highlight03} />
+				</div>
+			{/if}
+
+			{#if data.highlights.highlight04}
+				<!-- Highlights -->
+				<div class="flex">
+					<Tile data={data.highlights.highlight04} offset="l" />
+				</div>
+			{/if}
 		</div>
 	</div>
+
 	{#if data.knowledge.length > 0}
 		<Row title="Knowledge in use" url="knowledge-in-use" catData={data.knowledge}>
 			{#each data.knowledge as entry}
-				<Tile size="l" data={entry} />
+				<Tile data={entry} />
 			{/each}
 		</Row>
 	{/if}
 	{#if data.community.length > 0}
 		<Row title="Community" url="community" catData={data.community}>
 			{#each data.community as entry}
-				<Tile size="l" data={entry} />
+				<Tile data={entry} />
 			{/each}
 		</Row>
 	{/if}
 	{#if data.kosmos.length > 0}
 		<Row title="Kosmos" url="kosmos" catData={data.kosmos}>
 			{#each data.kosmos as entry}
-				<Tile size="s" data={entry} />
+				<Tile data={entry} />
 			{/each}
 		</Row>
 	{/if}

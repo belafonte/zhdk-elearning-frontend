@@ -37,9 +37,13 @@
 </script>
 
 <div style="padding: 0 {extraPadding}px">
-	<div class="grid" class:grid-cols-2={cols === 2} class:grid-cols-4={cols === 4}>
+	<div
+		class="grid gap-y-32 sm:gap-y-42"
+		class:grid-cols-2={cols === 2}
+		class:grid-cols-4={cols === 4}
+	>
 		{#each data.data as entry}
-			<Tile size={tileSize} data={entry} />
+			<Tile data={entry} />
 		{/each}
 	</div>
 </div>

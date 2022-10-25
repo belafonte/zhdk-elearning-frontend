@@ -9,6 +9,7 @@ interface IResponse {
 	kosmos: ICategory;
 	glossary: any;
 	highlights: any;
+	event: any;
 }
 
 export const load: PageServerLoad = async (params) => {
@@ -79,12 +80,27 @@ export const load: PageServerLoad = async (params) => {
 			return response;
 		});
 
+	const event = await fetch(
+		`${PUBLIC_ENDPOINT}/content/item/content?filter={category: "Event"}&limit=1`,
+		{
+			method: "GET",
+			headers: {
+				"api-key": API_KEY
+			}
+		}
+	)
+		.then((response) => response.json())
+		.then((response) => {
+			return response;
+		});
+
 	const data = {
 		highlightColor: "#EEEEEE",
 		community: community,
 		knowledge: knowledge,
 		kosmos: kosmos,
 		glossary: glossary,
+		event: event,
 		highlights: highlights
 	} as IResponse;
 

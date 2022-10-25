@@ -5,6 +5,7 @@
 
 	// component imports
 	import MainImage from "$lib/components/MainImage.svelte";
+	import Tag from "$lib/components/Tag.svelte";
 	import GridBackground from "$lib/components/GridBackground.svelte";
 
 	export let data: PageServerLoad;
@@ -24,11 +25,7 @@
 </script>
 
 {#if data}
-	<div
-		id="detail"
-		transition:fly={{ y: 200, duration: 400 }}
-		on:introend={(status) => trans(status)}
-	>
+	<div transition:fly={{ y: 200, duration: 400 }} on:introend={(status) => trans(status)}>
 		<GridBackground>
 			<div bind:this={nav} class="z-50 mb-72 sm:mb-84 mt-24 sm:mt-32 sticky grid grid-cols-3">
 				<button class="justify-self-start" on:click={() => history.back()}>Zurück</button>
@@ -39,7 +36,10 @@
 			</div>
 
 			<div class="flex flex-col-reverse sm:flex-row mb-32 sm:mb-84 z-10">
-				<p class="text-14 sm:basis-1/3 flex items-center">{data.caption}</p>
+				<p class="text-14 sm:basis-1/3 flex items-center">
+					{data.caption !== null ? data.caption : " "}
+				</p>
+
 				<div class="sm:basis-1/3 flex flex-col justify-center">
 					<MainImage
 						path={PUBLIC_ASSETS + data.title_image.path}
@@ -51,9 +51,28 @@
 
 			<GridBackground>
 				<div class="z-40">
-					<h2 class="text-24 sm:text-50 mb-32 sm:mb-84 sm:mr-[25%]">{@html data.subhead}</h2>
+					{#if data.event.date !== null}
+						<div
+							class="link grid grid-cols-2 sm:grid-cols-4 text-24 sm:text-26 mb-32 sm:mb-42 gap-15"
+						>
+							<p>{data.event.date}</p>
+							<p>{data.event.time}</p>
+							<p>{data.event.location}</p>
+							<a class="relative top-[-7px]" href={data.event.link}>Anmelden</a>
+						</div>
+					{/if}
+					<h2 class="link text-24 sm:text-50 mb-32 sm:mb-84 sm:mr-[25%]">{@html data.subhead}</h2>
 
-					<p class="text-20 sm:mx-[25%] sm:text-26 font-serif mb-32 sm:mb-84">{@html data.body}</p>
+					<div class="sm:mx-[25%] mb-32 sm:mb-84">
+						<p class="link text-20  sm:text-26 font-serif">
+							{@html data.body}
+						</p>
+						{#if data.event.date !== null}
+							<div class="mt-32 sm:mt-42">
+								<Tag ref={data.event.link} text="Anmelden" rounded={true} icon={true} />
+							</div>
+						{/if}
+					</div>
 					<div
 						class="grid place-items-center"
 						class:grid-cols-2={data.image.length > 1}
@@ -73,10 +92,10 @@
 {/if}
 
 <style>
-	:global(#detail a) {
+	:global(.link a) {
 		@apply underline !important;
 	}
-	:global(#detail a::after) {
+	:global(.link a::after) {
 		font-family: "icomoon" !important;
 		content: "\e900";
 	}

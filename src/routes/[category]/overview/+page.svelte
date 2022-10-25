@@ -4,7 +4,6 @@
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 	import Tile from "$lib/components/Tile.svelte";
 	import MetaQuestion from "$lib/components/MetaQuestion.svelte";
-	import Tag from "$lib/components/Tag.svelte";
 	import type { PageServerData } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
 
@@ -13,17 +12,8 @@
 
 	let cols = 4;
 	let extraPadding = 0;
-	let tileSize = "s";
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
-
-	$: if (data.data[0].category === "Community") {
-		tileSize = "l";
-	} else if (data.data[0].category === "Knowledge in use") {
-		tileSize = "m";
-	} else {
-		tileSize = "s";
-	}
 
 	// add padding to center 2 columns layout
 	$: if (cols === 2 && $currentSettings.type !== "mobile") {
@@ -47,7 +37,7 @@
 		class:grid-cols-2={cols === 2}
 		class:grid-cols-4={cols === 4}
 	>
-		{#if data.data[0].category === "Leitfrage"}
+		{#if data.category === "questions"}
 			{#each data.data as entry}
 				<MetaQuestion
 					path={PUBLIC_ASSETS + entry.title_image.path}

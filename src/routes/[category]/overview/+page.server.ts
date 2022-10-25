@@ -12,16 +12,18 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const fields =
 		"fields={ category: true, title: true, color: true, title_image: true, mask: true, rotation: true, event: true }";
-	let filter = `filter={category: "${category.replace(/^./, category.charAt(0).toUpperCase())}"}`;
+	let filter = category.replace(/^./, category.charAt(0).toUpperCase());
 	filter = filter.replaceAll("-", " ");
+	let filterQuery = `filter={category: "${filter}"}`;
 
-	if (filter.localeCompare("filter={category: 'Questions'}")) {
-		filter = "filter={category: 'Leitfrage'}";
+	if (filter.localeCompare("Questions", "en") > -1) {
+		console.log("insde");
+		filterQuery = "filter={category: 'Leitfrage'}";
 	}
 
 	// let overviewData: OverviewData = {} as OverviewData;
 	let cols: { mobile: number; desktop: number };
-	const query = `${PUBLIC_ENDPOINT}/content/items/content?${fields}&${filter}`;
+	const query = `${PUBLIC_ENDPOINT}/content/items/content?${fields}&${filterQuery}`;
 
 	const res = await fetch(query, {
 		method: "GET",
@@ -49,6 +51,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	data.cols = cols;
 	data.data = res;
+	data.category = category;
 	data.highlightColor = "#EEEEEE";
 	return data;
 };

@@ -57,7 +57,7 @@
 					on:click={() => closeMenu()}
 				>
 					<div class="flex flex-col">
-						<a>Leitfragen</a>
+						<a href="/questions/overview">Leitfragen</a>
 						<a href="/event/overview">Events</a>
 						<a href="/knowledge/overview">Knowledge in use</a>
 						<a href="/kosmos/overview">Kosmos</a>

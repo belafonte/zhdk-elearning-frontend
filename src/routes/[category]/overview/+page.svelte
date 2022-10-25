@@ -16,7 +16,11 @@
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
 	// add padding to center 2 columns layout
-	$: if (cols === 2 && $currentSettings.type !== "mobile") {
+	$: if (
+		cols === 2 &&
+		$currentSettings.type !== "mobile" &&
+		data.data[0].category !== "Leitfrage"
+	) {
 		extraPadding = $currentSettings.colWidth;
 	} else {
 		extraPadding = 0;
@@ -27,8 +31,6 @@
 	} else {
 		cols = data.cols.desktop;
 	}
-
-	console.log(data);
 </script>
 
 <div style="padding: 0 {extraPadding}px">

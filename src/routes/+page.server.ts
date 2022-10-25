@@ -8,6 +8,7 @@ interface IResponse {
 	knowledge: ICategory;
 	kosmos: ICategory;
 	glossary: any;
+	highlights: any;
 }
 
 export const load: PageServerLoad = async (params) => {
@@ -67,12 +68,24 @@ export const load: PageServerLoad = async (params) => {
 			return response;
 		});
 
+	const highlights = await fetch(`${PUBLIC_ENDPOINT}/content/item/highlights?populate=1`, {
+		method: "GET",
+		headers: {
+			"api-key": API_KEY
+		}
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			return response;
+		});
+
 	const data = {
 		highlightColor: "#EEEEEE",
 		community: community,
 		knowledge: knowledge,
 		kosmos: kosmos,
-		glossary: glossary
+		glossary: glossary,
+		highlights: highlights
 	} as IResponse;
 
 	return data;

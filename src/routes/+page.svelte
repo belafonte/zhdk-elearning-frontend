@@ -12,11 +12,15 @@
 	// component imports
 	import Row from "$lib/components/Row.svelte";
 	import Tile from "$lib/components/Tile.svelte";
+	import Tag from "$lib/components/Tag.svelte";
 	import type { PageServerData } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
+	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
+	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 
 	// import Swiper core and required modules
-	import { Navigation, Autoplay, Scrollbar, A11y } from "swiper";
+	import { Navigation, Autoplay } from "swiper";
 
 	import { Swiper, SwiperSlide } from "swiper/svelte";
 
@@ -28,10 +32,29 @@
 
 	export let data: PageServerData;
 
-	console.log(data);
+	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
+
+	console.log(data.highlights);
 </script>
 
 {#if data !== null}
+	<div class="grid grid-cols-2" style:margin="0 {$currentSettings.colWidth}px">
+		<div>
+			<div class="flex flex-col items-center mb-72">
+				<img src={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path} />
+				<Tag ref="/questions/overview" rounded={true} text="Zu allen Leitfragen" icon={true} />
+			</div>
+			<div class="flex w-max">
+				<Tile data={data.highlights.highlight02} size="l" />
+			</div>
+		</div>
+
+		<div class="flex flex-col" style:margin-left="{$currentSettings.colWidth}px">
+			<div class="flex ml-auto">
+				<Tile data={data.highlights.highlight03} size="m" />
+			</div>
+		</div>
+	</div>
 	{#if data.knowledge.length > 0}
 		<Row title="Knowledge in use" url="knowledge-in-use" catData={data.knowledge}>
 			{#each data.knowledge as entry}

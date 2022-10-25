@@ -31,6 +31,7 @@
 	import "swiper/css/pagination";
 	import "swiper/css/scrollbar";
 	import MainImage from "$lib/components/MainImage.svelte";
+	import MetaQuestion from "$lib/components/MetaQuestion.svelte";
 
 	export let data: PageServerData;
 
@@ -44,9 +45,13 @@
 		class="hidden sm:grid sm:grid-cols-2"
 		style:margin="0 {$currentSettings.colWidth}px 84px {$currentSettings.colWidth}px"
 	>
-		<div>
-			<div class="flex flex-col items-center mb-72">
-				<img src={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path} />
+		<div class="space-y-84">
+			<div class="flex flex-col items-center">
+				<MetaQuestion
+					link="/questions/{data.highlights.highlight01._id}"
+					path={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path}
+					mask={PUBLIC_ASSETS + data.highlights.highlight01.mask.path}
+				/>
 				<Tag ref="/questions/overview" rounded={true} text="Zu allen Leitfragen" icon={true} />
 			</div>
 			{#if data.highlights.highlight02}
@@ -84,6 +89,46 @@
 			{/if}
 		</div>
 	</div>
+	<div class="sm:hidden space-y-72 mb-72">
+		<div class="flex flex-col items-center">
+			<MetaQuestion
+				link="/questions/{data.highlights.highlight01._id}"
+				path={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path}
+				mask={PUBLIC_ASSETS + data.highlights.highlight01.mask.path}
+			/>
+			<Tag ref="/questions/overview" rounded={true} text="Zu allen Leitfragen" icon={true} />
+		</div>
+		<!-- Events Tile -->
+		<div>
+			<Event eventData={data.event} />
+		</div>
+		{#if data.highlights.highlight02}
+			<div class="flex">
+				<Tile data={data.highlights.highlight02} />
+			</div>
+		{/if}
+
+		{#if data.highlights.highlight03}
+			<!-- Highlights -->
+			<div class="flex">
+				<Tile data={data.highlights.highlight03} />
+			</div>
+		{/if}
+
+		{#if data.highlights.highlight04}
+			<!-- Highlights -->
+			<div class="flex">
+				<Tile data={data.highlights.highlight04} offset="l" />
+			</div>
+		{/if}
+
+		{#if data.highlights.highlight05}
+			<!-- Highlights -->
+			<div class="flex">
+				<Tile data={data.highlights.highlight05} offset="r" />
+			</div>
+		{/if}
+	</div>
 
 	{#if data.knowledge.length > 0}
 		<Row title="Knowledge in use" url="knowledge-in-use" catData={data.knowledge}>
@@ -108,7 +153,7 @@
 	{/if}
 
 	<div class="flex justify-center">
-		<div id="slider" class="w-1/2">
+		<div id="slider" class="w-full sm:w-1/2">
 			<Swiper
 				modules={[Navigation, Autoplay]}
 				spaceBetween={0}

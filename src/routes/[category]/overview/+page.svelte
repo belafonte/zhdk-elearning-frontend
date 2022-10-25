@@ -3,7 +3,10 @@
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 	import Tile from "$lib/components/Tile.svelte";
+	import MetaQuestion from "$lib/components/MetaQuestion.svelte";
+	import Tag from "$lib/components/Tag.svelte";
 	import type { PageServerData } from "./$types";
+	import { PUBLIC_ASSETS } from "$env/static/public";
 
 	// export let data: PageData;
 	export let data: PageServerData;
@@ -34,6 +37,8 @@
 	} else {
 		cols = data.cols.desktop;
 	}
+
+	console.log(data);
 </script>
 
 <div style="padding: 0 {extraPadding}px">
@@ -42,8 +47,17 @@
 		class:grid-cols-2={cols === 2}
 		class:grid-cols-4={cols === 4}
 	>
-		{#each data.data as entry}
-			<Tile data={entry} />
-		{/each}
+		{#if data.data[0].category === "Leitfrage"}
+			{#each data.data as entry}
+				<MetaQuestion
+					path={PUBLIC_ASSETS + entry.title_image.path}
+					mask={PUBLIC_ASSETS + entry.mask.path}
+				/>
+			{/each}
+		{:else}
+			{#each data.data as entry}
+				<Tile data={entry} />
+			{/each}
+		{/if}
 	</div>
 </div>

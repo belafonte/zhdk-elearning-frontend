@@ -39,13 +39,17 @@
 				<p class="text-14 sm:basis-1/3 flex items-center">
 					{data.caption !== null ? data.caption : " "}
 				</p>
-
+				<!--	Main Image	-->
 				<div class="sm:basis-1/3 flex flex-col justify-center">
-					<MainImage
-						path={PUBLIC_ASSETS + data.title_image.path}
-						mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null}
-						rotation={data.rotation !== "Keine" ? data.rotation : null}
-					/>
+					{#if data.category === "Leitfrage"}
+						<img src={PUBLIC_ASSETS + data.mask.path} />
+					{:else}
+						<MainImage
+							path={PUBLIC_ASSETS + data.title_image.path}
+							mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null}
+							rotation={data.rotation !== "Keine" ? data.rotation : null}
+						/>
+					{/if}
 				</div>
 			</div>
 

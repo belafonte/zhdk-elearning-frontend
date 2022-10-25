@@ -10,11 +10,11 @@
 <a
 	id="link"
 	href={ref}
-	class="border border-black px-8 sm:px-10 pt-5 pb-[2px] font-sans text-12 sm:text-14 flex w-max"
+	class="border border-black px-8 sm:px-10 pt-5 pb-[2px] font-sans text-12 sm:text-14 flex w-max h-max"
 	class:rounded-full={rounded}
 >
 	<div class="flex">
-		<p>{text}</p>
+		<p class="uppercase text-12 sm:text-14">{text}</p>
 		{#if icon}
 			<img id="image" class="arrow transition-all ml-4" src={arrow} alt="Open Section" />
 		{/if}

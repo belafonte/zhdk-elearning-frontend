@@ -11,13 +11,14 @@ export const load: PageServerLoad = async ({ params }) => {
 	const category = params.category;
 
 	const fields =
-		"fields={ category: true, title: true, color: true, title_image: true, mask: true }";
+		"fields={ category: true, title: true, color: true, title_image: true, mask: true, rotation: true, event: true }";
 	const filter = `filter={category: "${category.replace(/^./, category.charAt(0).toUpperCase())}"}`;
 
 	// let overviewData: OverviewData = {} as OverviewData;
 	let cols: { mobile: number; desktop: number };
+	const query = `${PUBLIC_ENDPOINT}/content/items/content?${fields}&${filter}`;
 
-	const res = await fetch(`${PUBLIC_ENDPOINT}/content/items/content?${fields}&${filter}`, {
+	const res = await fetch(query, {
 		method: "GET",
 		headers: {
 			"api-key": API_KEY
@@ -38,7 +39,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	// const data = Object.assign(cols, res);
-
 	const data = { cols: {}, data: [], highlightColor: "" };
 
 	data.cols = cols;

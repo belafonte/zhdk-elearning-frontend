@@ -17,6 +17,7 @@
 		title_image: string;
 		tags: [string];
 		rotation: string;
+		event: any;
 	}
 
 	export let size: string;
@@ -56,15 +57,15 @@
 			tileWidth = $currentSettings.colWidth * colSpan;
 		}
 	}
-
-	$: console.log(data, size);
 </script>
 
 {#if $currentSettings !== undefined}
 	<a
 		href={`/${data.category.toLocaleLowerCase()}/${data._id}`}
 		class="p-15 title font-serif h-min"
-		style="flex: 0 0 {tileWidth}px; background-color: {data.color.colors[0]}"
+		style="flex: 0 0 {tileWidth}px; background-color: {data.color !== null
+			? data.color.colors[0]
+			: '#EEEEEE'}"
 	>
 		<h1
 			class="mb-15"
@@ -88,6 +89,12 @@
 				{#each data.tags as tag}
 					<Tag text={tag} rounded={true} />
 				{/each}
+			{/if}
+			{#if data.event.date !== null}
+				<div class="ml-32">
+					<p class="font-sans text-12">{data.event.date} / {data.event.time}</p>
+					<p class="font-sans text-12">{data.event.location}</p>
+				</div>
 			{/if}
 		</div>
 	</a>

@@ -21,12 +21,14 @@
 		topNav = nav?.getBoundingClientRect().top;
 		nav.style.top = `${topNav}px`;
 	}
-
-	$: console.log(data);
 </script>
 
 {#if data}
-	<div transition:fly={{ y: 200, duration: 400 }} on:introend={(status) => trans(status)}>
+	<div
+		id="detail"
+		transition:fly={{ y: 200, duration: 400 }}
+		on:introend={(status) => trans(status)}
+	>
 		<GridBackground>
 			<div bind:this={nav} class="z-50 mb-72 sm:mb-84 mt-24 sm:mt-32 sticky grid grid-cols-3">
 				<button class="justify-self-start" on:click={() => history.back()}>Zurück</button>
@@ -49,7 +51,7 @@
 
 			<GridBackground>
 				<div class="z-40">
-					<h2 class="text-24 sm:text-50 mb-32 sm:mb-84 sm:mr-[25%]">{data.subhead}</h2>
+					<h2 class="text-24 sm:text-50 mb-32 sm:mb-84 sm:mr-[25%]">{@html data.subhead}</h2>
 
 					<p class="text-20 sm:mx-[25%] sm:text-26 font-serif mb-32 sm:mb-84">{@html data.body}</p>
 					<div
@@ -69,3 +71,13 @@
 		</GridBackground>
 	</div>
 {/if}
+
+<style>
+	:global(#detail a) {
+		@apply underline !important;
+	}
+	:global(#detail a::after) {
+		font-family: "icomoon" !important;
+		content: "\e900";
+	}
+</style>

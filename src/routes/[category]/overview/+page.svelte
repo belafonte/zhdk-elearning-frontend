@@ -3,7 +3,7 @@
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 	import Tile from "$lib/components/Tile.svelte";
-	import type { PageServerData, PageData } from "./$types";
+	import type { PageServerData } from "./$types";
 
 	// export let data: PageData;
 	export let data: PageServerData;
@@ -25,7 +25,6 @@
 	// add padding to center 2 columns layout
 	$: if (cols === 2 && $currentSettings.type !== "mobile") {
 		extraPadding = $currentSettings.colWidth;
-		console.log("hello");
 	} else {
 		extraPadding = 0;
 	}
@@ -35,8 +34,6 @@
 	} else {
 		cols = data.cols.desktop;
 	}
-
-	$: console.log(data, tileSize);
 </script>
 
 <div style="padding: 0 {extraPadding}px">

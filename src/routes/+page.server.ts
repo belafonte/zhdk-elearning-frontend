@@ -7,11 +7,12 @@ interface IResponse {
 	community: ICategory;
 	knowledge: ICategory;
 	kosmos: ICategory;
+	glossary: any;
 }
 
 export const load: PageServerLoad = async (params) => {
 	const fields =
-		"fields={ category: true, title: true, color: true, title_image: true, rotation: true, mask: true }";
+		"fields={ category: true, title: true, color: true, title_image: true, rotation: true, mask: true, event: true }";
 
 	const community = await fetch(
 		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Community"}&limit=8`,
@@ -55,11 +56,23 @@ export const load: PageServerLoad = async (params) => {
 			return response;
 		});
 
+	const glossary = await fetch(`${PUBLIC_ENDPOINT}/content/item/glossary?fields={slider: true}`, {
+		method: "GET",
+		headers: {
+			"api-key": API_KEY
+		}
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			return response;
+		});
+
 	const data = {
 		highlightColor: "#EEEEEE",
 		community: community,
 		knowledge: knowledge,
-		kosmos: kosmos
+		kosmos: kosmos,
+		glossary: glossary
 	} as IResponse;
 
 	return data;

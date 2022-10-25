@@ -51,6 +51,7 @@
 
 			<GridBackground>
 				<div class="z-40">
+					<!-- Event Data -->
 					{#if data.event.date !== null}
 						<div
 							class="link grid grid-cols-2 sm:grid-cols-4 text-24 sm:text-26 mb-32 sm:mb-42 gap-15"
@@ -61,8 +62,13 @@
 							<a class="relative top-[-7px]" href={data.event.link}>Anmelden</a>
 						</div>
 					{/if}
-					<h2 class="link text-24 sm:text-50 mb-32 sm:mb-84 sm:mr-[25%]">{@html data.subhead}</h2>
 
+					<!-- Subhead Data - has margin below -->
+					{#if data.subhead}
+						<h2 class="link text-24 sm:text-50 mb-32 sm:mb-84 sm:mr-[25%]">{@html data.subhead}</h2>
+					{/if}
+
+					<!-- Body text with link tag in the end -->
 					<div class="sm:mx-[25%] mb-32 sm:mb-84">
 						<p class="link text-20  sm:text-26 font-serif">
 							{@html data.body}
@@ -73,6 +79,7 @@
 							</div>
 						{/if}
 					</div>
+
 					<div
 						class="grid place-items-center"
 						class:grid-cols-2={data.image.length > 1}

@@ -12,7 +12,9 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const fields =
 		"fields={ category: true, title: true, color: true, title_image: true, mask: true, rotation: true, event: true }";
-	const filter = `filter={category: "${category.replace(/^./, category.charAt(0).toUpperCase())}"}`;
+	let filter = `filter={category: "${category.replace(/^./, category.charAt(0).toUpperCase())}"}`;
+	filter = filter.replaceAll("-", " ");
+	console.log(filter);
 
 	// let overviewData: OverviewData = {} as OverviewData;
 	let cols: { mobile: number; desktop: number };

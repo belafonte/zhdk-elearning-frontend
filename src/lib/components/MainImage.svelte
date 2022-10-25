@@ -2,8 +2,6 @@
 	export let path: string;
 	export let mask: string | null = null;
 	export let rotation: string | null = null;
-
-	$: console.log(mask, rotation);
 </script>
 
 <img

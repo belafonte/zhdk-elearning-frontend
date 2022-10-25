@@ -105,11 +105,8 @@
 			}
 		}
 
-		console.log(settings);
 		return settings;
 	})();
-
-	$: console.log($page);
 </script>
 
 <!-- Alternaitve use resize, since binding seems stop working sometimes -->

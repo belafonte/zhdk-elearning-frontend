@@ -5,8 +5,6 @@
 	import Tag from "$lib/components/Tag.svelte";
 
 	export let data: PageServerData;
-
-	console.log(data);
 </script>
 
 <p class="text-24 sm:text-50 mb-72 sm:mb-84">{@html data.vision}</p>
@@ -25,9 +23,7 @@
 					text="Mail"
 					icon={true}
 					rounded={true}
-					on:click={() => {
-						console.log("hello");
-					}}
+					on:click={() => {}}
 				/>
 
 				<Tag ref={member.linked_in} text="LinkedIn" icon={true} rounded={true} />

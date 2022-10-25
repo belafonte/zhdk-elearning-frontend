@@ -10,7 +10,7 @@
 	export let url: string;
 	export let catData: ICategory;
 
-	// $: console.log("RowComp" + colSize);
+	// $:
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 </script>
 

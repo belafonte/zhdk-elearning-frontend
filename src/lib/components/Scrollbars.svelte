@@ -37,7 +37,6 @@
 		let scroll = scrollHeight - winHeight;
 		barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);
 
-		// console.log(scroll);
 		showBars = scroll > 0 ? true : false;
 	}
 
@@ -50,8 +49,6 @@
 		center / 2 + barWidth / 2,
 		center + center / 2 - barWidth / 2
 	];
-
-	console.log(showBars, barPosY);
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight={winHeight} />

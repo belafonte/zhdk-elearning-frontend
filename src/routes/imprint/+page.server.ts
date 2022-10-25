@@ -14,7 +14,5 @@ export const load: PageServerLoad = async () => {
 			return response;
 		});
 
-	console.log(data);
-
 	return data;
 };

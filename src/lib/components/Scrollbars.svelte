@@ -32,7 +32,6 @@
 
 	$: {
 		let location = $page.routeId;
-		console.log(location);
 		let scrollHeight = document.documentElement.scrollHeight;
 		let scroll = scrollHeight - winHeight;
 		barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);

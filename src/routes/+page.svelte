@@ -30,14 +30,11 @@
 	import "swiper/css/navigation";
 	import "swiper/css/pagination";
 	import "swiper/css/scrollbar";
-	import MainImage from "$lib/components/MainImage.svelte";
 	import MetaQuestion from "$lib/components/MetaQuestion.svelte";
 
 	export let data: PageServerData;
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
-
-	console.log(data.highlights);
 </script>
 
 {#if data !== null}
@@ -89,6 +86,8 @@
 			{/if}
 		</div>
 	</div>
+
+	<!-- Mobile Highlight Section -->
 	<div class="sm:hidden space-y-72 mb-72">
 		<div class="flex flex-col items-center">
 			<MetaQuestion
@@ -130,6 +129,7 @@
 		{/if}
 	</div>
 
+	<!-- Section Rows -->
 	{#if data.knowledge.length > 0}
 		<Row title="Knowledge in use" url="knowledge-in-use" catData={data.knowledge}>
 			{#each data.knowledge as entry}
@@ -152,6 +152,7 @@
 		</Row>
 	{/if}
 
+	<!-- Glossary Slider -->
 	<div class="flex justify-center">
 		<div id="slider" class="w-full sm:w-1/2">
 			<Swiper
@@ -161,7 +162,6 @@
 				loop
 				autoplay
 				navigation
-				on:slideChange={() => console.log("slide change")}
 			>
 				{#each data.glossary.slider as slide}
 					<SwiperSlide>

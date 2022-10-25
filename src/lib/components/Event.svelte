@@ -8,7 +8,7 @@
 	console.log(eventData);
 </script>
 
-<a href="/events/overview" id="event" class="flex flex-col items-center ">
+<a href="/event/overview" id="event" class="flex flex-col items-center ">
 	<div class="h-10 bg-[#C7C7C7] w-[90%] transition-all" />
 	<div class="h-10 bg-[#D9D9D9] w-[95%] transition-all" />
 

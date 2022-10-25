@@ -17,7 +17,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	let filterQuery = `filter={category: "${filter}"}`;
 
 	if (filter.localeCompare("Questions", "en") > -1) {
-		console.log("insde");
 		filterQuery = "filter={category: 'Leitfrage'}";
 	}
 

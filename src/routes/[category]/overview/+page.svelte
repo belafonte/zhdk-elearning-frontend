@@ -37,11 +37,12 @@
 		class:grid-cols-2={cols === 2}
 		class:grid-cols-4={cols === 4}
 	>
-		{#if data.category === "questions"}
+		{#if data.data[0].category === "Leitfrage"}
 			{#each data.data as entry}
 				<MetaQuestion
 					path={PUBLIC_ASSETS + entry.title_image.path}
 					mask={PUBLIC_ASSETS + entry.mask.path}
+					link="/questions/{entry._id}"
 				/>
 			{/each}
 		{:else}

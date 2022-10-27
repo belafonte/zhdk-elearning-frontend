@@ -7,10 +7,29 @@ interface OverviewData extends ICategory {
 	cols: { mobile: number; dektop: number };
 }
 
-export const load: PageServerLoad = async (params) => {
+export const load: PageServerLoad = async (session) => {
 	let data;
 
-	data = await fetch(`${PUBLIC_ENDPOINT}/content/item/content/${params.params.detail}`, {
+	// data = await fetch(`${PUBLIC_ENDPOINT}/content/item/content/${params.params.detail}`, {
+	// 	method: "GET",
+	// 	headers: {
+	// 		"api-key": API_KEY
+	// 	}
+	// })
+	// 	.then((response) => response.json())
+	// 	.catch(() => {
+	// 		return null;
+	// 	})
+	// 	.then((response) => {
+	// 		return response;
+	// 	});
+
+	// console.log(data);
+	// if query is unsuccessful, try to filter by slug
+	// if (data === null) {
+	const query = `${PUBLIC_ENDPOINT}/content/items/content?filter={ slug: '${session.params.detail}'}`;
+
+	data = await fetch(query, {
 		method: "GET",
 		headers: {
 			"api-key": API_KEY
@@ -23,26 +42,12 @@ export const load: PageServerLoad = async (params) => {
 		.then((response) => {
 			return response;
 		});
+	// }
 
-	// if query is unsuccessful, try to filter by slug
-	if (data === null) {
-		const filter = { slug: params.params.detail };
-
-		data = await fetch(`${PUBLIC_ENDPOINT}/content/items/content?filter=${filter}`, {
-			method: "GET",
-			headers: {
-				"api-key": API_KEY
-			}
-		})
-			.then((response) => response.json())
-			.catch(() => {
-				return null;
-			})
-			.then((response) => {
-				return response;
-			});
+	data = data[0];
+	console.log("DETAIL", data);
+	if (data !== undefined) {
+		data.highlightColor = data.color !== null ? data.color.colors[0] : "#EEEEEE";
 	}
-
-	data.highlightColor = data.color !== null ? data.color.colors[0] : "#EEEEEE";
 	return data;
 };

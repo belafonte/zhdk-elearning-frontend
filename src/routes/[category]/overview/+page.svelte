@@ -46,7 +46,7 @@
 				<MetaQuestion
 					path={PUBLIC_ASSETS + entry.title_image.path}
 					mask={PUBLIC_ASSETS + entry.mask.path}
-					link="/questions/{entry._id}"
+					link="/questions/{entry.slug}"
 				/>
 			{/each}
 		{:else}

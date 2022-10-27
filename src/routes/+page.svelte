@@ -45,7 +45,7 @@
 		<div class="space-y-84">
 			<div class="flex flex-col items-center">
 				<MetaQuestion
-					link="/questions/{data.highlights.highlight01._id}"
+					link="/questions/{data.highlights.highlight01.slug}"
 					path={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path}
 					mask={PUBLIC_ASSETS + data.highlights.highlight01.mask.path}
 				/>
@@ -91,7 +91,7 @@
 	<div class="sm:hidden space-y-72 mb-72">
 		<div class="flex flex-col items-center">
 			<MetaQuestion
-				link="/questions/{data.highlights.highlight01._id}"
+				link="/questions/{data.highlights.highlight01.slug}"
 				path={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path}
 				mask={PUBLIC_ASSETS + data.highlights.highlight01.mask.path}
 			/>

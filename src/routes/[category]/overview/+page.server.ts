@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	const category = params.category;
 
 	const fields =
-		"fields={ category: true, title: true, color: true, title_image: true, mask: true, rotation: true, event: true }";
+		"fields={ category: true, title: true, color: true, title_image: true, mask: true, rotation: true, event: true, slug: true }";
 	let filter = category.replace(/^./, category.charAt(0).toUpperCase());
 	filter = filter.replaceAll("-", " ");
 	let filterQuery = `filter={category: "${filter}"}`;

@@ -39,7 +39,6 @@
 		scrollHeight = document.documentElement.scrollHeight;
 		let scroll = scrollHeight - winHeight;
 		barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);
-		console.log(scroll, scrollHeight, winHeight, window.innerHeight);
 		if ((showBars = scroll > 0)) showBars = true;
 	}
 
@@ -57,15 +56,7 @@
 		setTimeout(() => {
 			scrollHeight = document.documentElement.scrollHeight;
 		}, 100);
-		// let location = $page.routeId;
-		// let scrollHeight = document.documentElement.scrollHeight;
-		// let scroll = scrollHeight - winHeight;
-		// barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);
-		// console.log(scroll);
-		// if ((showBars = scroll > 0)) showBars = true;
 	});
-
-	$: console.log(showBars, $currentSettings);
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight={winHeight} />

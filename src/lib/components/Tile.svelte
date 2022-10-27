@@ -10,6 +10,7 @@
 
 	interface ITileData {
 		_id: string;
+		slug: string;
 		color: { colors: [string] };
 		title: string;
 		category: string;
@@ -73,7 +74,7 @@
 
 {#if $currentSettings !== undefined}
 	<a
-		href={`/${data.category.toLocaleLowerCase()}/${data._id}`}
+		href={`/${data.category.toLocaleLowerCase().replaceAll(" ", "-")}/${data.slug}`}
 		class="p-15 title font-serif h-min overflow-hidden"
 		class:ml-auto={offset === "l"}
 		class:mr-auto={offset === "r"}

@@ -2,19 +2,24 @@
 	import type { PageServerLoad } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
 	import { fly } from "svelte/transition";
+	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
+	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 
 	// component imports
 	import MainImage from "$lib/components/MainImage.svelte";
 	import Tag from "$lib/components/Tag.svelte";
 	import GridBackground from "$lib/components/GridBackground.svelte";
-	import { fix_position, onMount } from "svelte/internal";
+	import { onMount } from "svelte/internal";
 
 	export let data: PageServerLoad;
 
 	let title: HTMLElement | undefined;
 	let nav: HTMLElement | undefined;
-	let top: number | undefined = 0;
-	let topNav: number | undefined = 0;
+
+	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
+
+	$: containerWidth = $currentSettings.gridCols * $currentSettings.colWidth;
 
 	$: scrollOverTop = 0;
 	$: titleTop = 0;
@@ -34,14 +39,24 @@
 {#if data}
 	<div transition:fly={{ y: 200, duration: 400 }} on:introend={(status) => trans(status)}>
 		<GridBackground>
-			<div bind:this={nav} class="pt-24 sm:pt-32 pb-32 grid grid-cols-3 z-50 w-screen fixed">
+			<div
+				bind:this={nav}
+				class="pt-24 sm:pt-32 pb-32 grid grid-cols-3 z-50 w-max fixed"
+				style:width="{containerWidth}px"
+			>
 				<button class="justify-self-start" on:click={() => history.back()}>Zurück</button>
-				<div class="bg-white bg-opacity-50 justify-self-center">
+				<div class="bg-white bg-opacity-50 justify-self-center whitespace-nowrap">
 					{data.category.toUpperCase()}
 				</div>
 			</div>
 
-			<div bind:this={title} style:position={titlePosition} style:padding-top="{titleTop}px">
+			<div
+				bind:this={title}
+				class="overflow-hidden"
+				style:position={titlePosition}
+				style:padding-top="{titleTop}px"
+				style:width="{containerWidth}px"
+			>
 				<h1 class="text-60 sm:text-130 pb-32 sm:pb-84 font-serif">{@html data.title}</h1>
 			</div>
 

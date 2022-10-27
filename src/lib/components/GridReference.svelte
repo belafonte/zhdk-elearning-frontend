@@ -92,7 +92,7 @@
 				settings.barCount = 3;
 			}
 		} else {
-			if ($page.routeId === "") {
+			if ($page.routeId === "/") {
 				settings.barCount = 2;
 			} else if (
 				$page.params.category === "community" ||

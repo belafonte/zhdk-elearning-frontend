@@ -153,7 +153,7 @@
 	{/if}
 
 	<!-- Glossary Slider -->
-	<div class="flex justify-center">
+	<div class="flex justify-center pb-84 sm:pb-[168px]">
 		<div id="slider" class="w-full sm:w-1/2">
 			<Swiper
 				modules={[Navigation, Autoplay]}

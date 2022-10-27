@@ -24,7 +24,7 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="flex flex-col min-h-screen">
+	<div class="flex flex-col min-h-screen z-10">
 		<slot />
 	</div>
 </div>

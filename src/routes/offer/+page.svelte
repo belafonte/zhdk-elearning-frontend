@@ -7,7 +7,7 @@
 </script>
 
 {#each data.offers as offer}
-	<div class="flex flex-col mb-72 sm:mb-84">
+	<div class="flex flex-col mb-84 sm:mb-[168px]">
 		<p class="text-24 sm:text-50 mb-32 sm:mb-42">{@html offer.text}</p>
 		{#if offer.image !== null}
 			<img class="w-1/2 self-center" src={PUBLIC_ASSETS + offer.image.path} />

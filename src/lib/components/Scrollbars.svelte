@@ -4,6 +4,7 @@
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 	import Scrollbar from "$lib/components/Scrollbar.svelte";
 	import { page } from "$app/stores";
+	import { onMount } from "svelte";
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 	let scrollY = 0;

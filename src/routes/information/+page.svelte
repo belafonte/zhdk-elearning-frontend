@@ -31,7 +31,7 @@
 		</div>
 	{/each}
 </div>
-<p class="text-24 sm:text-50">{@html data.contact}</p>
+<p class="text-24 sm:text-50 pb-84 sm:pb-[168px]">{@html data.contact}</p>
 
 <style>
 	:global(#links a) {

@@ -33,7 +33,11 @@
 	}
 </script>
 
-<div style="padding: 0 {extraPadding}px">
+<div
+	style:padding-left="{extraPadding}px"
+	style:padding-right="{extraPadding}px"
+	class="pb-82 sm:pb-[168px]"
+>
 	<div
 		class="grid gap-y-32 sm:gap-y-42"
 		class:grid-cols-2={cols === 2}

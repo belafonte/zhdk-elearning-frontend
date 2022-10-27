@@ -7,10 +7,10 @@
 </script>
 
 <GridReference>
-	<Scrollbars />
 	<Head />
 	<main class="w-screen z-20 px-15">
 		<slot />
 	</main>
 	<Footer />
+	<Scrollbars />
 </GridReference>

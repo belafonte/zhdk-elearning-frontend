@@ -59,7 +59,7 @@
 					<div class="flex flex-col">
 						<a href="/questions/overview">Leitfragen</a>
 						<a href="/event/overview">Events</a>
-						<a href="/knowledge/overview">Knowledge in use</a>
+						<a href="/knowledge-in-use/overview">Knowledge in use</a>
 						<a href="/kosmos/overview">Kosmos</a>
 						<a href="/community/overview">Community</a>
 						<a href="/glossary">Glossar</a>

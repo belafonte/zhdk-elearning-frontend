@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext, onMount } from "svelte";
+	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 	import Tile from "$lib/components/Tile.svelte";
@@ -15,12 +15,10 @@
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
+	console.log(data);
+
 	// add padding to center 2 columns layout
-	$: if (
-		cols === 2 &&
-		$currentSettings.type !== "mobile" &&
-		data.data[0].category !== "Leitfrage"
-	) {
+	$: if (cols === 2 && $currentSettings.type !== "mobile" && data.category !== "questions") {
 		extraPadding = $currentSettings.colWidth;
 	} else {
 		extraPadding = 0;
@@ -43,7 +41,7 @@
 		class:grid-cols-2={cols === 2}
 		class:grid-cols-4={cols === 4}
 	>
-		{#if data.data[0].category === "Leitfrage"}
+		{#if data.category === "questions"}
 			{#each data.data as entry}
 				<MetaQuestion
 					path={PUBLIC_ASSETS + entry.title_image.path}

@@ -5,6 +5,8 @@
 	export let positionY = 0;
 	export let height = 0;
 	export let width = 0;
+
+	$: color = $page.data.highlightColor;
 </script>
 
 <div
@@ -14,5 +16,5 @@
 	style=" transform: translate(-{width / 2}px, 0) translate3d({postionX}px, {Math.floor(
 		positionY
 	)}px, 0)"
-	style:background-color={$page.data.highlightColor}
+	style:background-color={color !== undefined ? color : "#EEEEEE"}
 />

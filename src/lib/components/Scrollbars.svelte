@@ -5,8 +5,10 @@
 	import Scrollbar from "$lib/components/Scrollbar.svelte";
 	import { page } from "$app/stores";
 	import { onMount } from "svelte";
+	import { fade } from "svelte/transition";
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
+
 	let scrollY = 0;
 	let barHeight = 0;
 	let barWidth = 0;
@@ -14,7 +16,8 @@
 	let winHeight = 0;
 	let barPosY = 0;
 
-	let showBars = false;
+	$: showBars = false;
+	$: scrollHeight = 0;
 
 	function clamp(input: number, min: number, max: number): number {
 		return input < min ? min : input > max ? max : input;
@@ -33,11 +36,11 @@
 
 	$: {
 		let location = $page.routeId;
-		let scrollHeight = document.documentElement.scrollHeight;
+		scrollHeight = document.documentElement.scrollHeight;
 		let scroll = scrollHeight - winHeight;
 		barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);
-
-		showBars = scroll > 0 ? true : false;
+		console.log(scroll, scrollHeight, winHeight, window.innerHeight);
+		if ((showBars = scroll > 0)) showBars = true;
 	}
 
 	$: center = ($currentSettings.colsEnd + $currentSettings.colStart) / 2;
@@ -49,12 +52,26 @@
 		center / 2 + barWidth / 2,
 		center + center / 2 - barWidth / 2
 	];
+
+	onMount(() => {
+		setTimeout(() => {
+			scrollHeight = document.documentElement.scrollHeight;
+		}, 100);
+		// let location = $page.routeId;
+		// let scrollHeight = document.documentElement.scrollHeight;
+		// let scroll = scrollHeight - winHeight;
+		// barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);
+		// console.log(scroll);
+		// if ((showBars = scroll > 0)) showBars = true;
+	});
+
+	$: console.log(showBars, $currentSettings);
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight={winHeight} />
 
 {#if showBars}
-	<div class="absolute z-[60] mix-blend-multiply">
+	<div class="absolute z-[60] mix-blend-multiply" transition:fade>
 		{#each new Array($currentSettings.barCount) as bar, index}
 			<Scrollbar
 				bind:height={barHeight}

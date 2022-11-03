@@ -37,9 +37,10 @@
 	class="pb-82 sm:pb-[168px]"
 >
 	<div
-		class="grid gap-y-32 sm:gap-y-42"
+		class="grid"
 		class:grid-cols-2={cols === 2}
 		class:grid-cols-4={cols === 4}
+		class:space-bottom={!(data.category === "community" && $currentSettings.type === "mobile")}
 	>
 		{#if data.category === "questions"}
 			{#each data.data as entry}
@@ -56,3 +57,15 @@
 		{/if}
 	</div>
 </div>
+
+<style>
+	.space-bottom {
+		@apply gap-y-32;
+	}
+
+	@screen sm {
+		.space-bottom {
+			@apply gap-y-42;
+		}
+	}
+</style>

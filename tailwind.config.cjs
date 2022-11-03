@@ -17,6 +17,7 @@ const config = {
 			20: ["20px", "25px"],
 			19: ["19px", "21px"],
 			14: ["14px", "17px"],
+			13: ["13px", "14px"],
 			12: ["12px", "17px"]
 		},
 		fontFamily: {
@@ -32,6 +33,7 @@ const config = {
 				8: "8px",
 				10: "10px",
 				15: "15px",
+				16: "16px",
 				20: "20px",
 				32: "32px",
 				42: "42px",
@@ -66,7 +68,7 @@ const config = {
 		}
 	},
 
-	plugins: []
+	plugins: [require("@tailwindcss/line-clamp")]
 };
 
 module.exports = config;

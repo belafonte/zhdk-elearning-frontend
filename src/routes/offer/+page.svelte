@@ -21,3 +21,9 @@
 		{/if}
 	</div>
 {/each}
+
+<style>
+	div > *:nth-child(3) {
+		margin-top: 32px;
+	}
+</style>

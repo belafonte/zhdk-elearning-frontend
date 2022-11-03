@@ -87,7 +87,7 @@
 			: '#EEEEEE'}"
 	>
 		<h1
-			class="overflow-hidden text-ellipsis pb-5"
+			class="overflow-hidden text-ellipsis pb-5 line-clamp-6 sm:line-clamp-5"
 			class:title-large={size === "l"}
 			class:title-medium={size === "m"}
 			class:title-small={size === "s"}

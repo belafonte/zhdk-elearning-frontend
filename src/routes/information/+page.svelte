@@ -16,7 +16,10 @@
 <div class="grid grid-cols-2 sm:grid-cols-4 mb-72 sm:mb-84">
 	{#each data.team_member as member}
 		<div class="font-serif text-22 pl-10 pr-7 sm:pl-15 sm:pr-10">
-			<MainImage path={PUBLIC_ASSETS + member.image.path} mask={PUBLIC_ASSETS + member.mask.path} />
+			<MainImage
+				path={PUBLIC_ASSETS + member.image.path}
+				mask={member.mask !== null ? PUBLIC_ASSETS + member.mask.path : null}
+			/>
 			<div class="">{member.name}</div>
 			<div class="">{member.description}</div>
 			<div id="links" class="pt-5">

@@ -60,7 +60,7 @@
 {#if !$page.params.hasOwnProperty("detail")}
 	<header
 		class="sticky top-[-{$currentSettings.headerHeight}px] mb-[84px] bg-white z-[100] w-full"
-		class:h-screen={menuOpened}
+		class:min-h-screen={menuOpened}
 		class:top-0={scrollDir === "up"}
 		bind:clientHeight={$currentSettings.headerHeight}
 	>

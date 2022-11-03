@@ -133,18 +133,25 @@
 							{/if}
 						</div>
 
-						<div
-							class="grid place-items-center mb-32 sm:mb-84"
-							class:grid-cols-2={data.image.length > 1}
-							class:auto-cols-fr={data.image.length === 1}
-						>
-							{#each data.image as img}
-								<div>
-									<img src={PUBLIC_ASSETS + img.path} />
-									<p class="text-14">{img.description}</p>
-								</div>
-							{/each}
-						</div>
+						{#if data.image.length > 0}
+							<div
+								class="grid place-items-center mb-32 sm:mb-84"
+								class:grid-cols-2={data.image.length > 1}
+								class:auto-cols-fr={data.image.length === 1}
+							>
+								{#each data.image as img}
+									<div>
+										<img src={PUBLIC_ASSETS + img.path} />
+										<p class="text-14">{img.description}</p>
+									</div>
+								{/each}
+							</div>
+						{/if}
+						{#if data.embed !== null}
+							<div id="embed" class="mb-32 sm:mb-84  pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+								{@html data.embed}
+							</div>
+						{/if}
 					</div>
 				</GridBackground>
 			</div>
@@ -159,5 +166,11 @@
 	:global(.link a::after) {
 		font-family: "icomoon" !important;
 		content: "\e900";
+	}
+
+	:global(#embed iframe) {
+		width: 100% !important;
+		height: 100% !important;
+		aspect-ratio: 16/9;
 	}
 </style>

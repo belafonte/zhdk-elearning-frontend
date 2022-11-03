@@ -7,6 +7,10 @@
 	export let data: PageServerData;
 </script>
 
+<svelte:head>
+	<title>Information</title>
+</svelte:head>
+
 <p class="text-24 sm:text-50 mb-72 sm:mb-84 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
 	{@html data.vision}
 </p>

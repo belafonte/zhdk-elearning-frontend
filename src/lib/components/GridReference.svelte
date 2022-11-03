@@ -96,35 +96,16 @@
 			settings.colsEnd = columnDimensions.x + settings.gridCols * settings.colWidth;
 		}
 
-		// if (settings.type === "mobile") {
-		// 	if ($page.routeId === "") {
-		// 		settings.barCount = 2;
-		// 	} else {
-		// 		settings.barCount = 3;
-		// 	}
-		// } else {
-		// 	if ($page.routeId === "/") {
-		// 		settings.barCount = 2;
-		// 	} else if (
-		// 		$page.params.category === "community" ||
-		// 		$page.params.category === "leitfragen" ||
-		// 		$page.params.hasOwnProperty("detail")
-		// 	) {
-		// 		settings.barCount = 3;
-		// 	} else {
-		// 		settings.barCount = 5;
-		// 	}
-		// }
-
-		console.log($page.params, $page.routeId?.search("overview"), $page.params.category);
-
 		if (
 			$page.routeId?.search("overview") !== -1 &&
 			$page.params.category !== "community" &&
 			$page.params.category !== "leitfragen"
 		) {
-			console.log("bars 5");
-			settings.barCount = 5;
+			if (settings.type === "mobile") {
+				settings.barCount = 3;
+			} else {
+				settings.barCount = 5;
+			}
 		} else {
 			settings.barCount = 3;
 		}
@@ -136,7 +117,7 @@
 <!-- Alternaitve use resize, since binding seems stop working sometimes -->
 <!-- <svelte:window on:resize={() => handleResize()} /> -->
 
-<div class="h-screen w-screen" bind:clientWidth={viewportWidth}>
+<div class="min-h-screen w-screen" bind:clientWidth={viewportWidth}>
 	{#if $currentSettings !== undefined}
 		<GridBackground fixed={true} bind:column padding={true}>
 			<slot />

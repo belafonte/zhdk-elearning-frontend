@@ -37,10 +37,12 @@
 	onMount(() => {
 		titleTop = nav?.getBoundingClientRect().height;
 	});
-	$: console.log(titleTop);
 </script>
 
 <svelte:window on:resize={calcTop} />
+<svelte:head>
+	<title>{data.title}</title>
+</svelte:head>
 
 {#if data}
 	<div transition:fly={{ y: 200, duration: 400 }} on:introend={(status) => trans(status)}>
@@ -52,7 +54,9 @@
 			>
 				<button
 					class="justify-self-start uppercase text-12 sm:text-14 whitespace-nowrap tracking-wider"
-					on:click={() => history.back()}>Zurück</button
+					on:click={() => {
+						return history.length > 2 ? history.back() : location.replace(location.origin);
+					}}>Zurück</button
 				>
 				<div class="justify-self-center">
 					<Tag background={true} text={data.category.toUpperCase()} />
@@ -86,7 +90,7 @@
 						<!--	Main Image	-->
 						<div class="sm:basis-3/5 flex flex-col justify-center">
 							{#if data.category === "Leitfrage"}
-								<img src={PUBLIC_ASSETS + data.mask.path} />
+								<img alt="Meta Question" src={PUBLIC_ASSETS + data.mask.path} />
 							{:else}
 								<MainImage
 									path={PUBLIC_ASSETS + data.title_image.path}
@@ -141,7 +145,7 @@
 							>
 								{#each data.image as img}
 									<div>
-										<img src={PUBLIC_ASSETS + img.path} />
+										<img alt="Gallery" src={PUBLIC_ASSETS + img.path} />
 										<p class="text-14">{img.description}</p>
 									</div>
 								{/each}

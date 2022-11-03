@@ -27,7 +27,6 @@
 			width = $currentSettings.colWidth * colSpan;
 		}
 	}
-	console.log(eventData);
 </script>
 
 <a

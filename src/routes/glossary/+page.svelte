@@ -23,6 +23,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Glossar</title>
+</svelte:head>
+
 <div class="grid gap-y-42 grid-cols-1 sm:grid-cols-4 font-serif">
 	{#each Object.keys(termsByAlphabet) as letter}
 		<p
@@ -34,7 +38,7 @@
 		{#each termsByAlphabet[letter] as term}
 			<div>
 				{#if term.image !== null}
-					<img class="mb-32" src={PUBLIC_ASSETS + term.image.path} />
+					<img alt="Term Illustration" class="mb-32" src={PUBLIC_ASSETS + term.image.path} />
 				{/if}
 				<p class="text-20 sm:text-22 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
 					<span style:color={data.colors[letter.toLowerCase()]}>{term.term}</span>

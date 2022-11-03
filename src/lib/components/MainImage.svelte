@@ -8,7 +8,7 @@
 <div class="aspect-square flex justify-center overflow-hidden">
 	<img
 		src={path}
-		alt="Masked"
+		alt="Main"
 		style="--url: url({mask !== null ? mask : ''})"
 		class="w-full h-full scale"
 		class:mask={mask !== null}

@@ -37,6 +37,10 @@
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 </script>
 
+<svelte:head>
+	<title>Willkommen zur E-Learning Webseite der Zürcher Hochschule der Künste</title>
+</svelte:head>
+
 {#if data !== null}
 	<div
 		class="hidden sm:grid sm:grid-cols-2"
@@ -165,7 +169,7 @@
 				{#each data.glossary.slider as slide}
 					<SwiperSlide>
 						<div>
-							<img src={PUBLIC_ASSETS + slide.image.path} />
+							<img alt="Slide" src={PUBLIC_ASSETS + slide.image.path} />
 							<div class="absolute bottom-[20px] flex justify-center w-full">
 								<a href={slide.link}>{slide.display}</a>
 							</div>

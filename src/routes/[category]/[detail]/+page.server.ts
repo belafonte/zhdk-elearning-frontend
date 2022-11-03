@@ -45,7 +45,6 @@ export const load: PageServerLoad = async (session) => {
 	// }
 
 	data = data[0];
-	console.log("DETAIL", data);
 	if (data !== undefined) {
 		data.highlightColor = data.color !== null ? data.color.colors[0] : "#EEEEEE";
 	}

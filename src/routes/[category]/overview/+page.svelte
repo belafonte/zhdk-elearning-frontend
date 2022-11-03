@@ -15,8 +15,6 @@
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
-	console.log(data);
-
 	// add padding to center 2 columns layout
 	$: if (cols === 2 && $currentSettings.type !== "mobile" && data.category !== "questions") {
 		extraPadding = $currentSettings.colWidth;
@@ -30,6 +28,10 @@
 		cols = data.cols.desktop;
 	}
 </script>
+
+<svelte:head>
+	<title>Übersicht für {data.category}</title>
+</svelte:head>
 
 <div
 	style:padding-left="{extraPadding}px"

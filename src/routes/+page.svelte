@@ -153,21 +153,20 @@
 	{/if}
 
 	<!-- Glossary Slider -->
-	<div class="flex justify-center pb-84 sm:pb-[168px]">
+	<div class="flex justify-center pt-84 pb-84 sm:pb-[168px]">
 		<div id="slider" class="w-full sm:w-1/2">
 			<Swiper
 				modules={[Navigation, Autoplay]}
 				spaceBetween={0}
 				slidesPerView={1}
 				loop
-				autoplay
-				navigation
+				autoplay={{ delay: 6000 }}
 			>
 				{#each data.glossary.slider as slide}
 					<SwiperSlide>
 						<div>
 							<img src={PUBLIC_ASSETS + slide.image.path} />
-							<div class="absolute bottom-0 flex justify-center w-full">
+							<div class="absolute bottom-[20px] flex justify-center w-full">
 								<a href={slide.link}>{slide.display}</a>
 							</div>
 						</div>
@@ -181,19 +180,16 @@
 {/if}
 
 <style>
-	#slider a {
-		@apply underline !important;
-	}
 	#slider a::after {
 		font-family: "icomoon" !important;
 		content: "\e900";
 	}
 
-	:global(.swiper-button-next::after) {
+	/* :global(.swiper-button-next::after) {
 		@apply text-black text-22 !important;
 	}
 
 	:global(.swiper-button-prev::after) {
 		@apply text-black text-22 !important;
-	}
+	} */
 </style>

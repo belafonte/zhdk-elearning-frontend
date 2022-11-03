@@ -36,7 +36,7 @@
 				{#if term.image !== null}
 					<img class="mb-32" src={PUBLIC_ASSETS + term.image.path} />
 				{/if}
-				<p class="text-20 sm:text-22">
+				<p class="text-20 sm:text-22 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
 					<span style:color={data.colors[letter.toLowerCase()]}>{term.term}</span>
 					{term.definition}
 				</p>

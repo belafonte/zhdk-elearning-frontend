@@ -8,9 +8,19 @@
 	import { onMount } from "svelte";
 	import plus from "$lib/assets/icons/plus.svg";
 	import { page } from "$app/stores";
+	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
+	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
+
+	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
 	let body: HTMLElement | null = null;
 	let menuOpened: boolean = false;
+	let prevScroll: number = 0;
+	let scroll: number = 0;
+	let scrollDir: "up" | "down" = "down";
+
+	// let headerHeight: number;
 
 	function openMenu() {
 		if (body !== null) {
@@ -30,13 +40,30 @@
 		}
 	}
 
+	$: {
+		if (prevScroll > scroll) {
+			scrollDir = "up";
+		} else {
+			scrollDir = "down";
+		}
+
+		prevScroll = scroll;
+	}
+
 	onMount(() => {
 		body = document.querySelector("body");
 	});
 </script>
 
+<svelte:window bind:scrollY={scroll} />
+
 {#if !$page.params.hasOwnProperty("detail")}
-	<header class="sticky top-0 mb-[84px] bg-white z-50 w-full" class:h-screen={menuOpened}>
+	<header
+		class="sticky top-[-{$currentSettings.headerHeight}px] mb-[84px] bg-white z-[100] w-full"
+		class:h-screen={menuOpened}
+		class:top-0={scrollDir === "up"}
+		bind:clientHeight={$currentSettings.headerHeight}
+	>
 		<nav class="text-36 sm:text-68 h-full flex flex-col">
 			<div class=" flex border-b border-light-gray p-15 pb-5">
 				<a href="/" on:click={() => closeMenu()}>E</a>

@@ -17,43 +17,54 @@
 	//  import components
 	import GridBackground from "$lib/components/GridBackground.svelte";
 
+	const pageSettings = {
+		colWidth: 0,
+		colStart: 0,
+		colsEnd: 0,
+		barCount: 3,
+		headerHeight: 0
+	};
 	// datatypes
 	const gridSettings = {
 		mobile: {
 			type: "mobile",
 			minWidth: 0,
 			gridCols: 4,
-			colWidth: 0,
-			colStart: 0,
-			colsEnd: 0,
-			barCount: 2
+			colWidth: pageSettings.colWidth,
+			colStart: pageSettings.colStart,
+			colsEnd: pageSettings.colsEnd,
+			barCount: pageSettings.barCount,
+			headerHeight: pageSettings.headerHeight
 		},
 		tablet: {
 			type: "tablet",
 			minWidth: 640,
 			gridCols: 12,
-			colWidth: 0,
-			colStart: 0,
-			colsEnd: 0,
-			barCount: 2
+			colWidth: pageSettings.colWidth,
+			colStart: pageSettings.colStart,
+			colsEnd: pageSettings.colsEnd,
+			barCount: pageSettings.barCount,
+			headerHeight: pageSettings.headerHeight
 		},
 		laptop: {
 			type: "laptop",
 			minWidth: 1024,
 			gridCols: 16,
-			colWidth: 0,
-			colStart: 0,
-			colsEnd: 0,
-			barCount: 2
+			colWidth: pageSettings.colWidth,
+			colStart: pageSettings.colStart,
+			colsEnd: pageSettings.colsEnd,
+			barCount: pageSettings.barCount,
+			headerHeight: pageSettings.headerHeight
 		},
 		desktop: {
 			type: "desktop",
 			minWidth: 1280,
 			gridCols: 16,
-			colWidth: 0,
-			colStart: 0,
-			colsEnd: 0,
-			barCount: 2
+			colWidth: pageSettings.colWidth,
+			colStart: pageSettings.colStart,
+			colsEnd: pageSettings.colsEnd,
+			barCount: pageSettings.barCount,
+			headerHeight: pageSettings.headerHeight
 		}
 	};
 
@@ -85,24 +96,37 @@
 			settings.colsEnd = columnDimensions.x + settings.gridCols * settings.colWidth;
 		}
 
-		if (settings.type === "mobile") {
-			if ($page.routeId === "") {
-				settings.barCount = 2;
-			} else {
-				settings.barCount = 3;
-			}
+		// if (settings.type === "mobile") {
+		// 	if ($page.routeId === "") {
+		// 		settings.barCount = 2;
+		// 	} else {
+		// 		settings.barCount = 3;
+		// 	}
+		// } else {
+		// 	if ($page.routeId === "/") {
+		// 		settings.barCount = 2;
+		// 	} else if (
+		// 		$page.params.category === "community" ||
+		// 		$page.params.category === "leitfragen" ||
+		// 		$page.params.hasOwnProperty("detail")
+		// 	) {
+		// 		settings.barCount = 3;
+		// 	} else {
+		// 		settings.barCount = 5;
+		// 	}
+		// }
+
+		console.log($page.params, $page.routeId?.search("overview"), $page.params.category);
+
+		if (
+			$page.routeId?.search("overview") !== -1 &&
+			$page.params.category !== "community" &&
+			$page.params.category !== "leitfragen"
+		) {
+			console.log("bars 5");
+			settings.barCount = 5;
 		} else {
-			if ($page.routeId === "/") {
-				settings.barCount = 2;
-			} else if (
-				$page.params.category === "community" ||
-				$page.params.category === "leitfragen" ||
-				$page.params.hasOwnProperty("detail")
-			) {
-				settings.barCount = 3;
-			} else {
-				settings.barCount = 5;
-			}
+			settings.barCount = 3;
 		}
 
 		return settings;

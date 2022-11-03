@@ -7,6 +7,7 @@ export interface IGridSettings {
 	colStart: number;
 	colsEnd: number;
 	barCount: number;
+	headerHeight: number;
 }
 
 export const gridSettingsKey = Symbol();

@@ -4,14 +4,16 @@
 	export let rotation: string | null = null;
 </script>
 
-<img
-	src={path}
-	alt="Masked"
-	style="--url: url({mask !== null ? mask : ''})"
-	class:mask={mask !== null}
-	class:rotate-left={rotation === "Links"}
-	class:rotate-right={rotation === "Rechts"}
-/>
+<div class="aspect-square flex justify-center">
+	<img
+		src={path}
+		alt="Masked"
+		style="--url: url({mask !== null ? mask : ''})"
+		class:mask={mask !== null}
+		class:rotate-left={rotation === "Links"}
+		class:rotate-right={rotation === "Rechts"}
+	/>
+</div>
 
 <style>
 	.rotate-right {
@@ -21,7 +23,7 @@
 
 	.rotate-left {
 		rotate: -15deg;
-		scale: 0.7;
+		scale: 0.8;
 	}
 	.mask {
 		mask-image: var(--url);

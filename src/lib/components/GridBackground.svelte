@@ -9,7 +9,7 @@
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 </script>
 
-<div class="relative">
+<div class="relative min-h-full">
 	<div
 		id="reference"
 		class="grid-settings h-full w-full bg-white absolute top-0 left-0 z-0"
@@ -24,7 +24,7 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="flex flex-col min-h-screen z-10">
+	<div class="flex flex-col z-10">
 		<slot />
 	</div>
 </div>

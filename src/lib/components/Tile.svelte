@@ -59,7 +59,11 @@
 		if (data.category === "Community") {
 			size = "l";
 		} else if (data.category === "Knowledge in use") {
-			size = "m";
+			if ($currentSettings.type === "mobile") {
+				size = "s";
+			} else {
+				size = "m";
+			}
 		} else {
 			size = "s";
 		}
@@ -75,7 +79,7 @@
 {#if $currentSettings !== undefined}
 	<a
 		href={`/${data.category.toLocaleLowerCase().replaceAll(" ", "-")}/${data.slug}`}
-		class="p-15 title font-serif h-min overflow-hidden"
+		class="p-[8px] sm:p-15 title font-serif h-min overflow-hidden"
 		class:ml-auto={offset === "l"}
 		class:mr-auto={offset === "r"}
 		style="flex: 0 0 {tileWidth}px; background-color: {data.color !== null
@@ -83,22 +87,26 @@
 			: '#EEEEEE'}"
 	>
 		<h1
-			class="mb-15 overflow-hidden text-ellipsis pb-5"
+			class="overflow-hidden text-ellipsis pb-5"
 			class:title-large={size === "l"}
 			class:title-medium={size === "m"}
 			class:title-small={size === "s"}
 		>
 			{@html data.title}
 		</h1>
-		<div class="flex justify-center mb-15">
-			<MainImage
-				path={PUBLIC_ASSETS + data.title_image.path}
-				mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null}
-				rotation={data.rotation !== "Keine" ? data.rotation : null}
-			/>
-		</div>
+		{#if data.title_image !== null}
+			<div class="p-[16px] sm:p-[25px]">
+				<MainImage
+					path={PUBLIC_ASSETS + data.title_image.path}
+					mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null}
+					rotation={data.rotation !== "Keine" ? data.rotation : null}
+				/>
+			</div>
+		{:else}
+			<div class="mb-32 sm:mb-50" />
+		{/if}
 		<!-- <img src={PUBLIC_ASSETS + data.mask?.path} /> -->
-		<div class="flex">
+		<div class="flex flex-col-reverse md:flex-row">
 			<Tag text={data.category} />
 			{#if tags !== null}
 				{#each data.tags as tag}
@@ -106,9 +114,9 @@
 				{/each}
 			{/if}
 			{#if data.event.date !== null}
-				<div class="ml-32">
+				<div class="md:ml-32">
 					<p class="font-sans text-12">{data.event.date} / {data.event.time}</p>
-					<p class="font-sans text-12">{data.event.location}</p>
+					<p class="hidden md:block font-sans text-12">{data.event.location}</p>
 				</div>
 			{/if}
 		</div>

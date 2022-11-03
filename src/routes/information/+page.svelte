@@ -7,11 +7,15 @@
 	export let data: PageServerData;
 </script>
 
-<p class="text-24 sm:text-50 mb-72 sm:mb-84">{@html data.vision}</p>
-<p class="text-24 sm:text-50 mb-32 sm:mb-42">{@html data.team}</p>
+<p class="text-24 sm:text-50 mb-72 sm:mb-84 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+	{@html data.vision}
+</p>
+<p class="text-24 sm:text-50 mb-32 sm:mb-42 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+	{@html data.team}
+</p>
 <div class="grid grid-cols-2 sm:grid-cols-4 mb-72 sm:mb-84">
 	{#each data.team_member as member}
-		<div class="font-serif text-22">
+		<div class="font-serif text-22 pl-10 pr-7 sm:pl-15 sm:pr-10">
 			<MainImage path={PUBLIC_ASSETS + member.image.path} mask={PUBLIC_ASSETS + member.mask.path} />
 			<div class="">{member.name}</div>
 			<div class="">{member.description}</div>
@@ -31,9 +35,14 @@
 		</div>
 	{/each}
 </div>
-<p class="text-24 sm:text-50 pb-84 sm:pb-[168px]">{@html data.contact}</p>
+<p class="text-24 sm:text-50 pb-84 sm:pb-[168px] pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+	{@html data.contact}
+</p>
 
 <style>
+	:global(p h1) {
+		margin-bottom: 32px;
+	}
 	:global(#links a) {
 		@apply mt-5;
 	}

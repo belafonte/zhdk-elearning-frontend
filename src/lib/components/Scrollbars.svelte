@@ -38,7 +38,18 @@
 		let location = $page.routeId;
 		scrollHeight = document.documentElement.scrollHeight;
 		let scroll = scrollHeight - winHeight;
-		barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);
+
+		if ($page.params.hasOwnProperty("detail")) {
+			barPosY = mapRange(scrollY, 0, scroll, 0, scrollHeight - barHeight);
+		} else {
+			barPosY = mapRange(
+				scrollY,
+				0,
+				scroll,
+				$currentSettings.headerHeight,
+				scrollHeight - barHeight
+			);
+		}
 		if ((showBars = scroll > 0)) showBars = true;
 	}
 
@@ -55,14 +66,14 @@
 	onMount(() => {
 		setTimeout(() => {
 			scrollHeight = document.documentElement.scrollHeight;
-		}, 100);
+		}, 500);
 	});
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight={winHeight} />
 
 {#if showBars}
-	<div class="absolute z-[60] mix-blend-multiply" transition:fade>
+	<div class="absolute z-[60]" transition:fade>
 		{#each new Array($currentSettings.barCount) as bar, index}
 			<Scrollbar
 				bind:height={barHeight}

@@ -25,8 +25,12 @@
 	$: titleTop = 0;
 	$: titlePosition = "relative";
 
-	function trans(status: any) {
+	function calcTop() {
 		scrollOverTop = title?.getBoundingClientRect().height;
+	}
+
+	function trans(status: any) {
+		calcTop();
 		titlePosition = "fixed";
 	}
 
@@ -36,18 +40,26 @@
 	$: console.log(titleTop);
 </script>
 
+<svelte:window on:resize={calcTop} />
+
 {#if data}
 	<div transition:fly={{ y: 200, duration: 400 }} on:introend={(status) => trans(status)}>
 		<GridBackground>
 			<div
 				bind:this={nav}
-				class="pt-24 sm:pt-32 pb-32 grid grid-cols-3 z-50 w-max fixed"
+				class="pt-20 sm:pt-32 pb-32  grid grid-cols-3 z-50 w-max fixed px-10 sm:px-[40px]"
 				style:width="{containerWidth}px"
 			>
-				<button class="justify-self-start" on:click={() => history.back()}>Zurück</button>
-				<div class="bg-white bg-opacity-50 justify-self-center whitespace-nowrap">
-					{data.category.toUpperCase()}
+				<button
+					class="justify-self-start uppercase text-12 sm:text-14 whitespace-nowrap tracking-wider"
+					on:click={() => history.back()}>Zurück</button
+				>
+				<div class="justify-self-center">
+					<Tag background={true} text={data.category.toUpperCase()} />
 				</div>
+				<!-- <div class="bg-white bg-opacity-50 justify-self-center whitespace-nowrap tracking-wider">
+					{data.category.toUpperCase()}
+				</div> -->
 			</div>
 
 			<div
@@ -57,35 +69,41 @@
 				style:padding-top="{titleTop}px"
 				style:width="{containerWidth}px"
 			>
-				<h1 class="text-60 sm:text-130 pb-32 sm:pb-84 font-serif">{@html data.title}</h1>
+				<h1
+					class="text-60 sm:text-130 pb-32 sm:pb-84 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px] font-serif"
+				>
+					{@html data.title}
+				</h1>
 			</div>
 
 			<!-- Area that scrolls over the title -->
 			<div style:margin-top="{scrollOverTop}px" class="relative z-40">
 				<div class="flex flex-col-reverse sm:flex-row mb-32 sm:mb-84">
-					<p class="text-14 sm:basis-1/3 flex items-center">
+					<p class="text-14 sm:basis-1/5 flex items-center pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
 						{data.caption !== null ? data.caption : " "}
 					</p>
-					<!--	Main Image	-->
-					<div class="sm:basis-1/3 flex flex-col justify-center">
-						{#if data.category === "Leitfrage"}
-							<img src={PUBLIC_ASSETS + data.mask.path} />
-						{:else}
-							<MainImage
-								path={PUBLIC_ASSETS + data.title_image.path}
-								mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null}
-								rotation={data.rotation !== "Keine" ? data.rotation : null}
-							/>
-						{/if}
-					</div>
+					{#if data.title_image !== null}
+						<!--	Main Image	-->
+						<div class="sm:basis-3/5 flex flex-col justify-center">
+							{#if data.category === "Leitfrage"}
+								<img src={PUBLIC_ASSETS + data.mask.path} />
+							{:else}
+								<MainImage
+									path={PUBLIC_ASSETS + data.title_image.path}
+									mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null}
+									rotation={data.rotation !== "Keine" ? data.rotation : null}
+								/>
+							{/if}
+						</div>
+					{/if}
 				</div>
 
 				<GridBackground>
-					<div class="relative z-40 pb-84 sm:pb-[168px]">
+					<div class="relative z-40 pb-32 sm:pb-84">
 						<!-- Event Data -->
 						{#if data.event.date !== null}
 							<div
-								class="link grid grid-cols-2 sm:grid-cols-4 text-24 sm:text-26 mb-32 sm:mb-42 gap-15"
+								class="link grid grid-cols-2 sm:grid-cols-4 text-24 sm:text-26 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px] mb-32 sm:mb-42 gap-15"
 							>
 								<p>{data.event.date}</p>
 								<p>{data.event.time}</p>
@@ -96,25 +114,27 @@
 
 						<!-- Subhead Data - has margin below -->
 						{#if data.subhead}
-							<h2 class="link text-24 sm:text-50 mb-32 sm:mb-84 sm:mr-[25%]">
+							<h2
+								class="link text-24 sm:text-50 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px] mb-32 sm:mb-84 sm:mr-[25%]"
+							>
 								{@html data.subhead}
 							</h2>
 						{/if}
 
 						<!-- Body text with link tag in the end -->
-						<div class="sm:mx-[25%] mb-32 sm:mb-84">
-							<p class="link text-20  sm:text-26 font-serif">
+						<div class="sm:mx-[25%] mb-32 sm:mb-84  pl-10 pr-7 sm:pl-15 sm:pr-10">
+							<p class="link text-20 sm:text-26 font-serif">
 								{@html data.body}
 							</p>
 							{#if data.event.date !== null}
-								<div class="mt-32 sm:mt-42">
+								<div class="mt-32 sm:mt-42 mb-32 sm:mb-84">
 									<Tag ref={data.event.link} text="Anmelden" rounded={true} icon={true} />
 								</div>
 							{/if}
 						</div>
 
 						<div
-							class="grid place-items-center"
+							class="grid place-items-center mb-32 sm:mb-84"
 							class:grid-cols-2={data.image.length > 1}
 							class:auto-cols-fr={data.image.length === 1}
 						>

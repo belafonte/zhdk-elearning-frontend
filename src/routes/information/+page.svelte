@@ -27,17 +27,16 @@
 			<div class="">{member.name}</div>
 			<div class="">{member.description}</div>
 			<div id="links" class="pt-5">
-				<Tag ref={member.link} text="Artikel Link" icon={true} rounded={true} />
+				<a href={member.link}>
+					<Tag text="Artikel Link" icon={true} rounded={true} />
+				</a>
 
-				<Tag
-					ref={"mailto:" + member.mail}
-					text="Mail"
-					icon={true}
-					rounded={true}
-					on:click={() => {}}
-				/>
-
-				<Tag ref={member.linked_in} text="LinkedIn" icon={true} rounded={true} />
+				<a href={"mailto:" + member.mail}>
+					<Tag text="Mail" icon={true} rounded={true} on:click={() => {}} />
+				</a>
+				<a href={member.linked_in}>
+					<Tag text="LinkedIn" icon={true} rounded={true} />
+				</a>
 			</div>
 		</div>
 	{/each}

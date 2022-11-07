@@ -4,19 +4,19 @@
 	export let text: string = "";
 	export let rounded: boolean = false;
 	export let icon: boolean = false;
-	export let ref: string | null = null;
 	export let background: boolean = false;
+	export let dimmed: boolean = false;
 </script>
 
-<a
+<div
 	id="link"
-	href={ref}
-	class="font-sans text-12 sm:text-14 flex w-max h-max  text-black px-7 pt-[4px] pb-[2px] sm:px-10 sm:pt-[6px] sm:pb-[2px]"
+	class="font-sans text-12 sm:text-14 flex w-max h-max  text-black px-7 pt-[4px] pb-[2px] sm:px-10 sm:pt-[6px] sm:pb-[2px] hover:opacity-100"
 	class:border-black={!background}
 	class:border={!background}
 	class:rounded-full={rounded}
 	class:bg-white={background}
 	class:bg-opacity-60={background}
+	class:opacity-30={dimmed}
 >
 	<div class="flex w-full">
 		<p class="uppercase text-12 sm:text-14 whitespace-nowrap tracking-wider">{text}</p>
@@ -24,7 +24,7 @@
 			<img id="image" class="arrow transition-all ml-4" src={arrow} alt="Open Section" />
 		{/if}
 	</div>
-</a>
+</div>
 
 <style>
 	.arrow {

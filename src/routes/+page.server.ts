@@ -14,7 +14,7 @@ interface IResponse {
 
 export const load: PageServerLoad = async (params) => {
 	const fields =
-		"fields={ category: true, title: true, color: true, title_image: true, rotation: true, mask: true, event: true, slug: true }";
+		"fields={ category: true, title: true, color: true, title_image: true, rotation: true, mask: true, event: true, slug: true, tags: true}";
 
 	const community = await fetch(
 		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Community"}&limit=8`,

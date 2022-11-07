@@ -106,12 +106,18 @@
 			<div class="mb-32 sm:mb-50" />
 		{/if}
 		<!-- <img src={PUBLIC_ASSETS + data.mask?.path} /> -->
-		<div class="flex flex-col-reverse md:flex-row">
-			<Tag text={data.category} />
-			{#if tags !== null}
-				{#each data.tags as tag}
-					<Tag text={tag} rounded={true} />
-				{/each}
+		<div class="flex flex-row flex-wrap gap-y-5 sm:gap-y-2">
+			<div class="mr-5 sm:mr-8">
+				<Tag text={data.category} />
+			</div>
+			{#if data.tags !== null && data.tags !== undefined}
+				<div class="flex">
+					{#each data.tags as tag}
+						<div class="mr-5 sm:mr-8">
+							<Tag text={tag} rounded={true} />
+						</div>
+					{/each}
+				</div>
 			{/if}
 			{#if data.event.date !== null}
 				<div class="md:ml-32">

@@ -53,7 +53,9 @@
 					path={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path}
 					mask={PUBLIC_ASSETS + data.highlights.highlight01.mask.path}
 				/>
-				<Tag ref="/questions/overview" rounded={true} text="Zu allen Leitfragen" icon={true} />
+				<a href="/questions/overview">
+					<Tag rounded={true} text="Zu allen Leitfragen" icon={true} />
+				</a>
 			</div>
 			{#if data.highlights.highlight02}
 				<div class="flex">
@@ -99,7 +101,9 @@
 				path={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path}
 				mask={PUBLIC_ASSETS + data.highlights.highlight01.mask.path}
 			/>
-			<Tag ref="/questions/overview" rounded={true} text="Zu allen Leitfragen" icon={true} />
+			<a href="/questions/overview">
+				<Tag rounded={true} text="Zu allen Leitfragen" icon={true} />
+			</a>
 		</div>
 		<!-- Events Tile -->
 		<div>

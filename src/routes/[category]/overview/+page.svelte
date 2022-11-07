@@ -6,6 +6,7 @@
 	import MetaQuestion from "$lib/components/MetaQuestion.svelte";
 	import type { PageServerData } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
+	import Tag from "$lib/components/Tag.svelte";
 
 	// export let data: PageData;
 	export let data: PageServerData;
@@ -13,7 +14,18 @@
 	let cols = 4;
 	let extraPadding = 0;
 
+	const tags = new Set();
+	const filter = new Set();
+
+	$: filteredTags = filter;
+	// $: filteredEntries = data.data.
+
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
+
+	function filterTag(tag: string) {
+		filter.has(tag) ? filter.delete(tag) : filter.add(tag);
+		filteredTags = filter;
+	}
 
 	// add padding to center 2 columns layout
 	$: if (cols === 2 && $currentSettings.type !== "mobile" && data.category !== "questions") {
@@ -27,11 +39,31 @@
 	} else {
 		cols = data.cols.desktop;
 	}
+
+	$: if (data) {
+		data.data.forEach((el) => {
+			if (el.tags) {
+				el.tags.forEach(tags.add, tags);
+			}
+		});
+	}
+
+	$: console.log(filteredTags);
 </script>
 
 <svelte:head>
 	<title>Übersicht für {data.category}</title>
 </svelte:head>
+
+<div class="flex fixed -mt-72 w-full justify-center">
+	{#each [...tags] as tag}
+		<div class="mr-5 sm:mr-8">
+			<button on:click={() => filterTag(tag)}>
+				<Tag text={tag} rounded={true} dimmed={!filteredTags.has(tag)} />
+			</button>
+		</div>
+	{/each}
+</div>
 
 <div
 	style:padding-left="{extraPadding}px"
@@ -54,7 +86,9 @@
 			{/each}
 		{:else}
 			{#each data.data as entry}
-				<Tile data={entry} />
+				{#if filteredTags.size > 0 ? entry.tags.some((el) => filteredTags.has(el)) : true}
+					<Tile data={entry} />
+				{/if}
 			{/each}
 		{/if}
 	</div>

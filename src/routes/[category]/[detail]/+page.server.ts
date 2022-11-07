@@ -10,23 +10,6 @@ interface OverviewData extends ICategory {
 export const load: PageServerLoad = async (session) => {
 	let data;
 
-	// data = await fetch(`${PUBLIC_ENDPOINT}/content/item/content/${params.params.detail}`, {
-	// 	method: "GET",
-	// 	headers: {
-	// 		"api-key": API_KEY
-	// 	}
-	// })
-	// 	.then((response) => response.json())
-	// 	.catch(() => {
-	// 		return null;
-	// 	})
-	// 	.then((response) => {
-	// 		return response;
-	// 	});
-
-	// console.log(data);
-	// if query is unsuccessful, try to filter by slug
-	// if (data === null) {
 	const query = `${PUBLIC_ENDPOINT}/content/items/content?filter={ slug: '${session.params.detail}'}`;
 
 	data = await fetch(query, {

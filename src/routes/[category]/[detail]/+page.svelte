@@ -131,9 +131,9 @@
 								{@html data.body}
 							</p>
 							{#if data.event.date !== null}
-								<div class="mt-32 sm:mt-42 mb-32 sm:mb-84">
-									<Tag ref={data.event.link} text="Anmelden" rounded={true} icon={true} />
-								</div>
+								<a href={data.event.link} class="mt-32 sm:mt-42 mb-32 sm:mb-84">
+									<Tag text="Anmelden" rounded={true} icon={true} />
+								</a>
 							{/if}
 						</div>
 

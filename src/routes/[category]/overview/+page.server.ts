@@ -4,7 +4,7 @@ import { API_KEY } from "$env/static/private";
 import { PUBLIC_ENDPOINT } from "$env/static/public";
 
 interface OverviewData extends ICategory {
-	cols: { mobile: number; dektop: number };
+	cols: { mobile: number; tablet: number; dektop: number };
 }
 
 export const load: PageServerLoad = async ({ params }) => {
@@ -21,7 +21,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	// let overviewData: OverviewData = {} as OverviewData;
-	let cols: { mobile: number; desktop: number };
+	let cols: { mobile: number; tablet: number; desktop: number };
 	const query = `${PUBLIC_ENDPOINT}/content/items/content?${fields}&${filterQuery}`;
 
 	const res = await fetch(query, {
@@ -38,10 +38,10 @@ export const load: PageServerLoad = async ({ params }) => {
 	switch (params.category) {
 		case "questions":
 		case "community":
-			cols = { mobile: 1, desktop: 2 };
+			cols = { mobile: 1, tablet: 2, desktop: 2 };
 			break;
 		default:
-			cols = { mobile: 2, desktop: 4 };
+			cols = { mobile: 2, tablet: 3, desktop: 4 };
 			break;
 	}
 

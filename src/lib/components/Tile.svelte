@@ -37,19 +37,19 @@
 	let tileSizes: Object = {
 		l: {
 			mobile: 4,
-			tablet: 7,
+			tablet: 5,
 			laptop: 7,
 			desktop: 7
 		},
 		m: {
 			mobile: 3,
-			tablet: 5,
+			tablet: 4,
 			laptop: 5,
 			desktop: 5
 		},
 		s: {
 			mobile: 2,
-			tablet: 4,
+			tablet: 3,
 			laptop: 4,
 			desktop: 4
 		}

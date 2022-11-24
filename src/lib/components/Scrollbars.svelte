@@ -35,7 +35,7 @@
 	}
 
 	$: {
-		let location = $page.routeId;
+		let location = $page.route.id;
 		scrollHeight = document.documentElement.scrollHeight;
 		let scroll = scrollHeight - winHeight;
 

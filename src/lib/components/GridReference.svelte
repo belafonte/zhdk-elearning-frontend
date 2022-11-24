@@ -97,7 +97,7 @@
 		}
 
 		if (
-			$page.routeId?.search("overview") !== -1 &&
+			$page.route.id?.search("overview") !== -1 &&
 			$page.params.category !== "community" &&
 			$page.params.category !== "leitfragen"
 		) {

@@ -59,9 +59,10 @@
 
 {#if !$page.params.hasOwnProperty("detail")}
 	<header
-		class="sticky top-[-{$currentSettings.headerHeight}px] mb-[84px] bg-white z-[100] w-full"
+		class="sticky top-[-{$currentSettings.headerHeight}px] mb-[84px] bg-white z-[100] w-full opacity-100 transition duration-300"
 		class:min-h-screen={menuOpened}
 		class:top-0={scrollDir === "up"}
+		class:opacity-0={scrollDir === "down"}
 		bind:clientHeight={$currentSettings.headerHeight}
 	>
 		<nav class="text-36 sm:text-68 h-full flex flex-col">

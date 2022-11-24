@@ -162,7 +162,7 @@
 
 	<!-- Glossary Slider -->
 	<div class="flex justify-center pt-84 pb-84 sm:pb-[168px]">
-		<div id="slider" class="w-full sm:w-1/2">
+		<div id="slider" class="w-full sm:w-[83.5%]  lg:w-[62.5%]">
 			<Swiper
 				modules={[Navigation, Autoplay]}
 				spaceBetween={0}
@@ -191,6 +191,11 @@
 	#slider a::after {
 		font-family: "icomoon" !important;
 		content: "\e900";
+	}
+
+	:global(#slider .swiper) {
+		aspect-ratio: 3/2;
+		height: 100%;
 	}
 
 	/* :global(.swiper-button-next::after) {

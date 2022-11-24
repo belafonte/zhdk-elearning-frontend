@@ -59,13 +59,15 @@
 
 {#if !$page.params.hasOwnProperty("detail")}
 	<header
-		class="sticky top-[-{$currentSettings.headerHeight}px] mb-[84px] bg-white z-[100] w-full opacity-100 transition duration-300"
+		class="top-[-{$currentSettings.headerHeight}px] mb-72 sm:mb-[84px] bg-white z-[100] w-full transition duration-300"
+		class:sticky={!menuOpened}
+		class:fixed={menuOpened}
 		class:min-h-screen={menuOpened}
 		class:top-0={scrollDir === "up"}
-		class:opacity-0={scrollDir === "down"}
+		class:opacity-0={scrollDir === "down" && scroll > $currentSettings.headerHeight && !menuOpened}
 		bind:clientHeight={$currentSettings.headerHeight}
 	>
-		<nav class="text-36 sm:text-68 h-full flex flex-col">
+		<nav class="text-36 sm:text-68 flex flex-col" class:h-screen={menuOpened}>
 			<div class=" flex border-b border-light-gray p-15 pb-5">
 				<a href="/" on:click={() => closeMenu()}>E</a>
 				<a href="/" on:click={() => closeMenu()} class="ml-auto font-sans flex">Learning</a>
@@ -84,7 +86,7 @@
 					class="w-full h-full grid grid-cols-1 lg:grid-cols-2"
 					on:click={() => closeMenu()}
 				>
-					<div class="flex flex-col">
+					<div class="flex flex-col h-full">
 						<a href="/questions/overview">Leitfragen</a>
 						<a href="/event/overview">Events</a>
 						<a href="/knowledge-in-use/overview">Knowledge in use</a>
@@ -93,7 +95,7 @@
 						<a href="/glossary">Glossar</a>
 						<a class="mt-auto mb-10 text-12 sm:!text-14 !text-black uppercase ">Journal</a>
 					</div>
-					<div class="flex flex-col border-t sm:border-l ">
+					<div class="flex flex-col border-t sm:border-l lg:border-t-0 h-full">
 						<a href="/offer">Angebot</a>
 						<a href="/information">Information</a>
 

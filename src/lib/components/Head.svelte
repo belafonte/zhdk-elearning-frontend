@@ -78,7 +78,7 @@
 				>
 			</div>
 			{#if menuOpened}
-				<div
+				<button
 					id="menu"
 					class="w-full h-full grid grid-cols-1 lg:grid-cols-2"
 					on:click={() => closeMenu()}
@@ -98,7 +98,7 @@
 
 						<a class="mt-auto mb-10 text-12 sm:!text-14 !text-black uppercase ">Hintergrund</a>
 					</div>
-				</div>
+				</button>
 			{/if}
 		</nav>
 	</header>

@@ -37,7 +37,7 @@
 	let tileSizes: Object = {
 		l: {
 			mobile: 4,
-			tablet: 5,
+			tablet: 6,
 			laptop: 7,
 			desktop: 7
 		},
@@ -79,7 +79,7 @@
 {#if $currentSettings !== undefined}
 	<a
 		href={`/${data.category.toLocaleLowerCase().replaceAll(" ", "-")}/${data.slug}`}
-		class="p-[8px] sm:p-15 title font-serif h-min overflow-hidden"
+		class="p-[8px] sm:p-10 lg:p-15 title font-serif h-min overflow-hidden"
 		class:ml-auto={offset === "l"}
 		class:mr-auto={offset === "r"}
 		style="flex: 0 0 {tileWidth}px; background-color: {data.color !== null
@@ -155,6 +155,18 @@
 	}
 
 	@screen sm {
+		.title-large {
+			@apply text-38;
+		}
+		.title-medium {
+			@apply text-30;
+		}
+		.title-small {
+			@apply text-19;
+		}
+	}
+
+	@screen lg {
 		.title-large {
 			@apply text-60;
 		}

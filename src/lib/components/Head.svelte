@@ -67,14 +67,14 @@
 		class:opacity-0={scrollDir === "down" && scroll > $currentSettings.headerHeight && !menuOpened}
 		bind:clientHeight={$currentSettings.headerHeight}
 	>
-		<nav class="text-36 sm:text-68 flex flex-col" class:h-screen={menuOpened}>
+		<nav class="text-36 sm:text-45 lg:text-68 flex flex-col" class:h-screen={menuOpened}>
 			<div class=" flex border-b border-light-gray p-15 pb-5">
 				<a href="/" on:click={() => closeMenu()}>E</a>
 				<a href="/" on:click={() => closeMenu()} class="ml-auto font-sans flex">Learning</a>
 				<button on:click={() => (!menuOpened ? openMenu() : closeMenu())}
 					><img
 						alt="Open Menu Button"
-						class="w-32 sm:w-60 pb-10 ml-15 transition-transform"
+						class="w-32 sm:w-42 lg:w-60 pb-10 ml-15 transition-transform origin-center"
 						class:rotate-45={menuOpened}
 						src={plus}
 					/></button
@@ -83,7 +83,7 @@
 			{#if menuOpened}
 				<button
 					id="menu"
-					class="w-full h-full grid grid-cols-1 lg:grid-cols-2"
+					class="w-full h-full grid grid-cols-1 sm:grid-cols-2"
 					on:click={() => closeMenu()}
 				>
 					<div class="flex flex-col h-full">

@@ -35,6 +35,15 @@
 	export let data: PageServerData;
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
+	let dynamicMargin = 0;
+
+	$: if ($currentSettings.type === "tablet") {
+		dynamicMargin = 0;
+	} else {
+		dynamicMargin = $currentSettings.colWidth;
+	}
+
+	$: console.log($currentSettings.type);
 </script>
 
 <svelte:head>
@@ -44,7 +53,7 @@
 {#if data !== null}
 	<div
 		class="hidden sm:grid sm:grid-cols-2"
-		style:margin="0 {$currentSettings.colWidth}px 84px {$currentSettings.colWidth}px"
+		style:margin="0 {dynamicMargin}px 84px {dynamicMargin}px"
 	>
 		<div class="space-y-84">
 			<div class="flex flex-col items-center">
@@ -161,7 +170,7 @@
 	{/if}
 
 	<!-- Glossary Slider -->
-	<div class="flex justify-center pt-84 pb-84 sm:pb-[168px]">
+	<div class="flex justify-center pt-84 ">
 		<div id="slider" class="w-full sm:w-[83.5%]  lg:w-[62.5%]">
 			<Swiper
 				modules={[Navigation, Autoplay]}

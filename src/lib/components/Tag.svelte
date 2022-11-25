@@ -10,7 +10,7 @@
 
 <div
 	id="link"
-	class="font-sans text-12 sm:text-14 flex w-max h-max  text-black px-7 pt-[4px] pb-[2px] sm:px-10 sm:pt-[6px] sm:pb-[2px] hover:opacity-100"
+	class="font-sans text-12 lg:text-14 flex w-max h-max  text-black px-7 pt-[4px] pb-[2px] sm:px-10 sm:pt-[6px] sm:pb-[2px] hover:opacity-100"
 	class:border-black={!background}
 	class:border={!background}
 	class:rounded-full={rounded}

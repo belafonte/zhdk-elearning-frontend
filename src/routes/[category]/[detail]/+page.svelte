@@ -21,16 +21,10 @@
 
 	$: containerWidth = $currentSettings.gridCols * $currentSettings.colWidth;
 
-	$: scrollOverTop = 0;
 	$: titleTop = 0;
 	$: titlePosition = "relative";
 
-	function calcTop() {
-		scrollOverTop = title?.getBoundingClientRect().height;
-	}
-
 	function trans(status: any) {
-		calcTop();
 		titlePosition = "fixed";
 	}
 
@@ -39,7 +33,7 @@
 	});
 </script>
 
-<svelte:window on:resize={calcTop} />
+<svelte:window />
 <svelte:head>
 	<title>{data.title}</title>
 </svelte:head>
@@ -49,11 +43,11 @@
 		<GridBackground>
 			<div
 				bind:this={nav}
-				class="pt-20 sm:pt-32 pb-32  grid grid-cols-3 z-50 w-max fixed px-10 sm:px-[40px]"
+				class="fixed z-50 grid  w-max grid-cols-3 px-10 pt-20 pb-32 sm:px-[40px] sm:pt-32"
 				style:width="{containerWidth}px"
 			>
 				<button
-					class="justify-self-start uppercase text-12 sm:text-14 whitespace-nowrap tracking-wider"
+					class="justify-self-start whitespace-nowrap text-12 uppercase tracking-wider sm:text-14"
 					on:click={() => {
 						return history.length > 2 ? history.back() : location.replace(location.origin);
 					}}>Zurück</button
@@ -61,34 +55,26 @@
 				<div class="justify-self-center">
 					<Tag background={true} text={data.category.toUpperCase()} />
 				</div>
-				<!-- <div class="bg-white bg-opacity-50 justify-self-center whitespace-nowrap tracking-wider">
-					{data.category.toUpperCase()}
-				</div> -->
 			</div>
 
-			<div
-				bind:this={title}
-				class="overflow-hidden"
-				style:position={titlePosition}
-				style:padding-top="{titleTop}px"
-				style:width="{containerWidth}px"
-			>
+			<div bind:this={title} style:padding-top="{titleTop}px" style:width="{containerWidth}px">
 				<h1
-					class="text-60 sm:text-130 pb-32 sm:pb-84 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px] font-serif"
+					class="sticky pl-10 pr-7 font-serif text-60 sm:pl-[40px] sm:pr-[20px] sm:text-68 lg:text-130"
+					style:top="{titleTop}px"
 				>
 					{@html data.title}
 				</h1>
-			</div>
+				<!-- Area that scrolls over the title -->
 
-			<!-- Area that scrolls over the title -->
-			<div style:margin-top="{scrollOverTop}px" class="relative z-40">
-				<div class="flex flex-col-reverse sm:flex-row mb-32 sm:mb-84">
-					<p class="text-14 sm:basis-1/5 flex items-center pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
-						{data.caption !== null ? data.caption : " "}
-					</p>
-					{#if data.title_image !== null}
-						<!--	Main Image	-->
-						<div class="sm:basis-3/5 flex flex-col justify-center">
+				{#if data.title_image !== null}
+					<!--	Main Image	-->
+					<div class="flex flex-col-reverse lg:flex-row">
+						<p
+							class="z-40 hidden items-center pl-10 pr-7 text-14 sm:pl-[40px] sm:pr-[20px] lg:flex lg:basis-1/6"
+						>
+							{data.caption !== null ? data.caption : " "}
+						</p>
+						<div class="z-40  self-center sm:w-[80%] lg:basis-4/6">
 							{#if data.category === "Leitfrage"}
 								<img alt="Meta Question" src={PUBLIC_ASSETS + data.mask.path} />
 							{:else}
@@ -99,65 +85,66 @@
 								/>
 							{/if}
 						</div>
+					</div>
+				{/if}
+			</div>
+
+			<div class="z-40">
+				<p class="z-40 items-center py-16 pl-10 pr-7 text-14 sm:pl-[40px] sm:pr-[20px] lg:hidden">
+					{data.caption !== null ? data.caption : " "}
+				</p>
+				<!-- Event Data -->
+				{#if data.event.date !== null}
+					<div
+						class="link mb-32 grid grid-cols-2 gap-15 pl-10 pr-7 text-24 sm:mb-42 sm:grid-cols-4 sm:pl-[40px] sm:pr-[20px] lg:text-26"
+					>
+						<p>{data.event.date}</p>
+						<p>{data.event.time}</p>
+						<p>{data.event.location}</p>
+						<a class="relative top-[-7px]" href={data.event.link}>Anmelden</a>
+					</div>
+				{/if}
+
+				<!-- Subhead Data - has margin below -->
+				{#if data.subhead}
+					<h2
+						class="link hyphens-auto mx-0 mb-32 pl-10 pr-7 text-24 sm:mb-84 sm:mr-[5%] sm:pl-[40px] sm:pr-[20px] sm:text-50 lg:mr-[25%]"
+					>
+						{@html data.subhead}
+					</h2>
+				{/if}
+
+				<!-- Body text with link tag in the end -->
+				<div class="mx-0 flex flex-col pl-10 pr-7 sm:mx-[8.5%] sm:pl-15 sm:pr-10 lg:mx-[25%]">
+					<p class="link font-serif text-20  sm:text-23 lg:text-26">
+						{@html data.body}
+					</p>
+					{#if data.event.date !== null}
+						<a href={data.event.link} class="mt-32 self-center sm:mt-42">
+							<Tag text="Anmelden" rounded={true} icon={true} />
+						</a>
 					{/if}
 				</div>
 
-				<GridBackground>
-					<div class="relative z-40 pb-32 sm:pb-84">
-						<!-- Event Data -->
-						{#if data.event.date !== null}
-							<div
-								class="link grid grid-cols-2 sm:grid-cols-4 text-24 sm:text-26 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px] mb-32 sm:mb-42 gap-15"
-							>
-								<p>{data.event.date}</p>
-								<p>{data.event.time}</p>
-								<p>{data.event.location}</p>
-								<a class="relative top-[-7px]" href={data.event.link}>Anmelden</a>
+				{#if data.image.length > 0}
+					<div
+						class="grid place-items-center"
+						class:grid-cols-2={data.image.length > 1}
+						class:auto-cols-fr={data.image.length === 1}
+					>
+						{#each data.image as img}
+							<div>
+								<img alt="Gallery" src={PUBLIC_ASSETS + img.path} />
+								<p class="text-14">{img.description}</p>
 							</div>
-						{/if}
-
-						<!-- Subhead Data - has margin below -->
-						{#if data.subhead}
-							<h2
-								class="link text-24 sm:text-50 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px] mb-32 sm:mb-84 sm:mr-[25%]"
-							>
-								{@html data.subhead}
-							</h2>
-						{/if}
-
-						<!-- Body text with link tag in the end -->
-						<div class="sm:mx-[25%] mb-32 sm:mb-84  pl-10 pr-7 sm:pl-15 sm:pr-10">
-							<p class="link text-20 sm:text-26 font-serif">
-								{@html data.body}
-							</p>
-							{#if data.event.date !== null}
-								<a href={data.event.link} class="mt-32 sm:mt-42 mb-32 sm:mb-84">
-									<Tag text="Anmelden" rounded={true} icon={true} />
-								</a>
-							{/if}
-						</div>
-
-						{#if data.image.length > 0}
-							<div
-								class="grid place-items-center mb-32 sm:mb-84"
-								class:grid-cols-2={data.image.length > 1}
-								class:auto-cols-fr={data.image.length === 1}
-							>
-								{#each data.image as img}
-									<div>
-										<img alt="Gallery" src={PUBLIC_ASSETS + img.path} />
-										<p class="text-14">{img.description}</p>
-									</div>
-								{/each}
-							</div>
-						{/if}
-						{#if data.embed !== null}
-							<div id="embed" class="mb-32 sm:mb-84  pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
-								{@html data.embed}
-							</div>
-						{/if}
+						{/each}
 					</div>
-				</GridBackground>
+				{/if}
+				{#if data.embed !== null}
+					<div id="embed" class="mb-32 pl-10  pr-7 sm:mb-84 sm:pl-[40px] sm:pr-[20px]">
+						{@html data.embed}
+					</div>
+				{/if}
 			</div>
 		</GridBackground>
 	</div>

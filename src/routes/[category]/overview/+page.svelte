@@ -28,7 +28,12 @@
 	}
 
 	// add padding to center 2 columns layout
-	$: if (cols === 2 && $currentSettings.type !== "mobile" && data.category !== "questions") {
+	$: if (
+		cols === 2 &&
+		$currentSettings.type !== "mobile" &&
+		$currentSettings.type !== "tablet" &&
+		data.category !== "questions"
+	) {
 		extraPadding = $currentSettings.colWidth;
 	} else {
 		extraPadding = 0;
@@ -55,14 +60,22 @@
 	<title>Übersicht für {data.category}</title>
 </svelte:head>
 
-<div class="flex fixed -mt-72 w-full justify-center">
-	{#each [...tags] as tag}
-		<div class="mr-5 sm:mr-8">
-			<button on:click={() => filterTag(tag)}>
-				<Tag text={tag} rounded={true} dimmed={!filteredTags.has(tag)} />
-			</button>
-		</div>
-	{/each}
+<div
+	class="fixed flex w-screen justify-center"
+	style:margin-top="-{(3 * $currentSettings.headerHeight) / 2}px"
+>
+	<div class="absolute left-0 flex">
+		{#each [...tags] as tag}
+			<div class="mr-5 sm:mr-8">
+				<button on:click={() => filterTag(tag)}>
+					<Tag text={tag} rounded={true} dimmed={!filteredTags.has(tag)} />
+				</button>
+			</div>
+		{/each}
+	</div>
+	<div>
+		<Tag text={data.category.toUpperCase()} background={true} />
+	</div>
 </div>
 
 <div

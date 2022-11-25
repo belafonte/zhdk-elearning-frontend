@@ -5,12 +5,12 @@
 	export let cover: boolean = false;
 </script>
 
-<div class="aspect-square flex justify-center overflow-hidden">
+<div class="flex aspect-square justify-center overflow-hidden">
 	<img
 		src={path}
 		alt="Main"
 		style="--url: url({mask !== null ? mask : ''})"
-		class="w-full h-full scale"
+		class="scale h-full w-full"
 		class:mask={mask !== null}
 		class:rotate-left={rotation === "Links" && !cover}
 		class:rotate-right={rotation === "Rechts" && !cover}
@@ -38,6 +38,6 @@
 		mask-size: cover;
 
 		aspect-ratio: 1/1;
-		object-fit: scale-down;
+		object-fit: contain;
 	}
 </style>

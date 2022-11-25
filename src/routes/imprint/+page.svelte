@@ -7,6 +7,6 @@
 	<title>Impressung</title>
 </svelte:head>
 
-<p class="text-24 sm:text-50 pb-84 sm:pb-[168px] pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+<p class="text-24 sm:text-50  pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
 	{@html data.content}
 </p>

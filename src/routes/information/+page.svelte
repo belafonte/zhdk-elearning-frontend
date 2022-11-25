@@ -11,10 +11,14 @@
 	<title>Information</title>
 </svelte:head>
 
-<p class="text-24 sm:text-50 mb-72 sm:mb-84 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+<p
+	class="text-23 sm:text-36 lg:text-50 hyphens-auto mb-72 sm:mb-84 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]"
+>
 	{@html data.vision}
 </p>
-<p class="text-24 sm:text-50 mb-32 sm:mb-42 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+<p
+	class="text-23 sm:text-36 lg:text-50 hyphens-auto mb-32 sm:mb-42 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]"
+>
 	{@html data.team}
 </p>
 <div class="grid grid-cols-2 sm:grid-cols-4 mb-72 sm:mb-84">
@@ -41,7 +45,7 @@
 		</div>
 	{/each}
 </div>
-<p class="text-24 sm:text-50 pb-84 sm:pb-[168px] pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+<p class="text-23 sm:text-36 lg:text-50 hyphens-auto  pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
 	{@html data.contact}
 </p>
 
@@ -51,5 +55,9 @@
 	}
 	:global(#links a) {
 		@apply mt-5;
+	}
+
+	.hyphens-auto {
+		hyphens: auto;
 	}
 </style>

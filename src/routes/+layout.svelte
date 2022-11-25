@@ -8,7 +8,7 @@
 
 <GridReference>
 	<Head />
-	<main class="w-screen z-20 px-15">
+	<main class="z-20 w-screen px-15 pb-72 sm:pb-[168px]">
 		<slot />
 	</main>
 	<Footer />

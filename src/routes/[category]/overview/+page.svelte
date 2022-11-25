@@ -32,7 +32,7 @@
 		cols === 2 &&
 		$currentSettings.type !== "mobile" &&
 		$currentSettings.type !== "tablet" &&
-		data.category !== "questions"
+		data.category !== "insights"
 	) {
 		extraPadding = $currentSettings.colWidth;
 	} else {
@@ -90,12 +90,12 @@
 		class:grid-cols-4={cols === 4}
 		class:space-bottom={!(data.category === "community" && $currentSettings.type === "mobile")}
 	>
-		{#if data.category === "questions"}
+		{#if data.category === "insights"}
 			{#each data.data as entry}
 				<MetaQuestion
 					path={PUBLIC_ASSETS + entry.title_image.path}
 					mask={PUBLIC_ASSETS + entry.mask.path}
-					link="/questions/{entry.slug}"
+					link="/insights/{entry.slug}"
 				/>
 			{/each}
 		{:else}

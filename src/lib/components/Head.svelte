@@ -59,7 +59,7 @@
 
 {#if !$page.params.hasOwnProperty("detail")}
 	<header
-		class="top-[-{$currentSettings.headerHeight}px] mb-72 sm:mb-[84px] bg-white z-[100] w-full transition duration-300"
+		class="top-[-{$currentSettings.headerHeight}px] z-[100] mb-72 w-full bg-white transition duration-300 sm:mb-[84px]"
 		class:sticky={!menuOpened}
 		class:fixed={menuOpened}
 		class:min-h-screen={menuOpened}
@@ -67,14 +67,14 @@
 		class:opacity-0={scrollDir === "down" && scroll > $currentSettings.headerHeight && !menuOpened}
 		bind:clientHeight={$currentSettings.headerHeight}
 	>
-		<nav class="text-36 sm:text-45 lg:text-68 flex flex-col" class:h-screen={menuOpened}>
+		<nav class="flex flex-col text-36 sm:text-45 lg:text-68" class:h-screen={menuOpened}>
 			<div class=" flex border-b border-light-gray p-15 pb-5">
 				<a href="/" on:click={() => closeMenu()}>E</a>
-				<a href="/" on:click={() => closeMenu()} class="ml-auto font-sans flex">Learning</a>
+				<a href="/" on:click={() => closeMenu()} class="ml-auto flex font-sans">Learning</a>
 				<button on:click={() => (!menuOpened ? openMenu() : closeMenu())}
 					><img
 						alt="Open Menu Button"
-						class="w-32 sm:w-42 lg:w-60 pb-10 ml-15 transition-transform origin-center"
+						class="ml-15 w-32 origin-center pb-10 transition-transform sm:w-42 lg:w-60"
 						class:rotate-45={menuOpened}
 						src={plus}
 					/></button
@@ -83,23 +83,23 @@
 			{#if menuOpened}
 				<button
 					id="menu"
-					class="w-full h-full grid grid-cols-1 sm:grid-cols-2"
+					class="grid h-full w-full grid-cols-1 sm:grid-cols-2"
 					on:click={() => closeMenu()}
 				>
-					<div class="flex flex-col h-full">
-						<a href="/questions/overview">Leitfragen</a>
+					<div class="flex h-full flex-col">
+						<a href="/insights/overview">Insights</a>
 						<a href="/event/overview">Events</a>
-						<a href="/knowledge-in-use/overview">Knowledge in use</a>
-						<a href="/kosmos/overview">Kosmos</a>
+						<a href="/experience/overview">Experience</a>
+						<a href="/cosmos/overview">Cosmos</a>
 						<a href="/community/overview">Community</a>
-						<a href="/glossary">Glossar</a>
-						<a class="mt-auto mb-10 text-12 sm:!text-14 !text-black uppercase ">Journal</a>
+						<a href="/glossary">Glossary</a>
+						<a class="mt-auto mb-10 text-12 uppercase !text-black sm:!text-14 ">Journal</a>
 					</div>
-					<div class="flex flex-col border-t sm:border-l lg:border-t-0 h-full">
+					<div class="flex h-full flex-col border-t sm:border-l lg:border-t-0">
 						<a href="/offer">Angebot</a>
 						<a href="/information">Information</a>
 
-						<a class="mt-auto mb-10 text-12 sm:!text-14 !text-black uppercase ">Hintergrund</a>
+						<a class="mt-auto mb-10 text-12 uppercase !text-black sm:!text-14 ">Hintergrund</a>
 					</div>
 				</button>
 			{/if}
@@ -109,7 +109,7 @@
 
 <style>
 	#menu a {
-		@apply text-dark-gray pt-10 pl-15;
+		@apply pt-10 pl-15 text-dark-gray;
 	}
 	#menu a:hover {
 		@apply text-black;

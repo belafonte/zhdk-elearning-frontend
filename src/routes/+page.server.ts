@@ -5,8 +5,8 @@ import { PUBLIC_ENDPOINT } from "$env/static/public";
 
 interface IResponse {
 	community: ICategory;
-	knowledge: ICategory;
-	kosmos: ICategory;
+	experience: ICategory;
+	cosmos: ICategory;
 	glossary: any;
 	highlights: any;
 	event: any;
@@ -30,8 +30,8 @@ export const load: PageServerLoad = async (params) => {
 			return response;
 		});
 
-	const kosmos = await fetch(
-		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Kosmos"}&limit=8`,
+	const cosmos = await fetch(
+		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Cosmos"}&limit=8`,
 		{
 			method: "GET",
 			headers: {
@@ -44,8 +44,8 @@ export const load: PageServerLoad = async (params) => {
 			return response;
 		});
 
-	const knowledge = await fetch(
-		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Knowledge in use"}&limit=8`,
+	const experience = await fetch(
+		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Experience"}&limit=8`,
 		{
 			method: "GET",
 			headers: {
@@ -97,8 +97,8 @@ export const load: PageServerLoad = async (params) => {
 	const data = {
 		highlightColor: "#EEEEEE",
 		community: community,
-		knowledge: knowledge,
-		kosmos: kosmos,
+		experience: experience,
+		cosmos: cosmos,
 		glossary: glossary,
 		event: event,
 		highlights: highlights

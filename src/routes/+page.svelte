@@ -43,7 +43,7 @@
 		dynamicMargin = $currentSettings.colWidth;
 	}
 
-	$: console.log($currentSettings.type);
+	$: console.log(data);
 </script>
 
 <svelte:head>
@@ -58,12 +58,12 @@
 		<div class="space-y-84">
 			<div class="flex flex-col items-center">
 				<MetaQuestion
-					link="/questions/{data.highlights.highlight01.slug}"
+					link="/insights/{data.highlights.highlight01.slug}"
 					path={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path}
 					mask={PUBLIC_ASSETS + data.highlights.highlight01.mask.path}
 				/>
-				<a href="/questions/overview">
-					<Tag rounded={true} text="Zu allen Leitfragen" icon={true} />
+				<a href="/insights/overview">
+					<Tag rounded={true} text="Zu allen Insights" icon={true} />
 				</a>
 			</div>
 			{#if data.highlights.highlight02}
@@ -103,15 +103,15 @@
 	</div>
 
 	<!-- Mobile Highlight Section -->
-	<div class="sm:hidden space-y-72 mb-72">
+	<div class="mb-72 space-y-72 sm:hidden">
 		<div class="flex flex-col items-center">
 			<MetaQuestion
-				link="/questions/{data.highlights.highlight01.slug}"
+				link="/insights/{data.highlights.highlight01.slug}"
 				path={PUBLIC_ASSETS + data.highlights.highlight01.title_image.path}
 				mask={PUBLIC_ASSETS + data.highlights.highlight01.mask.path}
 			/>
-			<a href="/questions/overview">
-				<Tag rounded={true} text="Zu allen Leitfragen" icon={true} />
+			<a href="/insights/overview">
+				<Tag rounded={true} text="Zu allen Insights" icon={true} />
 			</a>
 		</div>
 		<!-- Events Tile -->
@@ -147,9 +147,9 @@
 	</div>
 
 	<!-- Section Rows -->
-	{#if data.knowledge.length > 0}
-		<Row title="Knowledge in use" url="knowledge-in-use">
-			{#each data.knowledge as entry}
+	{#if data.experience.length > 0}
+		<Row title="Experience" url="experience">
+			{#each data.experience as entry}
 				<Tile data={entry} />
 			{/each}
 		</Row>
@@ -161,9 +161,9 @@
 			{/each}
 		</Row>
 	{/if}
-	{#if data.kosmos.length > 0}
-		<Row title="Kosmos" url="kosmos">
-			{#each data.kosmos as entry}
+	{#if data.cosmos.length > 0}
+		<Row title="Cosmos" url="cosmos">
+			{#each data.cosmos as entry}
 				<Tile data={entry} />
 			{/each}
 		</Row>
@@ -183,7 +183,7 @@
 					<SwiperSlide>
 						<div>
 							<img alt="Slide" src={PUBLIC_ASSETS + slide.image.path} />
-							<div class="absolute bottom-[20px] flex justify-center w-full">
+							<div class="absolute bottom-[20px] flex w-full justify-center">
 								<a href={slide.link}>{slide.display}</a>
 							</div>
 						</div>

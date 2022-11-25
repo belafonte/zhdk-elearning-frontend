@@ -27,10 +27,10 @@
 	<title>Glossar</title>
 </svelte:head>
 
-<div class="grid gap-y-42 grid-cols-1 sm:grid-cols-4 font-serif">
+<div class="grid grid-cols-1 gap-y-42 font-serif sm:grid-cols-4">
 	{#each Object.keys(termsByAlphabet) as letter}
 		<p
-			class="text-[280px] justify-self-center relative top-0 sm:top-[-110px] leading-[0.7] sm:leading-normal"
+			class="relative top-0 justify-self-center text-[280px] leading-[0.7] sm:top-[-110px] sm:leading-normal"
 			style:color={data.colors[letter.toLowerCase()]}
 		>
 			{letter}
@@ -40,7 +40,7 @@
 				{#if term.image !== null}
 					<img alt="Term Illustration" class="mb-32" src={PUBLIC_ASSETS + term.image.path} />
 				{/if}
-				<p class="text-20 sm:text-23 lg:text-22 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+				<p class="pl-10 pr-7 text-20 sm:pl-[40px] sm:pr-[20px] sm:text-23 lg:text-22">
 					<span style:color={data.colors[letter.toLowerCase()]}>{term.term}</span>
 					{term.definition}
 				</p>

@@ -14,11 +14,11 @@ export const load: PageServerLoad = async ({ params }) => {
 		"fields={ category: true, title: true, color: true, title_image: true, mask: true, rotation: true, event: true, slug: true, tags: true }";
 	let filter = category.replace(/^./, category.charAt(0).toUpperCase());
 	filter = filter.replaceAll("-", " ");
-	let filterQuery = `filter={category: "${filter}"}`;
+	const filterQuery = `filter={category: "${filter}"}`;
 
-	if (filter.localeCompare("Questions", "en") > -1) {
-		filterQuery = "filter={category: 'Leitfrage'}";
-	}
+	// if (filter.localeCompare("Questions", "en") > -1) {
+	// 	filterQuery = "filter={category: 'Leitfrage'}";
+	// }
 
 	// let overviewData: OverviewData = {} as OverviewData;
 	let cols: { mobile: number; tablet: number; desktop: number };
@@ -36,7 +36,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		});
 
 	switch (params.category) {
-		case "questions":
+		case "insights":
 		case "community":
 			cols = { mobile: 1, tablet: 2, desktop: 2 };
 			break;

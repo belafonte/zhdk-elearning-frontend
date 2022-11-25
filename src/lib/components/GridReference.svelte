@@ -99,7 +99,7 @@
 		if (
 			$page.route.id?.search("overview") !== -1 &&
 			$page.params.category !== "community" &&
-			$page.params.category !== "leitfragen"
+			$page.params.category !== "insights"
 		) {
 			if (settings.type === "mobile") {
 				settings.barCount = 3;

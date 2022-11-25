@@ -68,14 +68,14 @@
 
 				{#if data.title_image !== null}
 					<!--	Main Image	-->
-					<div class="flex flex-col-reverse lg:flex-row">
+					<div class="flex flex-col-reverse py-32 lg:flex-row">
 						<p
 							class="z-40 hidden items-center pl-10 pr-7 text-14 sm:pl-[40px] sm:pr-[20px] lg:flex lg:basis-1/6"
 						>
 							{data.caption !== null ? data.caption : " "}
 						</p>
 						<div class="z-40  self-center sm:w-[80%] lg:basis-4/6">
-							{#if data.category === "Leitfrage"}
+							{#if data.category === "Insights"}
 								<img alt="Meta Question" src={PUBLIC_ASSETS + data.mask.path} />
 							{:else}
 								<MainImage
@@ -141,7 +141,7 @@
 					</div>
 				{/if}
 				{#if data.embed !== null}
-					<div id="embed" class="mb-32 pl-10  pr-7 sm:mb-84 sm:pl-[40px] sm:pr-[20px]">
+					<div id="embed" class="mt-32 pl-10  pr-7 sm:mt-84 sm:pl-[40px] sm:pr-[20px]">
 						{@html data.embed}
 					</div>
 				{/if}

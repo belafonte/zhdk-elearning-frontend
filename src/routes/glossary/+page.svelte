@@ -30,7 +30,7 @@
 <div class="grid gap-y-42 grid-cols-1 sm:grid-cols-4 font-serif">
 	{#each Object.keys(termsByAlphabet) as letter}
 		<p
-			class="text-[280px] justify-self-center relative top-0 sm:top-[-110px]"
+			class="text-[280px] justify-self-center relative top-0 sm:top-[-110px] leading-[0.7] sm:leading-normal"
 			style:color={data.colors[letter.toLowerCase()]}
 		>
 			{letter}

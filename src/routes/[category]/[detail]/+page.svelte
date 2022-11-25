@@ -74,7 +74,7 @@
 						>
 							{data.caption !== null ? data.caption : " "}
 						</p>
-						<div class="z-40  self-center sm:w-[80%] lg:basis-4/6">
+						<div class="z-40  flex justify-center self-center sm:w-[80%] lg:basis-4/6">
 							{#if data.category === "Insights"}
 								<img alt="Meta Question" src={PUBLIC_ASSETS + data.mask.path} />
 							{:else}

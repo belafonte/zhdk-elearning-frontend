@@ -96,7 +96,9 @@
 			settings.colsEnd = columnDimensions.x + settings.gridCols * settings.colWidth;
 		}
 
-		if (
+		if ($page.route.id === "/") {
+			settings.barCount = 2;
+		} else if (
 			$page.route.id?.search("overview") !== -1 &&
 			$page.params.category !== "community" &&
 			$page.params.category !== "insights"

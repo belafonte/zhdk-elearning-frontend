@@ -139,21 +139,21 @@
 
 	<!-- Section Rows -->
 	{#if data.knowledge.length > 0}
-		<Row title="Knowledge in use" url="knowledge-in-use" catData={data.knowledge}>
+		<Row title="Knowledge in use" url="knowledge-in-use">
 			{#each data.knowledge as entry}
 				<Tile data={entry} />
 			{/each}
 		</Row>
 	{/if}
 	{#if data.community.length > 0}
-		<Row title="Community" url="community" catData={data.community}>
+		<Row title="Community" url="community">
 			{#each data.community as entry}
 				<Tile data={entry} />
 			{/each}
 		</Row>
 	{/if}
 	{#if data.kosmos.length > 0}
-		<Row title="Kosmos" url="kosmos" catData={data.kosmos}>
+		<Row title="Kosmos" url="kosmos">
 			{#each data.kosmos as entry}
 				<Tile data={entry} />
 			{/each}

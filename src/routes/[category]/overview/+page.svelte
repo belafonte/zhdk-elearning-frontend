@@ -54,6 +54,8 @@
 			}
 		});
 	}
+
+	$: console.log(data);
 </script>
 
 <svelte:head>
@@ -100,7 +102,7 @@
 			{/each}
 		{:else}
 			{#each data.data as entry}
-				{#if filteredTags.size > 0 ? entry.tags.some((el) => filteredTags.has(el)) : true}
+				{#if filteredTags.size > 0 ? entry.tags?.some((el) => filteredTags.has(el)) : true}
 					<Tile data={entry} />
 				{/if}
 			{/each}

@@ -21,7 +21,7 @@
 >
 	{@html data.team}
 </p>
-<div class="mb-72 grid grid-cols-2 gap-y-72 sm:mb-84 sm:grid-cols-4 sm:gap-y-84">
+<div class="mb-72 grid grid-cols-2 gap-y-32 sm:mb-84 sm:grid-cols-4 sm:gap-y-42">
 	{#each data.team_member as member}
 		<div class="pl-10 pr-7 font-serif text-22 sm:pl-15 sm:pr-10">
 			<MainImage

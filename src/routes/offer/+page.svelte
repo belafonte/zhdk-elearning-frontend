@@ -11,8 +11,8 @@
 </svelte:head>
 
 {#each data.offers as offer}
-	<div class="flex flex-col ">
-		<p class="text-24 sm:text-36 lg:text-50 mb-32 sm:mb-42 pl-10 sm:pl-[40px] pr-7 sm:pr-[20px]">
+	<div data-offers class="mt-72 flex flex-col sm:mt-84">
+		<p class="mb-32 pl-10 pr-7 text-24 sm:mb-42 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50">
 			{@html offer.text}
 		</p>
 		{#if offer.image !== null}
@@ -27,7 +27,15 @@
 {/each}
 
 <style>
-	div > *:nth-child(3) {
+	[data-offers] > * {
 		margin-top: 32px;
+	}
+
+	[data-offers]:first-child {
+		@apply mt-0;
+	}
+
+	:global([data-offers] h1) {
+		@apply mb-32 !important;
 	}
 </style>

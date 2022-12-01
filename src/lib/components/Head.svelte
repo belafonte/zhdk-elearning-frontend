@@ -83,7 +83,7 @@
 			{#if menuOpened}
 				<button
 					id="menu"
-					class="grid h-full w-full grid-cols-1 sm:grid-cols-2"
+					class="grid h-full w-full grid-cols-1 text-center sm:grid-cols-2 sm:text-left"
 					on:click={() => closeMenu()}
 				>
 					<div class="flex h-full flex-col">

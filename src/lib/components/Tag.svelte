@@ -9,8 +9,8 @@
 </script>
 
 <div
-	id="link"
-	class="font-sans text-12 lg:text-14 flex w-max h-max  text-black px-7 pt-[4px] pb-[2px] sm:px-10 sm:pt-[6px] sm:pb-[2px] hover:opacity-100"
+	data-link
+	class="flex h-max w-max px-7 pt-[4px] pb-[2px]  font-sans text-12 text-black hover:opacity-100 sm:px-10 sm:pt-[6px] sm:pb-[2px] lg:text-14"
 	class:border-black={!background}
 	class:border={!background}
 	class:rounded-full={rounded}
@@ -19,9 +19,9 @@
 	class:opacity-30={dimmed}
 >
 	<div class="flex w-full">
-		<p class="uppercase text-12 sm:text-14 whitespace-nowrap tracking-wider">{text}</p>
+		<p class="whitespace-nowrap text-12 uppercase tracking-wider sm:text-14">{text}</p>
 		{#if icon}
-			<img id="image" class="arrow transition-all ml-4" src={arrow} alt="Open Section" />
+			<img id="image" class="arrow ml-4 transition-all" src={arrow} alt="Open Section" />
 		{/if}
 	</div>
 </div>
@@ -39,7 +39,7 @@
 		}
 	}
 
-	#link:hover #image {
+	[data-link]:hover #image {
 		@apply ml-6;
 	}
 </style>

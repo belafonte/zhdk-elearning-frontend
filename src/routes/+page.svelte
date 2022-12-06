@@ -43,7 +43,7 @@
 		dynamicMargin = $currentSettings.colWidth;
 	}
 
-	$: console.log(data);
+	// $: console.log(data);
 </script>
 
 <svelte:head>

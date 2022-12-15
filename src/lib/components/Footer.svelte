@@ -1,15 +1,14 @@
 <script lang="ts">
-	import GridBackground from "./GridBackground.svelte";
-	import logo from "$lib/assets/zhdk-logo.png";
+	import logo from "$lib/assets/logo.svg";
 </script>
 
-<footer class="mt-auto z-40">
+<footer class="z-40 mt-auto">
 	<!-- <GridBackground> -->
-	<div class="relative z-10 border-t flex flex-col bg-white ">
-		<h1 class="text-24 sm:text-50 p-50 self-center text-center">
+	<div class="relative z-10 flex flex-col border-t bg-white ">
+		<h1 class="self-center p-50 text-center text-24 sm:text-50">
 			Recherche zu digitalem Lehren und Lernen
 		</h1>
-		<div class="footer-links px-15 border-t grid grid-cols-2 sm:grid-cols-4">
+		<div class="footer-links grid grid-cols-2 border-t px-15 sm:grid-cols-4">
 			<div class="border-l"><a href="/offer">Angebot</a></div>
 			<div>
 				<a href="/information">Information</a>
@@ -18,7 +17,7 @@
 				<a href="/imprint">Impressum</a>
 			</div>
 			<a href="https://zhdk.ch" class="border-t sm:border-t-0"
-				><img class="px-[25%]" src={logo} alt="ZHdK Logo" /></a
+				><img class="px-[15%]" src={logo} alt="ZHdK Logo" /></a
 			>
 		</div>
 	</div>
@@ -27,6 +26,6 @@
 
 <style>
 	.footer-links > * {
-		@apply border-r text-center flex justify-center items-center aspect-square;
+		@apply flex aspect-square items-center justify-center border-r text-center;
 	}
 </style>

@@ -23,10 +23,7 @@
 
 	// export let size: string;
 
-	export let tags: [string] | null = null;
-
 	export let data: ITileData;
-
 	export let offset: string | null = null;
 
 	let size: string;
@@ -79,7 +76,7 @@
 {#if $currentSettings !== undefined}
 	<a
 		href={`/${data.category.toLocaleLowerCase().replaceAll(" ", "-")}/${data.slug}`}
-		class="p-[8px] sm:p-10 lg:p-15 title font-serif h-min overflow-hidden"
+		class="title h-min overflow-hidden p-[8px] font-serif sm:p-10 lg:p-15"
 		class:ml-auto={offset === "l"}
 		class:mr-auto={offset === "r"}
 		style="flex: 0 0 {tileWidth}px; background-color: {data.color !== null
@@ -122,7 +119,7 @@
 			{#if data.event.date !== null}
 				<div class="md:ml-32">
 					<p class="font-sans text-12">{data.event.date} / {data.event.time}</p>
-					<p class="hidden md:block font-sans text-12">{data.event.location}</p>
+					<p class="hidden font-sans text-12 md:block">{data.event.location}</p>
 				</div>
 			{/if}
 		</div>
@@ -132,16 +129,6 @@
 {/if}
 
 <style>
-	.rotate-right {
-		rotate: 15deg;
-		scale: 0.7;
-	}
-
-	.rotate-left {
-		rotate: -15deg;
-		scale: 0.7;
-	}
-
 	.title-large {
 		@apply text-36;
 	}
@@ -180,16 +167,4 @@
 	/* .colWidth {
 		width: var calc({$currentSettings.colWidth}* 7);
 	} */
-
-	.mask {
-		mask-image: var(--url);
-		mask-repeat: no-repeat;
-		width: 100%;
-		mask-position: center;
-		mask-type: alpha;
-		mask-size: cover;
-
-		aspect-ratio: 1/1;
-		object-fit: scale-down;
-	}
 </style>

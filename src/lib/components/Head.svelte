@@ -93,13 +93,13 @@
 						<a href="/cosmos/overview">Cosmos</a>
 						<a href="/community/overview">Community</a>
 						<a href="/glossary">Glossary</a>
-						<a class="mt-auto mb-10 text-12 uppercase !text-black sm:!text-14 ">Journal</a>
+						<div class="mt-auto mb-10 text-12 uppercase !text-black sm:!text-14 ">Journal</div>
 					</div>
 					<div class="flex h-full flex-col border-t sm:border-l lg:border-t-0">
 						<a href="/offer">Angebot</a>
 						<a href="/information">Information</a>
 
-						<a class="mt-auto mb-10 text-12 uppercase !text-black sm:!text-14 ">Hintergrund</a>
+						<div class="mt-auto mb-10 text-12 uppercase !text-black sm:!text-14 ">Hintergrund</div>
 					</div>
 				</button>
 			{/if}
@@ -108,7 +108,7 @@
 {/if}
 
 <style>
-	#menu a {
+	#menu div > * {
 		@apply pt-10 pl-15 text-dark-gray;
 	}
 	#menu a:hover {

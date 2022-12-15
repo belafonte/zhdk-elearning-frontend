@@ -98,9 +98,9 @@
 					<div
 						class="link mb-32 grid grid-cols-2 gap-15 pl-10 pr-7 text-24 sm:mb-42 sm:grid-cols-4 sm:pl-[40px] sm:pr-[20px] lg:text-26"
 					>
-						<p>{data.event.date}</p>
-						<p>{data.event.time}</p>
-						<p>{data.event.location}</p>
+						<p>{data.event.date !== null ? data.event.date : ""}</p>
+						<p>{data.event.time !== null ? data.event.time : ""}</p>
+						<p>{data.event.location !== null ? data.event.location : ""}</p>
 						<a class="relative top-[-7px]" href={data.event.link}>Anmelden</a>
 					</div>
 				{/if}

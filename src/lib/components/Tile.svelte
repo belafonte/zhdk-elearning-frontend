@@ -118,8 +118,14 @@
 			{/if}
 			{#if data.event.date !== null}
 				<div class="md:ml-32">
-					<p class="font-sans text-12">{data.event.date} / {data.event.time}</p>
-					<p class="hidden font-sans text-12 md:block">{data.event.location}</p>
+					<p class="font-sans text-12">
+						{data.event.date !== null ? data.event.date : ""}{data.event.time !== null
+							? ` / ${data.event.time}`
+							: ""}
+					</p>
+					<p class="hidden font-sans text-12 md:block">
+						{data.event.location !== null ? data.event.location : ""}
+					</p>
 				</div>
 			{/if}
 		</div>

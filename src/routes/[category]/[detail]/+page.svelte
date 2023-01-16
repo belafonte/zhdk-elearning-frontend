@@ -36,6 +36,14 @@
 <svelte:window />
 <svelte:head>
 	<title>{data.title}</title>
+	<meta property="og:title" content={data.title} />
+	<meta property="og:description" content="ZHdK E-Learning {data.category.toUpperCase()}" />
+
+	<meta property="og:url" content={location.href} />
+	<meta property="og:type" content="article" />
+	{#if data.title_image !== null}
+		<meta property="og:image" content={PUBLIC_ASSETS + data.title_image.path} />
+	{/if}
 </svelte:head>
 
 {#if data}

@@ -48,6 +48,15 @@
 
 <svelte:head>
 	<title>Willkommen zur E-Learning Webseite der Zürcher Hochschule der Künste</title>
+
+	<meta property="og:title" content="E-Learning" der ZHdK />
+	<meta property="og:site_name" content="E-Learning" ZHdK />
+	<meta property="og:url" content="elearning.zhdk.ch" />
+	<meta
+		property="og:description"
+		content="Das E-Learning der ZHdK bietet ein breites Angebot aus
+		Lehrentwicklung, Beratung und niederschwelligen Schulungen."
+	/>
 </svelte:head>
 
 {#if data !== null}

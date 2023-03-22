@@ -5,18 +5,17 @@
 	export let cover: boolean = false;
 </script>
 
-<div class="flex aspect-square justify-center overflow-hidden">
+<div class="relative flex aspect-square justify-center overflow-hidden">
 	<img
 		src={path}
 		alt="Main"
-		style="--url: url({mask !== null ? mask : ''})"
 		class="scale h-full w-full"
-		class:mask={mask !== null}
 		class:rotate-left={rotation === "Links" && !cover}
 		class:rotate-right={rotation === "Rechts" && !cover}
 		class:object-cover={cover}
 		class:object-contain={!cover}
 	/>
+	<img alt="mask" class="mask absolute top-0 left-0" src={mask} />
 </div>
 
 <style>
@@ -30,6 +29,9 @@
 		scale: 0.8;
 	}
 	.mask {
+		mix-blend-mode: multiply;
+	}
+	/*.mask {
 		mask-image: var(--url);
 		mask-repeat: no-repeat;
 		width: 100%;
@@ -39,5 +41,5 @@
 
 		aspect-ratio: 1/1;
 		object-fit: contain;
-	}
+	}*/
 </style>

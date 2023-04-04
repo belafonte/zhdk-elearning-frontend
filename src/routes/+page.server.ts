@@ -2,6 +2,9 @@ import type { PageServerLoad } from "./$types";
 import type { ICategory } from "$lib/constants";
 import { API_KEY } from "$env/static/private";
 import { PUBLIC_ENDPOINT } from "$env/static/public";
+import URQLClient from "../graphql/urqlClient";
+import type { GetContentByIdQuery } from "../graphql/types";
+import { GetContentById } from "../graphql/queries";
 
 interface IResponse {
 	community: ICategory;
@@ -13,6 +16,14 @@ interface IResponse {
 }
 
 export const load: PageServerLoad = async (params) => {
+	// const result = await URQLClient.query<GetContentByIdQuery>(GetContentById, {
+	// 	id: "4e097503373132874e00017c"
+	// }).toPromise();
+	//
+	// const res = result.data?.contentModel;
+	//
+	// res && console.log(res[0]?._id);
+
 	const fields =
 		"fields={ category: true, title: true, color: true, title_image: true, rotation: true, mask: true, event: true, slug: true, tags: true}";
 
@@ -29,6 +40,8 @@ export const load: PageServerLoad = async (params) => {
 		.then((response) => {
 			return response;
 		});
+
+	console.log(community);
 
 	const cosmos = await fetch(
 		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Cosmos"}&limit=8`,

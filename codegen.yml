@@ -1,0 +1,28 @@
+schema: https://elearningnext.lela.ch/api/gql
+documents: ./src/graphql/queries.ts
+generates:
+  ./src/graphql/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      scalars:
+        JsonType:
+          {
+            "path": string,
+            "title": string,
+            "mime": string,
+            "type": string,
+            "description": string,
+            "tags": [string],
+            "size": number,
+            "colors": [string],
+            "width": number,
+            "height": number,
+            "_hash": strign,
+            "_created": number,
+            "_modified": number,
+            "_cby": string,
+            "folder": string,
+            "_id": string,
+          }

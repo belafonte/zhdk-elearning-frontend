@@ -1,8 +1,25 @@
 <script lang="ts">
+	// import { API_KEY } from "$env/static/private";
+	import { onMount } from "svelte";
+
 	export let path: string;
 	export let mask: string | null = null;
 	export let rotation: string | null = null;
 	export let cover: boolean = false;
+
+	onMount(async () => {
+		// const image = await fetch(
+		// 	"https://elearningnext.lela.ch/storage/uploads/2023/03/16/221109_ZHdK_ELearning_Masken_Maske-2-1_uid_64130e99c2c00.svg",
+		// 	{
+		// 		method: "GET",
+		// 		headers: {
+		// 			"api-key": "API-bc01a6516a0d5754ea1fb61494d7b3e0e873d689"
+		// 		}
+		// 	}
+		// )
+		// 	.then((response) => response.text())
+		// 	.then((blob) => console.log(blob));
+	});
 </script>
 
 <div class="relative flex aspect-square justify-center overflow-hidden">
@@ -10,6 +27,7 @@
 		src={path}
 		alt="Main"
 		class="scale h-full w-full"
+		class:mask={mask !== null}
 		class:rotate-left={rotation === "Links" && !cover}
 		class:rotate-right={rotation === "Rechts" && !cover}
 		class:object-cover={cover}
@@ -29,9 +47,6 @@
 		scale: 0.8;
 	}
 	.mask {
-		mix-blend-mode: multiply;
-	}
-	/*.mask {
 		mask-image: var(--url);
 		mask-repeat: no-repeat;
 		width: 100%;
@@ -41,5 +56,5 @@
 
 		aspect-ratio: 1/1;
 		object-fit: contain;
-	}*/
+	}
 </style>

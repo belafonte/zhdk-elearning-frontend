@@ -16,7 +16,6 @@ export const load = (async ({ params }) => {
 
 	const [data]: [Detail] = await response.json();
 
-
 	if (data !== undefined) {
 		data.highlightColor = data.color !== null ? data.color.colors[0] : "#EEEEEE";
 	}

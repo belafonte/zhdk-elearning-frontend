@@ -2,6 +2,7 @@
 	import type { PageServerData } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
 	import Tag from "$lib/components/Tag.svelte";
+	import Image from "sveltekit-image";
 
 	export let data: PageServerData;
 </script>
@@ -16,7 +17,14 @@
 			{@html offer.text}
 		</p>
 		{#if offer.image !== null}
-			<img alt="Symbol" class="w-1/2 self-center" src={PUBLIC_ASSETS + offer.image.path} />
+			<Image
+				src={PUBLIC_ASSETS + offer.image.path}
+				width={800}
+				height={600}
+				alt="My lovely image"
+				class="w-1/2 self-center"
+			/>
+			<!-- <img alt="Symbol" class="w-1/2 self-center" src={PUBLIC_ASSETS + offer.image.path} /> -->
 		{/if}
 		{#if offer.link !== null}
 			<a href={offer.link} class="self-center">

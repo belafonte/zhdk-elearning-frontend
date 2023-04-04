@@ -20,10 +20,6 @@
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 
-	// import Swiper core and required modules
-	import { Navigation, Autoplay } from "swiper";
-
-	// import { Swiper, SwiperSlide } from "swiper/svelte";
 	import { register } from "swiper/element/bundle";
 
 	// Import Swiper styles

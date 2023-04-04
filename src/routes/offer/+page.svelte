@@ -4,6 +4,8 @@
 	import Tag from "$lib/components/Tag.svelte";
 	import Image from "sveltekit-image";
 
+	export const prerender = true;
+
 	export let data: PageServerData;
 </script>
 

@@ -54,25 +54,11 @@ export const load: PageServerLoad = async () => {
 			return response;
 		});
 
-	// const event = await fetch(
-	// 	`${PUBLIC_ENDPOINT}/content/item/content?filter={category: "Event"}&limit=1`,
-	// 	{
-	// 		method: "GET",
-	// 		headers: {
-	// 			"api-key": API_KEY
-	// 		}
-	// 	}
-	// )
-	// 	.then((response) => response.json())
-	// 	.then((response) => {
-	// 		return response;
-	// 	});
-
 	const event = await URQLClient.query<GetNextEventQuery>(GET_NEXT_EVENT, {})
 		.toPromise()
 		.then((res) => res.data?.contentModel?.at(0));
 
-	console.log(event);
+	console.log(cosmos);
 
 	const data = {
 		highlightColor: "#EEEEEE",

@@ -31,6 +31,7 @@
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
 	let tileWidth: number;
+
 	let tileSizes: Object = {
 		l: {
 			mobile: 4,
@@ -84,7 +85,7 @@
 			: '#EEEEEE'}"
 	>
 		<h1
-			class="overflow-hidden text-ellipsis pb-5 line-clamp-6 sm:line-clamp-5"
+			class="line-clamp-6 overflow-hidden text-ellipsis pb-5 sm:line-clamp-5"
 			class:title-large={size === "l"}
 			class:title-medium={size === "m"}
 			class:title-small={size === "s"}

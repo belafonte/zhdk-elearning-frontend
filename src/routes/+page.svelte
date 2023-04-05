@@ -157,13 +157,14 @@
 	{/if}
 
 	<!-- Section Rows -->
-	{#if data.experience.length > 0}
+	{#if data.experience?.length && data.experience.length > 0}
 		<Row title="Experience" url="experience">
 			{#each data.experience as entry}
 				<Tile data={entry} />
 			{/each}
 		</Row>
 	{/if}
+
 	{#if data.community.length > 0}
 		<Row title="Community" url="community">
 			{#each data.community as entry}
@@ -180,8 +181,8 @@
 	{/if}
 
 	<!-- Glossary Slider -->
-	<div class="flex justify-center pt-84 ">
-		<div id="slider" class="w-full sm:w-[83.5%]  lg:w-[62.5%]">
+	<div class="flex justify-center pt-84">
+		<div id="slider" class="w-full sm:w-[83.5%] lg:w-[62.5%]">
 			<swiper-container
 				space-between={0}
 				slides-per-view={1}
@@ -215,12 +216,4 @@
 		aspect-ratio: 3/2;
 		height: 100%;
 	}
-
-	/* :global(.swiper-button-next::after) {
-		@apply text-black text-22 !important;
-	}
-
-	:global(.swiper-button-prev::after) {
-		@apply text-black text-22 !important;
-	} */
 </style>

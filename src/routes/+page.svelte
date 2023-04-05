@@ -20,10 +20,7 @@
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 
-	// import Swiper core and required modules
-	import { Navigation, Autoplay } from "swiper";
-
-	import { Swiper, SwiperSlide } from "swiper/svelte";
+	import { register } from "swiper/element/bundle";
 
 	// Import Swiper styles
 	import "swiper/css";
@@ -31,6 +28,8 @@
 	import "swiper/css/pagination";
 	import "swiper/css/scrollbar";
 	import MetaQuestion from "$lib/components/MetaQuestion.svelte";
+
+	register();
 
 	export let data: PageServerData;
 
@@ -43,14 +42,14 @@
 		dynamicMargin = $currentSettings.colWidth;
 	}
 
-	// $: console.log(data);
+	$: console.log(data);
 </script>
 
 <svelte:head>
 	<title>Willkommen zur E-Learning Webseite der Zürcher Hochschule der Künste</title>
 
-	<meta property="og:title" content="E-Learning" der ZHdK />
-	<meta property="og:site_name" content="E-Learning" ZHdK />
+	<meta property="og:title" content="E-Learning der ZHdK" />
+	<meta property="og:site_name" content="E-Learning ZHdK" />
 	<meta property="og:url" content="elearning.zhdk.ch" />
 	<meta
 		property="og:description"
@@ -183,24 +182,23 @@
 	<!-- Glossary Slider -->
 	<div class="flex justify-center pt-84 ">
 		<div id="slider" class="w-full sm:w-[83.5%]  lg:w-[62.5%]">
-			<Swiper
-				modules={[Navigation, Autoplay]}
-				spaceBetween={0}
-				slidesPerView={1}
-				loop
+			<swiper-container
+				space-between={0}
+				slides-per-view={1}
+				loop={true}
 				autoplay={{ delay: 6000 }}
 			>
 				{#each data.glossary.slider as slide}
-					<SwiperSlide>
+					<swiper-slide>
 						<div>
 							<img alt="Slide" src={PUBLIC_ASSETS + slide.image.path} />
 							<div class="absolute bottom-[20px] flex w-full justify-center">
 								<a href={slide.link}>{slide.display}</a>
 							</div>
 						</div>
-					</SwiperSlide>
+					</swiper-slide>
 				{/each}
-			</Swiper>
+			</swiper-container>
 			<!-- <button class="swiper-next">Next</button>
 			<button class="swiper-prev">Prev</button> -->
 		</div>

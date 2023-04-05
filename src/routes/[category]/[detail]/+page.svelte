@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { PageServerLoad } from "./$types";
+	import type { PageServerData } from "./$types";
+
 	import { PUBLIC_ASSETS } from "$env/static/public";
 	import { fly } from "svelte/transition";
 	import { getContext } from "svelte";
@@ -12,7 +13,7 @@
 	import GridBackground from "$lib/components/GridBackground.svelte";
 	import { onMount } from "svelte/internal";
 
-	export let data: PageServerLoad;
+	export let data: PageServerData;
 
 	let title: HTMLElement | undefined;
 	let nav: HTMLElement | undefined;

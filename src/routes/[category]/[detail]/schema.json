@@ -1,0 +1,350 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "null"
+    },
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "subhead": {
+      "type": "string"
+    },
+    "title_image": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "mime": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {}
+        },
+        "size": {
+          "type": "integer"
+        },
+        "colors": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "_hash": {
+          "type": "string"
+        },
+        "_created": {
+          "type": "integer"
+        },
+        "_modified": {
+          "type": "integer"
+        },
+        "_cby": {
+          "type": "string"
+        },
+        "folder": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "title",
+        "mime",
+        "type",
+        "description",
+        "tags",
+        "size",
+        "colors",
+        "width",
+        "height",
+        "_hash",
+        "_created",
+        "_modified",
+        "_cby",
+        "folder",
+        "_id"
+      ]
+    },
+    "rotation": {
+      "type": "string"
+    },
+    "mask": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "mime": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {}
+        },
+        "size": {
+          "type": "integer"
+        },
+        "colors": {
+          "type": "null"
+        },
+        "width": {
+          "type": "null"
+        },
+        "height": {
+          "type": "null"
+        },
+        "_hash": {
+          "type": "string"
+        },
+        "_created": {
+          "type": "integer"
+        },
+        "_modified": {
+          "type": "integer"
+        },
+        "_cby": {
+          "type": "string"
+        },
+        "folder": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "title",
+        "mime",
+        "type",
+        "description",
+        "tags",
+        "size",
+        "colors",
+        "width",
+        "height",
+        "_hash",
+        "_created",
+        "_modified",
+        "_cby",
+        "folder",
+        "_id"
+      ]
+    },
+    "caption": {
+      "type": "null"
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "null"
+        },
+        "time": {
+          "type": "null"
+        },
+        "location": {
+          "type": "null"
+        },
+        "link": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "date",
+        "time",
+        "location",
+        "link"
+      ]
+    },
+    "color": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "mime": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {}
+        },
+        "size": {
+          "type": "integer"
+        },
+        "colors": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "_hash": {
+          "type": "string"
+        },
+        "_created": {
+          "type": "integer"
+        },
+        "_modified": {
+          "type": "integer"
+        },
+        "_cby": {
+          "type": "string"
+        },
+        "folder": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "title",
+        "mime",
+        "type",
+        "description",
+        "tags",
+        "size",
+        "colors",
+        "width",
+        "height",
+        "_hash",
+        "_created",
+        "_modified",
+        "_cby",
+        "folder",
+        "_id"
+      ]
+    },
+    "body": {
+      "type": "string"
+    },
+    "image": {
+      "type": "array",
+      "items": {}
+    },
+    "embed": {
+      "type": "null"
+    },
+    "_modified": {
+      "type": "integer"
+    },
+    "_mby": {
+      "type": "string"
+    },
+    "_created": {
+      "type": "integer"
+    },
+    "_state": {
+      "type": "integer"
+    },
+    "_cby": {
+      "type": "string"
+    },
+    "_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "category",
+    "tags",
+    "title",
+    "slug",
+    "subhead",
+    "title_image",
+    "rotation",
+    "mask",
+    "caption",
+    "event",
+    "color",
+    "body",
+    "image",
+    "embed",
+    "_modified",
+    "_mby",
+    "_created",
+    "_state",
+    "_cby",
+    "_id"
+  ]
+}

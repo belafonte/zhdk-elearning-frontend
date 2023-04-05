@@ -1,86 +1,47 @@
 import type { PageServerLoad } from "./$types";
-import type { ICategory } from "$lib/constants";
 import { API_KEY } from "$env/static/private";
 import { PUBLIC_ENDPOINT } from "$env/static/public";
+
 import URQLClient from "../graphql/urqlClient";
-import type { GetContentByIdQuery } from "../graphql/types";
-import { GetContentById } from "../graphql/queries";
+import type {
+	GetCosmosQuery,
+	GetCommunityQuery,
+	GetExperienceQuery,
+	GetGlossarySliderQuery,
+	GetNextEventQuery
+} from "../graphql/types";
+import {
+	GET_COSMOS,
+	GET_COMMUNITY,
+	GET_EXPERIENCE,
+	GET_GLOSSARY_SLIDER,
+	GET_NEXT_EVENT
+} from "../graphql/queries";
 
-interface IResponse {
-	community: ICategory;
-	experience: ICategory;
-	cosmos: ICategory;
-	glossary: any;
-	highlights: any;
-	event: any;
-}
-
-export const load: PageServerLoad = async (params) => {
-	// const result = await URQLClient.query<GetContentByIdQuery>(GetContentById, {
-	// 	id: "4e097503373132874e00017c"
-	// }).toPromise();
+export const load: PageServerLoad = async () => {
+	const communityQuery = await URQLClient.query<GetCommunityQuery>(GET_COMMUNITY, {
+		limit: 8
+	}).toPromise();
 	//
-	// const res = result.data?.contentModel;
+	const community = communityQuery.data?.contentModel;
+
+	const cosmosResult = await URQLClient.query<GetCosmosQuery>(GET_COSMOS, {
+		limit: 8
+	}).toPromise();
 	//
-	// res && console.log(res[0]?._id);
+	const cosmos = cosmosResult.data?.contentModel;
 
-	const fields =
-		"fields={ category: true, title: true, color: true, title_image: true, rotation: true, mask: true, event: true, slug: true, tags: true}";
-
-	const community = await fetch(
-		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Community"}&limit=8`,
-		{
-			method: "GET",
-			headers: {
-				"api-key": API_KEY
-			}
-		}
-	)
-		.then((response) => response.json())
-		.then((response) => {
-			return response;
-		});
-
-	console.log(community);
-
-	const cosmos = await fetch(
-		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Cosmos"}&limit=8`,
-		{
-			method: "GET",
-			headers: {
-				"api-key": API_KEY
-			}
-		}
-	)
-		.then((response) => response.json())
-		.then((response) => {
-			return response;
-		});
-
-	const experience = await fetch(
-		`${PUBLIC_ENDPOINT}/content/items/content?${fields}&filter={category: "Experience"}&limit=8`,
-		{
-			method: "GET",
-			headers: {
-				"api-key": API_KEY
-			}
-		}
-	)
-		.then((response) => response.json())
-		.then((response) => {
-			return response;
-		});
-
-	const glossary = await fetch(`${PUBLIC_ENDPOINT}/content/item/glossary?fields={slider: true}`, {
-		method: "GET",
-		headers: {
-			"api-key": API_KEY
-		}
+	const experience = await URQLClient.query<GetExperienceQuery>(GET_EXPERIENCE, {
+		limit: 8
 	})
-		.then((response) => response.json())
-		.then((response) => {
-			return response;
-		});
+		.toPromise()
+		.then((res) => res.data?.contentModel);
+
+	const glossary = await URQLClient.query<GetGlossarySliderQuery>(GET_GLOSSARY_SLIDER, {
+		limit: 8
+	})
+		.toPromise()
+		.then((res) => res.data?.glossaryModel);
 
 	const highlights = await fetch(`${PUBLIC_ENDPOINT}/content/item/highlights?populate=1`, {
 		method: "GET",
@@ -93,19 +54,25 @@ export const load: PageServerLoad = async (params) => {
 			return response;
 		});
 
-	const event = await fetch(
-		`${PUBLIC_ENDPOINT}/content/item/content?filter={category: "Event"}&limit=1`,
-		{
-			method: "GET",
-			headers: {
-				"api-key": API_KEY
-			}
-		}
-	)
-		.then((response) => response.json())
-		.then((response) => {
-			return response;
-		});
+	// const event = await fetch(
+	// 	`${PUBLIC_ENDPOINT}/content/item/content?filter={category: "Event"}&limit=1`,
+	// 	{
+	// 		method: "GET",
+	// 		headers: {
+	// 			"api-key": API_KEY
+	// 		}
+	// 	}
+	// )
+	// 	.then((response) => response.json())
+	// 	.then((response) => {
+	// 		return response;
+	// 	});
+
+	const event = await URQLClient.query<GetNextEventQuery>(GET_NEXT_EVENT, {})
+		.toPromise()
+		.then((res) => res.data?.contentModel?.at(0));
+
+	console.log(event);
 
 	const data = {
 		highlightColor: "#EEEEEE",
@@ -115,7 +82,7 @@ export const load: PageServerLoad = async (params) => {
 		glossary: glossary,
 		event: event,
 		highlights: highlights
-	} as IResponse;
+	};
 
 	return data;
 };

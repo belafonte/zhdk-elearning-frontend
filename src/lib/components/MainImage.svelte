@@ -1,12 +1,16 @@
 <script lang="ts">
 	// import { API_KEY } from "$env/static/private";
 	import { onMount } from "svelte";
+	import Image from "sveltekit-image";
 
 	export let path: string;
 	export let mask: string | null = null;
 	export let rotation: string | null = null;
-	export let cover: boolean = false;
+	export let cover = false;
 
+	const maskName = mask?.match(/(Maske.*?)_/)?.at(1);
+
+	console.log(maskName);
 	onMount(async () => {
 		// const image = await fetch(
 		// 	"https://elearningnext.lela.ch/storage/uploads/2023/03/16/221109_ZHdK_ELearning_Masken_Maske-2-1_uid_64130e99c2c00.svg",
@@ -26,14 +30,15 @@
 	<img
 		src={path}
 		alt="Main"
+		style="--url: url({maskName !== undefined ? `/masks/${maskName}.png` : ''})"
 		class="scale h-full w-full"
-		class:mask={mask !== null}
+		class:mask={maskName !== undefined}
 		class:rotate-left={rotation === "Links" && !cover}
 		class:rotate-right={rotation === "Rechts" && !cover}
 		class:object-cover={cover}
 		class:object-contain={!cover}
 	/>
-	<img alt="mask" class="mask absolute top-0 left-0" src={mask} />
+	<!-- <img alt="mask" class="mask absolute left-0 top-0" src={mask} /> -->
 </div>
 
 <style>

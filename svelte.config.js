@@ -12,6 +12,9 @@ const config = {
 	],
 
 	kit: {
+		alias: {
+			$graphql: "./src/graphql/"
+		},
 		adapter: adapter(),
 		csp: {
 			mode: "hash"

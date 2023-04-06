@@ -10,7 +10,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  JsonType: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"};
+  JsonType: any;
 };
 
 export type Mutation = {
@@ -293,42 +293,27 @@ export type SaveContentItemOutput = {
   item?: Maybe<Scalars['JsonType']>;
 };
 
-export type FullInfoFragment = { __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null };
+export type TileInfoFragment = { __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null };
 
-export type GetCommunityQueryVariables = Exact<{
+export type GetTileDataQueryVariables = Exact<{
+  filter: Scalars['JsonType'];
   limit?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type GetCommunityQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
-
-export type GetExperienceQueryVariables = Exact<{
-  limit?: InputMaybe<Scalars['Int']>;
-}>;
-
-
-export type GetExperienceQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
-
-export type GetCosmosQueryVariables = Exact<{
-  limit?: InputMaybe<Scalars['Int']>;
-}>;
-
-
-export type GetCosmosQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetTileDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
 
 export type GetGlossarySliderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlossarySliderQuery = { __typename?: 'Query', glossaryModel?: { __typename?: 'glossaryModel', slider?: Array<{ __typename?: 'SetSlider', image: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"}, link: string, display: string } | null> | null } | null };
+export type GetGlossarySliderQuery = { __typename?: 'Query', glossaryModel?: { __typename?: 'glossaryModel', slider?: Array<{ __typename?: 'SetSlider', image: any, link: string, display: string } | null> | null } | null };
+
+export type GetHighlightsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetHighlightsQuery = { __typename?: 'Query', highlightsModel?: { __typename?: 'highlightsModel', highlight01?: any | null, highlight02?: any | null, highlight03?: any | null, highlight04?: any | null, highlight05?: any | null } | null };
 
 export type GetNextEventQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetNextEventQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, title: string, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, slug?: string | null, subhead?: string | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, caption?: string | null, body?: string | null, image?: Array<{"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null> | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
-
-export type GetContentByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type GetContentByIdQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, category: string, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null } | null> | null };
+export type GetNextEventQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', caption?: string | null, body?: string | null, image?: Array<any | null> | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };

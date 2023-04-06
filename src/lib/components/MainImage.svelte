@@ -1,12 +1,13 @@
 <script lang="ts">
 	// import { API_KEY } from "$env/static/private";
-	import { onMount } from "svelte";
+	import { PUBLIC_ASSETS } from "$env/static/public";
+
 	import { twMerge } from "tailwind-merge";
 	import Image from "sveltekit-image";
 
 	export let path: string;
-	export let mask: string | null = null;
-	export let rotation: string | null = null;
+	export let mask: string | null;
+	export let rotation: string;
 	export let cover = false;
 
 	// const maskName = mask?.match(/(Maske.*?)_/)?.at(1);
@@ -16,24 +17,31 @@
 	<!-- <div class="mask"> -->
 	<div
 		class={twMerge(
-			"scale h-full w-full",
-			rotation === "links" && !cover ? "rotate-left" : "",
-			rotation === "rechts" && !cover ? "rotate-right" : ""
+			"styled-image mask",
+			rotation === "Links" && !cover ? "rotate-left" : "",
+			rotation === "Rechts" && !cover ? "rotate-right" : "",
+			cover ? "cover" : "contain"
 		)}
 	>
-		<Image
-			class={twMerge(cover ? "object-cover" : "object-contain")}
-			src={path}
-			width={800}
-			height={800}
-			alt="Main"
-		/>
+		<Image src={path} width={800} height={800} alt="Styled Image With Mask and Rotation" />
+		<!-- </div> -->
 	</div>
-	<!-- </div> -->
-	<!-- <img alt="mask" class="mask absolute left-0 top-0" src={mask} /> -->
 </div>
 
 <style>
+	:global(.styled-image img) {
+		@apply h-full w-full;
+		scale: 0.92;
+	}
+
+	:global(.styled-image.cover img) {
+		@apply object-cover;
+	}
+
+	:global(.styled-image.contain img) {
+		@apply object-contain;
+	}
+
 	.rotate-right {
 		rotate: 15deg;
 		scale: 0.8;
@@ -44,7 +52,7 @@
 		scale: 0.8;
 	}
 	.mask {
-		mask-image: url("/masks/Maske-1-1.png");
+		mask-image: url("/masks/Maske-1-1.svg");
 		mask-repeat: no-repeat;
 		width: 100%;
 		mask-position: center;

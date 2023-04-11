@@ -11,19 +11,41 @@ const TILE_INFO = gql`
     rotation
     mask
     event {
-      date
-      time
+      fromDate
+      toDate
+      fromTime
+      toTime
       location
       link
     }
     tags
 }`;
 
+const DETAIL_INFO = gql`
+${TILE_INFO}
+fragment DetailInfo on contentModel {
+  ...TileInfo
+  subhead
+  caption
+  body
+  image
+  embed
+}
+`;
+
 export const GET_TILE_DATA = gql`
   ${TILE_INFO}
-  query GetTileData($filter: JsonType!, $limit: Int) {
-    contentModel(limit: $limit, sort: { _created: true }, filter: $filter) {
+  query GetTileData($filter: JsonType!, $limit: Int, $sort: JsonType = { _created: true}) {
+    contentModel(limit: $limit, sort: $sort, filter: $filter) {
       ...TileInfo 
+    }
+}`;
+
+export const GET_DETAIL_DATA = gql`
+  ${DETAIL_INFO}
+  query GetDetailData($filter: JsonType!) {
+    contentModel(filter: $filter) {
+      ...DetailInfo
     }
 }`;
 

@@ -4,15 +4,15 @@
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 
 	export let column: HTMLElement | null = null;
-	export let fixed: boolean = false;
-	export let padding: boolean = false;
+	export let fixed = false;
+	export let padding = false;
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 </script>
 
 <div class="relative h-full">
 	<div
 		id="reference"
-		class="grid-settings h-full w-full bg-white absolute top-0 left-0 z-0"
+		class="grid-settings absolute left-0 top-0 z-0 h-full w-full bg-white"
 		class:fixed
 		class:px-15={padding}
 	>
@@ -24,7 +24,7 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="flex flex-col z-10 h-full">
+	<div class="z-10 flex h-full flex-col">
 		<slot />
 	</div>
 </div>

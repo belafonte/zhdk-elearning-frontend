@@ -1,17 +1,17 @@
 import type { PageServerLoad } from "./$types";
-import URQLClient from "../graphql/urqlClient";
+import URQLClient from "$graphql/urqlClient";
 import type {
 	GetTileDataQuery,
 	GetGlossarySliderQuery,
 	GetNextEventQuery,
 	GetHighlightsQuery
-} from "../graphql/types";
+} from "$graphql/types";
 import {
 	GET_TILE_DATA,
 	GET_GLOSSARY_SLIDER,
 	GET_NEXT_EVENT,
 	GET_HIGHLIGHTS
-} from "../graphql/queries";
+} from "$graphql/queries";
 
 export const load: PageServerLoad = async () => {
 	const community = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {

@@ -164,10 +164,12 @@ export type QueryPagesMenusArgs = {
 
 export type SetEvent = {
   __typename?: 'SetEvent';
-  date?: Maybe<Scalars['String']>;
+  fromDate?: Maybe<Scalars['String']>;
+  fromTime?: Maybe<Scalars['String']>;
   link?: Maybe<Scalars['String']>;
   location?: Maybe<Scalars['String']>;
-  time?: Maybe<Scalars['String']>;
+  toDate?: Maybe<Scalars['String']>;
+  toTime?: Maybe<Scalars['String']>;
 };
 
 export type SetOffers = {
@@ -293,7 +295,9 @@ export type SaveContentItemOutput = {
   item?: Maybe<Scalars['JsonType']>;
 };
 
-export type TileInfoFragment = { __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null };
+export type TileInfoFragment = { __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null };
+
+export type DetailInfoFragment = { __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null };
 
 export type GetTileDataQueryVariables = Exact<{
   filter: Scalars['JsonType'];
@@ -301,7 +305,14 @@ export type GetTileDataQueryVariables = Exact<{
 }>;
 
 
-export type GetTileDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetTileDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+
+export type GetDetailDataQueryVariables = Exact<{
+  filter: Scalars['JsonType'];
+}>;
+
+
+export type GetDetailDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
 
 export type GetGlossarySliderQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -316,4 +327,4 @@ export type GetHighlightsQuery = { __typename?: 'Query', highlightsModel?: { __t
 export type GetNextEventQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetNextEventQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', caption?: string | null, body?: string | null, image?: Array<any | null> | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetNextEventQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', caption?: string | null, body?: string | null, image?: Array<any | null> | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };

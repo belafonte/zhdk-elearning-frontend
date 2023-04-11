@@ -1,7 +1,9 @@
 export type EventType = {
   __typename?: "SetEvent" | undefined;
-  date?: string | undefined | null;
-  time?: string | undefined | null;
+  fromDate?: string | undefined | null;
+  toDate?: string | undefined | null;
+  fromTime?: string | undefined | null;
+  toTime?: string | undefined | null;
   location?: string | undefined | null;
   link?: string | undefined | null;
 };

@@ -1,10 +1,10 @@
 <script lang="ts">
-	// import { API_KEY } from "$env/static/private";
 	import { PUBLIC_ASSETS } from "$env/static/public";
 	import { twMerge } from "tailwind-merge";
+	import type { ImageType } from "$graphql/image";
 
+	// component imports
 	import Image from "sveltekit-image";
-	import type { ImageType } from "../../../graphql/image";
 
 	export let image: ImageType | string;
 	export let mask: ImageType | string | undefined = undefined;

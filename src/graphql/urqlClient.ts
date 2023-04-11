@@ -1,4 +1,5 @@
-import { Client, cacheExchange, fetchExchange, ssrExchange } from "@urql/core";
+import { Client, cacheExchange, fetchExchange } from "@urql/core";
+import { devtoolsExchange } from "@urql/devtools";
 import { PUBLIC_GRAPHQL } from "$env/static/public";
 
 // const isServerSide = typeof window === "undefined";
@@ -11,7 +12,7 @@ import { PUBLIC_GRAPHQL } from "$env/static/public";
 
 const URQLClient = new Client({
 	url: PUBLIC_GRAPHQL,
-	exchanges: [cacheExchange, fetchExchange]
+	exchanges: [devtoolsExchange, cacheExchange, fetchExchange]
 });
 
 export default URQLClient;

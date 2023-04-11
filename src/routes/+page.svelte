@@ -58,62 +58,12 @@
 	/>
 </svelte:head>
 
-{#if data !== null}
-	{#if data.highlights.error !== "500"}
-		<div
-			class="hidden sm:grid sm:grid-cols-2"
-			style:margin="0 {dynamicMargin}px 84px {dynamicMargin}px"
-		>
-			<div class="space-y-84">
-				<div class="flex flex-col items-center">
-					<MetaQuestion
-						link="/insights/{data.highlights.highlight01?.slug}"
-						path={PUBLIC_ASSETS + data.highlights.highlight01?.title_image.path}
-						mask={PUBLIC_ASSETS + data.highlights.highlight01?.mask.path}
-					/>
-					<a href="/insights/overview">
-						<Tag rounded={true} text="Zu allen Insights" icon={true} />
-					</a>
-				</div>
-				{#if data.highlights.highlight02}
-					contentModel
-					<div class="flex">
-						<Tile data={data.highlights.highlight02} />
-					</div>
-				{/if}
-
-				{#if data.highlights.highlight05}
-					<!-- Highlights -->
-					<div class="flex">
-						<Tile data={data.highlights.highlight05} offset="l" />
-					</div>
-				{/if}
-			</div>
-
-			<!-- Second Column in Desktop -->
-			<div class="flex flex-col space-y-84" style:margin-left="{$currentSettings.colWidth}px">
-				<!-- Events Tile -->
-				<div>
-					<Event eventData={data.event} />
-				</div>
-				{#if data.highlights.highlight03}
-					<!-- Highlights -->
-					<div class="flex">
-						<Tile data={data.highlights.highlight03} />
-					</div>
-				{/if}
-
-				{#if data.highlights.highlight04}
-					<!-- Highlights -->
-					<div class="flex">
-						<Tile data={data.highlights.highlight04} offset="l" />
-					</div>
-				{/if}
-			</div>
-		</div>
-
-		<!-- Mobile Highlight Section -->
-		<div class="mb-72 space-y-72 sm:hidden">
+{#if data}
+	<div
+		class="hidden sm:grid sm:grid-cols-2"
+		style:margin="0 {dynamicMargin}px 84px {dynamicMargin}px"
+	>
+		<div class="space-y-84">
 			<div class="flex flex-col items-center">
 				<MetaQuestion
 					link="/insights/{data.highlights.highlight01?.slug}"
@@ -124,16 +74,27 @@
 					<Tag rounded={true} text="Zu allen Insights" icon={true} />
 				</a>
 			</div>
-			<!-- Events Tile -->
-			<div>
-				<Event eventData={data.event} />
-			</div>
 			{#if data.highlights.highlight02}
+				contentModel
 				<div class="flex">
 					<Tile data={data.highlights.highlight02} />
 				</div>
 			{/if}
 
+			{#if data.highlights.highlight05}
+				<!-- Highlights -->
+				<div class="flex">
+					<Tile data={data.highlights.highlight05} offset="l" />
+				</div>
+			{/if}
+		</div>
+
+		<!-- Second Column in Desktop -->
+		<div class="flex flex-col space-y-84" style:margin-left="{$currentSettings.colWidth}px">
+			<!-- Events Tile -->
+			<div>
+				<Event eventData={data.event} />
+			</div>
 			{#if data.highlights.highlight03}
 				<!-- Highlights -->
 				<div class="flex">
@@ -147,65 +108,97 @@
 					<Tile data={data.highlights.highlight04} offset="l" />
 				</div>
 			{/if}
-
-			{#if data.highlights.highlight05}
-				<!-- Highlights -->
-				<div class="flex">
-					<Tile data={data.highlights.highlight05} offset="r" />
-				</div>
-			{/if}
-		</div>
-	{/if}
-
-	<!-- Section Rows -->
-	{#if data.experience?.length && data.experience.length > 0}
-		<Row title="Experience" url="experience">
-			{#each data.experience as entry}
-				<Tile data={entry} />
-			{/each}
-		</Row>
-	{/if}
-
-	{#if data.community.length > 0}
-		<Row title="Community" url="community">
-			{#each data.community as entry}
-				<Tile data={entry} />
-			{/each}
-		</Row>
-	{/if}
-	{#if data.cosmos.length > 0}
-		<Row title="Cosmos" url="cosmos">
-			{#each data.cosmos as entry}
-				<Tile data={entry} />
-			{/each}
-		</Row>
-	{/if}
-
-	<!-- Glossary Slider -->
-	<div class="flex justify-center pt-84">
-		<div id="slider" class="w-full sm:w-[83.5%] lg:w-[62.5%]">
-			<swiper-container
-				space-between={0}
-				slides-per-view={1}
-				loop={true}
-				autoplay={{ delay: 6000 }}
-			>
-				{#each data.glossary.slider as slide}
-					<swiper-slide>
-						<div>
-							<img alt="Slide" src={PUBLIC_ASSETS + slide.image.path} />
-							<div class="absolute bottom-[20px] flex w-full justify-center">
-								<a href={slide.link}>{slide.display}</a>
-							</div>
-						</div>
-					</swiper-slide>
-				{/each}
-			</swiper-container>
-			<!-- <button class="swiper-next">Next</button>
-			<button class="swiper-prev">Prev</button> -->
 		</div>
 	</div>
+
+	<!-- Mobile Highlight Section -->
+	<div class="mb-72 space-y-72 sm:hidden">
+		<div class="flex flex-col items-center">
+			<MetaQuestion
+				link="/insights/{data.highlights.highlight01?.slug}"
+				path={PUBLIC_ASSETS + data.highlights.highlight01?.title_image.path}
+				mask={PUBLIC_ASSETS + data.highlights.highlight01?.mask.path}
+			/>
+			<a href="/insights/overview">
+				<Tag rounded={true} text="Zu allen Insights" icon={true} />
+			</a>
+		</div>
+		<!-- Events Tile -->
+		<div>
+			<Event eventData={data.event} />
+		</div>
+		{#if data.highlights.highlight02}
+			<div class="flex">
+				<Tile data={data.highlights.highlight02} />
+			</div>
+		{/if}
+
+		{#if data.highlights.highlight03}
+			<!-- Highlights -->
+			<div class="flex">
+				<Tile data={data.highlights.highlight03} />
+			</div>
+		{/if}
+
+		{#if data.highlights.highlight04}
+			<!-- Highlights -->
+			<div class="flex">
+				<Tile data={data.highlights.highlight04} offset="l" />
+			</div>
+		{/if}
+
+		{#if data.highlights.highlight05}
+			<!-- Highlights -->
+			<div class="flex">
+				<Tile data={data.highlights.highlight05} offset="r" />
+			</div>
+		{/if}
+	</div>
 {/if}
+
+<!-- Section Rows -->
+{#if data.experience?.length && data.experience.length > 0}
+	<Row title="Experience" url="experience">
+		{#each data.experience as entry}
+			<Tile data={entry} />
+		{/each}
+	</Row>
+{/if}
+
+{#if data.community.length > 0}
+	<Row title="Community" url="community">
+		{#each data.community as entry}
+			<Tile data={entry} />
+		{/each}
+	</Row>
+{/if}
+{#if data.cosmos.length > 0}
+	<Row title="Cosmos" url="cosmos">
+		{#each data.cosmos as entry}
+			<Tile data={entry} />
+		{/each}
+	</Row>
+{/if}
+
+<!-- Glossary Slider -->
+<div class="flex justify-center pt-84">
+	<div id="slider" class="w-full sm:w-[83.5%] lg:w-[62.5%]">
+		<swiper-container space-between={0} slides-per-view={1} loop={true} autoplay={{ delay: 6000 }}>
+			{#each data.glossary.slider as slide}
+				<swiper-slide>
+					<div>
+						<img alt="Slide" src={PUBLIC_ASSETS + slide.image.path} />
+						<div class="absolute bottom-[20px] flex w-full justify-center">
+							<a href={slide.link}>{slide.display}</a>
+						</div>
+					</div>
+				</swiper-slide>
+			{/each}
+		</swiper-container>
+		<!-- <button class="swiper-next">Next</button>
+			<button class="swiper-prev">Prev</button> -->
+	</div>
+</div>
 
 <style>
 	#slider a::after {

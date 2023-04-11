@@ -9,7 +9,7 @@
 	export let image: ImageType | string;
 	export let mask: ImageType | string | undefined = undefined;
 
-	export let rotation: string | undefined = undefined;
+	export let rotation: string | undefined | null = undefined;
 	export let cover = false;
 
 	let className: string | undefined = undefined;
@@ -20,7 +20,7 @@
 		typeof mask === "string" ? mask?.match(regex)?.at(1) : mask?.path.match(regex)?.at(1);
 </script>
 
-<div class={"relative flex aspect-square justify-center overflow-hidden " + className}>
+<div class={twMerge("relative flex aspect-square justify-center overflow-hidden", className)}>
 	<div
 		style="--url: url({mask !== undefined ? `/masks/${maskName}.png` : ''})"
 		class={twMerge(

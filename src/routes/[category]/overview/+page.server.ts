@@ -1,5 +1,4 @@
 import type { PageServerLoad } from "./$types";
-import type { ICategory } from "$lib/constants";
 import URQLClient from "$graphql/urqlClient";
 import type { GetTileDataQuery } from "$graphql/types";
 import { GET_TILE_DATA } from "$graphql/queries";

@@ -2,31 +2,27 @@
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
-	import { PUBLIC_ASSETS } from "$env/static/public";
-	// import { Scalars } from "../../graphql/types";
+
 	// Component imports
-	import MainImage from "$lib/components/MainImage.svelte";
 	import StyledImage from "$lib/components/shared/StyledImage.svelte";
+	import Tag from "$lib/components/shared/Tag.svelte";
+	import type { ImageType } from "$graphql/image";
+	import type { EventType } from "$graphql/event";
+	import EventInfo from "$lib/components/shared/tile/EventInfo.svelte";
 
-	import Tag from "$lib/components/Tag.svelte";
-
-	interface ITileData {
-		_id: string;
-		slug: string;
-		color: { colors: [string] };
-		title: string;
-		category: string;
-		mask: string;
-		title_image: string;
-		tags: [string];
-		rotation: string;
-		event: any;
-	}
-
-	// export let size: string
-
-	export let data: ITileData;
+	export let slug: string | null | undefined = undefined;
+	export let category: string | undefined = undefined;
+	export let title: string | undefined = undefined;
+	export let color: ImageType | null = null;
+	export let rotation: string | null | undefined = undefined;
+	export let mask: string | undefined = undefined;
 	export let offset: string | null = null;
+
+	let image: ImageType | null = null;
+	export { image as title_image };
+	export let tags: any | null = null;
+
+	export let event: EventType | null | undefined = undefined;
 
 	let size: string;
 
@@ -34,7 +30,7 @@
 
 	let tileWidth: number;
 
-	let tileSizes: Object = {
+	let tileSizes = {
 		l: {
 			mobile: 4,
 			tablet: 6,
@@ -56,9 +52,9 @@
 	};
 
 	$: {
-		if (data.category === "Community") {
+		if (category === "Community") {
 			size = "l";
-		} else if (data.category === "Knowledge in use") {
+		} else if (category === "Knowledge in use") {
 			if ($currentSettings.type === "mobile") {
 				size = "s";
 			} else {
@@ -67,8 +63,8 @@
 		} else {
 			size = "s";
 		}
-		let type = $currentSettings.type as keyof Object;
-		let colSpan = tileSizes[size as keyof Object][type];
+		let type = $currentSettings.type as keyof object;
+		let colSpan = tileSizes[size as keyof object][type];
 
 		if (typeof colSpan === "number") {
 			tileWidth = $currentSettings.colWidth * colSpan;
@@ -76,14 +72,14 @@
 	}
 </script>
 
-{#if $currentSettings !== undefined}
+{#if $currentSettings !== undefined && category}
 	<a
-		href={`/${data.category.toLocaleLowerCase().replaceAll(" ", "-")}/${data.slug}`}
+		href={`/${category.toLocaleLowerCase().replaceAll(" ", "-")}/${slug}`}
 		class="title h-min overflow-hidden p-[8px] font-serif sm:p-10 lg:p-15"
 		class:ml-auto={offset === "l"}
 		class:mr-auto={offset === "r"}
-		style="flex: 0 0 {tileWidth}px; background-color: {data.color !== null
-			? data.color.colors[0]
+		style="flex: 0 0 {tileWidth}px; background-color: {color && color.colors
+			? color.colors[0]
 			: '#EEEEEE'}"
 	>
 		<h1
@@ -92,49 +88,31 @@
 			class:title-medium={size === "m"}
 			class:title-small={size === "s"}
 		>
-			{@html data.title}
+			{@html title}
 		</h1>
-		{#if data.title_image !== null}
-			<!-- <div class="p-[16px] sm:p-[25px]"> -->
-			<!-- <MainImage -->
-			<!-- 	path={PUBLIC_ASSETS + data.image.path} -->
-			<!-- 	mask={data.mask ? PUBLIC_ASSETS + data.mask?.path : null} -->
-			<!-- 	rotation={data.rotation !== "Keine" ? data.rotation : null} -->
-			<!-- /> -->
-			<StyledImage
-				class="p-[16px] sm:p-[25px]"
-				rotation={data.rotation}
-				image={data.title_image}
-				mask={data.mask}
-			/>
-			<!-- </div> -->
+
+		{#if image}
+			<StyledImage class="p-[16px] sm:p-[25px]" {rotation} {image} {mask} />
 		{:else}
 			<div class="mb-32 sm:mb-50" />
 		{/if}
-		<!-- <img src={PUBLIC_ASSETS + data.mask?.path} /> -->
+
 		<div class="flex flex-row flex-wrap gap-y-5 sm:gap-y-2">
-			<div class="mr-5 sm:mr-8">
-				<Tag text={data.category} />
-			</div>
-			{#if data.tags !== null && data.tags !== undefined}
+			<Tag class="mr-5 sm:mr-8" text={category} />
+
+			{#if tags}
 				<div class="flex">
-					{#each data.tags as tag}
-						<div class="mr-5 sm:mr-8">
-							<Tag text={tag} rounded={true} />
-						</div>
+					{#each tags as text}
+						<Tag class="mr-5 sm:mr-8" {text} rounded={true} />
 					{/each}
 				</div>
 			{/if}
-			{#if data.event.date !== null}
-				<div class="md:ml-32">
-					<p class="font-sans text-12">{data.event.date} / {data.event.time}</p>
-					<p class="hidden font-sans text-12 md:block">{data.event.location}</p>
-				</div>
-			{/if}
+
+			<EventInfo {...event} />
 		</div>
 	</a>
 {:else}
-	settings are undefined
+	Not Found
 {/if}
 
 <style>

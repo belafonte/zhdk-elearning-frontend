@@ -76,6 +76,7 @@
 					</a>
 				</div>
 				{#if data.highlights.highlight02}
+					contentModel
 					<div class="flex">
 						<Tile data={data.highlights.highlight02} />
 					</div>

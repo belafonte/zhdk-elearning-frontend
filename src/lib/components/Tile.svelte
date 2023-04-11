@@ -2,10 +2,9 @@
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
-	import { PUBLIC_ASSETS } from "$env/static/public";
-	// import { Scalars } from "../../graphql/types";
+
 	// Component imports
-	import MainImage from "$lib/components/MainImage.svelte";
+	// import MainImage from "$lib/components/MainImage.svelte";
 	import StyledImage from "$lib/components/shared/StyledImage.svelte";
 
 	import Tag from "$lib/components/Tag.svelte";

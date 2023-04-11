@@ -1,13 +1,13 @@
 export type ImageType = {
   path: string;
   folder: string;
-  title: string;
-  mime: string;
-  type: string;
-  description: string;
-  tags: [string];
-  size: number;
-  colors: [string];
+  title?: string | undefined | null;
+  mime?: string | undefined | null;
+  type?: string | undefined | null;
+  description?: string | undefined | null;
+  tags?: [string] | undefined | null;
+  size?: number;
+  colors?: [string] | undefined | null;
   width: number;
   height: number;
   _hash: string;

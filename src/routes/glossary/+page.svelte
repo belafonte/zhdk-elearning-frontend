@@ -5,19 +5,21 @@
 
 	export let data: PageServerData;
 
-	let terms = data.terms.sort((a: any, b: any) => {
-		return a.term > b.term;
+	const terms = data.terms?.sort((a, b) => {
+		if (!a?.term || !b?.term) return 0;
+		if (a.term > b.term) return 1;
+		return -1;
 	});
 
 	let termsByAlphabet: any = {};
 
 	onMount(() => {
-		terms.forEach((el: any) => {
-			let firstChar = el.term.at(0);
-			if (termsByAlphabet[firstChar] === undefined) {
+		terms?.forEach((el) => {
+			let firstChar = el?.term?.at(0);
+			if (firstChar && termsByAlphabet[firstChar] === undefined) {
 				termsByAlphabet[firstChar] = [el];
 			} else {
-				termsByAlphabet[firstChar].push(el);
+				firstChar && termsByAlphabet[firstChar].push(el);
 			}
 		});
 	});

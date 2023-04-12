@@ -1,4 +1,4 @@
-import type { LayoutServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types";
 import URQLClient from "$graphql/urqlClient";
 import type {
 	GetTileDataQuery,
@@ -13,9 +13,9 @@ import {
 	GET_HIGHLIGHTS
 } from "$graphql/queries";
 
-export const prerender = "auto";
+// export const prerender = "auto";
 
-export const load: LayoutServerLoad = async () => {
+export const load: PageServerLoad = async () => {
 	const community = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
 		limit: 8,
 		filter: { category: "Community" }

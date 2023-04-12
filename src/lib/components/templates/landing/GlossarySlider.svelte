@@ -3,8 +3,6 @@
 	import type { SetSlider } from "$graphql/types";
 
 	export let slides: (SetSlider | null)[] | undefined | null;
-
-	console.log(slides);
 </script>
 
 <!-- Glossary Slider -->

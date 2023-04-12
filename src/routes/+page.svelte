@@ -10,12 +10,12 @@
  -->
 <script lang="ts">
 	// component imports
-	import Row from "$lib/components/Row.svelte";
+	import Row from "$lib/components/templates/landing/Row.svelte";
 	import Tile from "$lib/components/shared/tile/Tile.svelte";
 	import Tag from "$lib/components/Tag.svelte";
 	import Event from "$lib/components/Event.svelte";
 	import GlossarySlider from "$lib/components/templates/landing/GlossarySlider.svelte";
-	import type { LayoutServerData } from "./$types";
+	import type { PageServerData } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
@@ -32,7 +32,7 @@
 
 	register();
 
-	export let data: LayoutServerData;
+	export let data: PageServerData;
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 	let dynamicMargin = 0;
@@ -42,8 +42,6 @@
 	} else {
 		dynamicMargin = $currentSettings.colWidth;
 	}
-
-	$: console.log(data);
 </script>
 
 <svelte:head>
@@ -59,7 +57,7 @@
 	/>
 </svelte:head>
 
-{#if data}
+{#if data.highlights}
 	<div
 		class="hidden sm:grid sm:grid-cols-2"
 		style:margin="0 {dynamicMargin}px 84px {dynamicMargin}px"
@@ -76,16 +74,15 @@
 				</a>
 			</div>
 			{#if data.highlights.highlight02}
-				contentModel
 				<div class="flex">
-					<Tile data={data.highlights.highlight02} />
+					<Tile {...data.highlights.highlight02} />
 				</div>
 			{/if}
 
-			{#if data.highlights.highlight05}
+			{#if data.highlights && data.highlights.highlight05}
 				<!-- Highlights -->
 				<div class="flex">
-					<Tile data={data.highlights.highlight05} offset="l" />
+					<Tile {...data.highlights.highlight05} offset="l" />
 				</div>
 			{/if}
 		</div>
@@ -96,17 +93,17 @@
 			<div>
 				<Event eventData={data.event} />
 			</div>
-			{#if data.highlights.highlight03}
+			{#if data.highlights && data.highlights.highlight03}
 				<!-- Highlights -->
 				<div class="flex">
-					<Tile data={data.highlights.highlight03} />
+					<Tile {...data.highlights.highlight03} />
 				</div>
 			{/if}
 
-			{#if data.highlights.highlight04}
+			{#if data.highlights && data.highlights.highlight04}
 				<!-- Highlights -->
 				<div class="flex">
-					<Tile data={data.highlights.highlight04} offset="l" />
+					<Tile {...data.highlights?.highlight04} offset="l" />
 				</div>
 			{/if}
 		</div>
@@ -130,28 +127,28 @@
 		</div>
 		{#if data.highlights.highlight02}
 			<div class="flex">
-				<Tile data={data.highlights.highlight02} />
+				<Tile {...data.highlights.highlight02} />
 			</div>
 		{/if}
 
 		{#if data.highlights.highlight03}
 			<!-- Highlights -->
 			<div class="flex">
-				<Tile data={data.highlights.highlight03} />
+				<Tile {...data.highlights.highlight03} />
 			</div>
 		{/if}
 
 		{#if data.highlights.highlight04}
 			<!-- Highlights -->
 			<div class="flex">
-				<Tile data={data.highlights.highlight04} offset="l" />
+				<Tile {...data.highlights.highlight04} offset="l" />
 			</div>
 		{/if}
 
 		{#if data.highlights.highlight05}
 			<!-- Highlights -->
 			<div class="flex">
-				<Tile data={data.highlights.highlight05} offset="r" />
+				<Tile {...data.highlights.highlight05} offset="r" />
 			</div>
 		{/if}
 	</div>
@@ -173,6 +170,7 @@
 		{/each}
 	</Row>
 {/if}
+
 {#if data.cosmos}
 	<Row title="Cosmos" url="cosmos">
 		{#each data.cosmos as post}

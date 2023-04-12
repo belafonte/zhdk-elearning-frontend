@@ -1,17 +1,16 @@
 <script lang="ts">
-	import { PUBLIC_ASSETS } from "$env/static/public";
 	import { twMerge } from "tailwind-merge";
 	import type { ImageType } from "$graphql/image";
 
 	// component imports
-	import Image from "sveltekit-image";
 	import CpImage from "./CpImage.svelte";
 
 	export let image: ImageType;
 	export let mask: ImageType | string | undefined = undefined;
-
 	export let rotation: string | undefined | null = undefined;
 	export let cover = false;
+
+	console.log(image);
 
 	let className: string | undefined = undefined;
 	export { className as class };

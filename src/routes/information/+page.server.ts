@@ -1,18 +1,12 @@
-import { API_KEY } from "$env/static/private";
-import { PUBLIC_ENDPOINT } from "$env/static/public";
 import type { PageServerLoad } from "./$types";
+import URQLClient from "$graphql/urqlClient";
+import type { GetInformationQuery } from "$graphql/types";
+import { GET_INFORMATION } from "$graphql/queries";
 
-export const load: PageServerLoad = async () => {
-	const data = await fetch(`${PUBLIC_ENDPOINT}/content/item/information`, {
-		method: "GET",
-		headers: {
-			"api-key": API_KEY
-		}
-	})
-		.then((response) => response.json())
-		.then((response) => {
-			return response;
-		});
+export const load = (async () => {
+	const data = await URQLClient.query<GetInformationQuery>(GET_INFORMATION, {})
+		.toPromise()
+		.then((res) => res.data?.informationModel);
 
-	return data;
-};
+	return { ...data };
+}) satisfies PageServerLoad;

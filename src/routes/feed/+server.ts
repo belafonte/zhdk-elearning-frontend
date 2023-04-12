@@ -17,7 +17,6 @@ export const GET = (async () => {
 	if (!posts) {
 		throw error(500, "No Items in Feed");
 	}
-	console.log(posts[0]?.title_image.size);
 	const rssItems = posts.map((post) => {
 		const date = post?._created ? new Date(post?._created * 1000) : "";
 

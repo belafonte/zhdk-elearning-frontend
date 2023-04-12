@@ -38,16 +38,16 @@ devDependencies:
     version: 3.0.2(graphql@16.6.0)
   '@sveltejs/adapter-auto':
     specifier: ^2.0.0
-    version: 2.0.0(@sveltejs/kit@1.15.1)
+    version: 2.0.0(@sveltejs/kit@1.15.4)
   '@sveltejs/adapter-netlify':
     specifier: ^2.0.6
-    version: 2.0.6(@sveltejs/kit@1.15.1)
+    version: 2.0.6(@sveltejs/kit@1.15.4)
   '@sveltejs/adapter-static':
     specifier: ^2.0.2
-    version: 2.0.2(@sveltejs/kit@1.15.1)
+    version: 2.0.2(@sveltejs/kit@1.15.4)
   '@sveltejs/kit':
-    specifier: ^1.15.1
-    version: 1.15.1(svelte@3.58.0)(vite@4.2.1)
+    specifier: ^1.15.4
+    version: 1.15.4(svelte@3.58.0)(vite@4.2.1)
   '@types/sharp':
     specifier: ^0.31.1
     version: 0.31.1
@@ -1534,7 +1534,7 @@ packages:
       graphql-request: 5.2.0(graphql@16.6.0)
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
-      jose: 4.13.1
+      jose: 4.13.2
       js-yaml: 4.1.0
       json-stable-stringify: 1.0.2
       lodash: 4.17.21
@@ -1762,34 +1762,34 @@ packages:
     resolution: {integrity: sha512-AW8PKd6iX3vAZ0vA43nOUOnbq/X5ihgU+mSXXqunMkeQADGiqw/PY0JNeYtD5sr0PAy51YPgAPbDoeapv9r8WA==}
     dev: true
 
-  /@sveltejs/adapter-auto@2.0.0(@sveltejs/kit@1.15.1):
+  /@sveltejs/adapter-auto@2.0.0(@sveltejs/kit@1.15.4):
     resolution: {integrity: sha512-b+gkHFZgD771kgV3aO4avHFd7y1zhmMYy9i6xOK7m/rwmwaRO8gnF5zBc0Rgca80B2PMU1bKNxyBTHA14OzUAQ==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@sveltejs/kit': 1.15.1(svelte@3.58.0)(vite@4.2.1)
+      '@sveltejs/kit': 1.15.4(svelte@3.58.0)(vite@4.2.1)
       import-meta-resolve: 2.2.2
 
-  /@sveltejs/adapter-netlify@2.0.6(@sveltejs/kit@1.15.1):
+  /@sveltejs/adapter-netlify@2.0.6(@sveltejs/kit@1.15.4):
     resolution: {integrity: sha512-9guxI9jG/v/JTr/I1E1YGKppKWRyvs60VuhPJcGBrj2MfoBxR40vhxkrWPFcNJoAdyQUSjqxbg7sZLA4WbNfgA==}
     peerDependencies:
       '@sveltejs/kit': ^1.5.0
     dependencies:
       '@iarna/toml': 2.2.5
-      '@sveltejs/kit': 1.15.1(svelte@3.58.0)(vite@4.2.1)
+      '@sveltejs/kit': 1.15.4(svelte@3.58.0)(vite@4.2.1)
       esbuild: 0.16.17
       set-cookie-parser: 2.6.0
 
-  /@sveltejs/adapter-static@2.0.2(@sveltejs/kit@1.15.1):
+  /@sveltejs/adapter-static@2.0.2(@sveltejs/kit@1.15.4):
     resolution: {integrity: sha512-9wYtf6s6ew7DHUHMrt55YpD1FgV7oWql2IGsW5BXquLxqcY9vjrqCFo0TzzDpo+ZPZkW/v77k0eOP6tsAb8HmQ==}
     peerDependencies:
       '@sveltejs/kit': ^1.5.0
     dependencies:
-      '@sveltejs/kit': 1.15.1(svelte@3.58.0)(vite@4.2.1)
+      '@sveltejs/kit': 1.15.4(svelte@3.58.0)(vite@4.2.1)
     dev: true
 
-  /@sveltejs/kit@1.15.1(svelte@3.58.0)(vite@4.2.1):
-    resolution: {integrity: sha512-Wexy3N+COoClTuRawVJRbLoH5HFxNrXG3uoHt/Yd5IGx8WAcJM9Nj/CcBLw/tjCR9uDDYMnx27HxuPy3YIYQUA==}
+  /@sveltejs/kit@1.15.4(svelte@3.58.0)(vite@4.2.1):
+    resolution: {integrity: sha512-m+Tid9nbtFawmiu85lDlal0AQ7UeuV48UsuKMe06QLr3ntMQSUzIPqyswNRZqFrar6NhVTUXQ0aO61M3U4MWpQ==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -2288,7 +2288,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001478
-      electron-to-chromium: 1.4.359
+      electron-to-chromium: 1.4.360
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10(browserslist@4.21.5)
 
@@ -2711,8 +2711,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
-  /electron-to-chromium@1.4.359:
-    resolution: {integrity: sha512-OoVcngKCIuNXtZnsYoqlCvr0Cf3NIPzDIgwUfI9bdTFjXCrr79lI0kwQstLPZ7WhCezLlGksZk/BFAzoXC7GDw==}
+  /electron-to-chromium@1.4.360:
+    resolution: {integrity: sha512-EP/jdF15S+l3iSSzgUpUqeazvkbVFXNuVxwwLMVUSie3lUeH1HH70gKe0IS7TASB/0h5QPG2bLMzv2jelSztIQ==}
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3518,8 +3518,8 @@ packages:
     resolution: {integrity: sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==}
     hasBin: true
 
-  /jose@4.13.1:
-    resolution: {integrity: sha512-MSJQC5vXco5Br38mzaQKiq9mwt7lwj2eXpgpRyQYNHYt2lq1PjkWa7DLXX0WVcQLE9HhMh3jPiufS7fhJf+CLQ==}
+  /jose@4.13.2:
+    resolution: {integrity: sha512-GMUKtV+l05F6NY/06nM7rucHM6Ktvw6sxnyRqINBNWS/hCM/bBk7kanOEckRP8xtC/jzuGfTRVZvkjjuy+g4dA==}
     dev: true
 
   /js-sdsl@4.4.0:
@@ -4914,9 +4914,9 @@ packages:
     resolution: {integrity: sha512-O5soeTY4wDMuxKvL+/ZU0qYtYx29o91a1j2rOoFP6oOJhwKa4nzYDMuCs6C55QQ2H/9FS+Ob0giUJRiXjOJUfA==}
     dependencies:
       '@hapi/accept': 6.0.1
-      '@sveltejs/adapter-auto': 2.0.0(@sveltejs/kit@1.15.1)
-      '@sveltejs/adapter-netlify': 2.0.6(@sveltejs/kit@1.15.1)
-      '@sveltejs/kit': 1.15.1(svelte@3.58.0)(vite@4.2.1)
+      '@sveltejs/adapter-auto': 2.0.0(@sveltejs/kit@1.15.4)
+      '@sveltejs/adapter-netlify': 2.0.6(@sveltejs/kit@1.15.4)
+      '@sveltejs/kit': 1.15.4(svelte@3.58.0)(vite@4.2.1)
       '@sveltejs/package': 2.0.2(svelte@3.58.0)(typescript@4.9.5)
       '@types/send': 0.17.1
       '@types/sharp': 0.31.1

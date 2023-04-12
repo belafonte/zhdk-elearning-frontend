@@ -43,9 +43,21 @@ export const GET_TILE_DATA = gql`
 
 export const GET_DETAIL_DATA = gql`
   ${DETAIL_INFO}
-  query GetDetailData($filter: JsonType!) {
-    contentModel(filter: $filter) {
+  query GetDetailData($filter: JsonType, $sort: JsonType, $limit: Int) {
+    contentModel(filter: $filter, limit: $limit, sort: $sort) {
       ...DetailInfo
+    }
+}`;
+
+export const GET_RSS_DATA = gql`
+  query GetRssData {
+    contentModel(limit: 10, sort: { _modified: true}) {
+      title
+      title_image
+      slug
+      category
+      subhead
+      _created
     }
 }`;
 

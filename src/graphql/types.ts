@@ -309,11 +309,18 @@ export type GetTileDataQueryVariables = Exact<{
 export type GetTileDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
 
 export type GetDetailDataQueryVariables = Exact<{
-  filter: Scalars['JsonType'];
+  filter?: InputMaybe<Scalars['JsonType']>;
+  sort?: InputMaybe<Scalars['JsonType']>;
+  limit?: InputMaybe<Scalars['Int']>;
 }>;
 
 
 export type GetDetailDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+
+export type GetRssDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRssDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', title: string, title_image?: any | null, slug?: string | null, category: string, subhead?: string | null, _created: number } | null> | null };
 
 export type GetGlossarySliderQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -5,8 +5,9 @@
 
 	// component imports
 	import Image from "sveltekit-image";
+	import CpImage from "./CpImage.svelte";
 
-	export let image: ImageType | string;
+	export let image: ImageType;
 	export let mask: ImageType | string | undefined = undefined;
 
 	export let rotation: string | undefined | null = undefined;
@@ -31,21 +32,7 @@
 		)}
 		class:mask
 	>
-		{#if typeof image === "string"}
-			<Image
-				src={image}
-				width={800}
-				height={800}
-				alt="Styled hero image with or without a Mask / Rotation"
-			/>
-		{:else}
-			<Image
-				src={PUBLIC_ASSETS + image.path}
-				width={image.width}
-				height={image.height}
-				alt="Styled hero image with or without a Mask / Rotation"
-			/>
-		{/if}
+		<CpImage _id={image._id} width={image.width} height={image.height} />
 	</div>
 </div>
 

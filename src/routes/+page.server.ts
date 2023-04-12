@@ -13,6 +13,8 @@ import {
 	GET_HIGHLIGHTS
 } from "$graphql/queries";
 
+export const prerender = true;
+
 export const load: PageServerLoad = async () => {
 	const community = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
 		limit: 8,

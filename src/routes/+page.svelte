@@ -11,10 +11,11 @@
 <script lang="ts">
 	// component imports
 	import Row from "$lib/components/Row.svelte";
-	import Tile from "$lib/components/Tile.svelte";
+	import Tile from "$lib/components/shared/tile/Tile.svelte";
 	import Tag from "$lib/components/Tag.svelte";
 	import Event from "$lib/components/Event.svelte";
-	import type { PageServerData } from "./$types";
+	import GlossarySlider from "$lib/components/templates/landing/GlossarySlider.svelte";
+	import type { LayoutServerData } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
@@ -31,7 +32,7 @@
 
 	register();
 
-	export let data: PageServerData;
+	export let data: LayoutServerData;
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 	let dynamicMargin = 0;
@@ -157,57 +158,27 @@
 {/if}
 
 <!-- Section Rows -->
-{#if data.experience?.length && data.experience.length > 0}
+{#if data.experience}
 	<Row title="Experience" url="experience">
-		{#each data.experience as entry}
-			<Tile data={entry} />
+		{#each data.experience as post}
+			<Tile {...post} />
 		{/each}
 	</Row>
 {/if}
 
-{#if data.community.length > 0}
+{#if data.community}
 	<Row title="Community" url="community">
-		{#each data.community as entry}
-			<Tile data={entry} />
+		{#each data.community as post}
+			<Tile {...post} />
 		{/each}
 	</Row>
 {/if}
-{#if data.cosmos.length > 0}
+{#if data.cosmos}
 	<Row title="Cosmos" url="cosmos">
-		{#each data.cosmos as entry}
-			<Tile data={entry} />
+		{#each data.cosmos as post}
+			<Tile {...post} />
 		{/each}
 	</Row>
 {/if}
 
-<!-- Glossary Slider -->
-<div class="flex justify-center pt-84">
-	<div id="slider" class="w-full sm:w-[83.5%] lg:w-[62.5%]">
-		<swiper-container space-between={0} slides-per-view={1} loop={true} autoplay={{ delay: 6000 }}>
-			{#each data.glossary.slider as slide}
-				<swiper-slide>
-					<div>
-						<img alt="Slide" src={PUBLIC_ASSETS + slide.image.path} />
-						<div class="absolute bottom-[20px] flex w-full justify-center">
-							<a href={slide.link}>{slide.display}</a>
-						</div>
-					</div>
-				</swiper-slide>
-			{/each}
-		</swiper-container>
-		<!-- <button class="swiper-next">Next</button>
-			<button class="swiper-prev">Prev</button> -->
-	</div>
-</div>
-
-<style>
-	#slider a::after {
-		font-family: "icomoon" !important;
-		content: "\e900";
-	}
-
-	:global(#slider .swiper) {
-		aspect-ratio: 3/2;
-		height: 100%;
-	}
-</style>
+<GlossarySlider slides={data.glossary?.slider} />

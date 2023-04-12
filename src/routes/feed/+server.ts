@@ -29,7 +29,7 @@ export const GET = (async () => {
 			enclosure: {
 				url: PUBLIC_ASSETS + post?.title_image.path,
 				type: post?.title_image.mime,
-				length: post?.title_image.size
+				size: post?.title_image.size
 			}
 		};
 	});

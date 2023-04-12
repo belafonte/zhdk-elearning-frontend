@@ -31,7 +31,6 @@
 
 	register();
 
-	export const prerender = true;
 	export let data: PageServerData;
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);

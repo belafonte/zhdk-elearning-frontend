@@ -27,6 +27,7 @@
 		"@graphql-codegen/typescript-operations": "^3.0.2",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-netlify": "^2.0.6",
+		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.15.1",
 		"@types/sharp": "^0.31.1",
 		"@typescript-eslint/eslint-plugin": "^5.57.1",

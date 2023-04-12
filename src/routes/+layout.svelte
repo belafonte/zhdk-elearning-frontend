@@ -4,6 +4,8 @@
 	import Footer from "$lib/components/Footer.svelte";
 	import GridReference from "$lib/components/GridReference.svelte";
 	import Scrollbars from "$lib/components/Scrollbars.svelte";
+
+	export const prerender = true;
 </script>
 
 <GridReference>

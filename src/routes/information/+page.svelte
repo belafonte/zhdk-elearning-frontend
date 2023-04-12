@@ -12,12 +12,12 @@
 </svelte:head>
 
 <p
-	class="hyphens-auto mb-72 pl-10 pr-7 text-23 sm:mb-84 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50"
+	class="mb-72 hyphens-auto pl-10 pr-7 text-23 sm:mb-84 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50"
 >
 	{@html data.vision}
 </p>
 <p
-	class="hyphens-auto mb-32 pl-10 pr-7 text-23 sm:mb-42 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50"
+	class="mb-32 hyphens-auto pl-10 pr-7 text-23 sm:mb-42 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50"
 >
 	{@html data.team}
 </p>
@@ -38,14 +38,14 @@
 				<a href={"mailto:" + member.mail} class="mt-5">
 					<Tag text="Mail" icon={true} rounded={true} />
 				</a>
-				<a href={member.linked_in}>
+				<a href={member.linked_in} target="_blank">
 					<Tag text="LinkedIn" icon={true} rounded={true} />
 				</a>
 			</div>
 		</div>
 	{/each}
 </div>
-<p class="hyphens-auto pl-10 pr-7 text-23  sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50">
+<p class="hyphens-auto pl-10 pr-7 text-23 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50">
 	{@html data.contact}
 </p>
 

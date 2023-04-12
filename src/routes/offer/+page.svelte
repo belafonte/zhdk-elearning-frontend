@@ -27,7 +27,7 @@
 			<!-- <img alt="Symbol" class="w-1/2 self-center" src={PUBLIC_ASSETS + offer.image.path} /> -->
 		{/if}
 		{#if offer.link !== null}
-			<a href={offer.link} class="self-center">
+			<a href={offer.link} target="_blank" class="self-center">
 				<Tag text="Link to Website" icon={true} rounded={true} />
 			</a>
 		{/if}

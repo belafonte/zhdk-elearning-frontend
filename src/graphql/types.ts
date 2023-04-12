@@ -302,6 +302,7 @@ export type DetailInfoFragment = { __typename?: 'contentModel', subhead?: string
 export type GetTileDataQueryVariables = Exact<{
   filter: Scalars['JsonType'];
   limit?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Scalars['JsonType']>;
 }>;
 
 

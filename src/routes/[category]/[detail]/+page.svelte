@@ -12,6 +12,7 @@
 	import Tag from "$lib/components/shared/Tag.svelte";
 	import GridBackground from "$lib/components/GridBackground.svelte";
 	import FormatDate from "$lib/components/shared/FormatDate.svelte";
+	import Image from "sveltekit-image";
 	import { onMount } from "svelte/internal";
 
 	export let data: PageServerData;
@@ -119,8 +120,8 @@
 					<p class="link font-serif text-20 sm:text-23 lg:text-26">
 						{@html data.body}
 					</p>
-					{#if data.event}
-						<a href={data.event.link} class="mt-32 self-center sm:mt-42">
+					{#if data.event && data.category === "event"}
+						<a href={data.event.link} target="_blank" class="mt-32 self-center sm:mt-42">
 							<Tag text="Anmelden" rounded={true} icon={true} />
 						</a>
 					{/if}
@@ -128,20 +129,25 @@
 
 				{#if data.image && data.image.length > 0}
 					<div
-						class="grid place-items-center"
+						class="block-spacing grid place-items-center"
 						class:grid-cols-2={data.image.length > 1}
 						class:auto-cols-fr={data.image.length === 1}
 					>
 						{#each data.image as img}
 							<div>
-								<img alt="Gallery" src={PUBLIC_ASSETS + img.path} />
+								<Image
+									src={PUBLIC_ASSETS + img.path}
+									alt="Gallery"
+									width={img.width}
+									height={img.height}
+								/>
 								<p class="text-14">{img.description}</p>
 							</div>
 						{/each}
 					</div>
 				{/if}
 				{#if data.embed !== null}
-					<div id="embed" class="mt-32 pl-10 pr-7 sm:mt-84 sm:pl-[40px] sm:pr-[20px]">
+					<div id="embed" class="block-spacing">
 						{@html data.embed}
 					</div>
 				{/if}
@@ -151,6 +157,9 @@
 {/if}
 
 <style>
+	.block-spacing {
+		@apply mt-32 pl-10 pr-7 sm:mt-84 sm:pl-[40px] sm:pr-[20px];
+	}
 	:global(.link a) {
 		@apply underline !important;
 	}

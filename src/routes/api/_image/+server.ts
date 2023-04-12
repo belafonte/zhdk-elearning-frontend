@@ -8,5 +8,5 @@ export const GET: RequestHandler = requestHandler({
 			: "http://127.0.0.1:5173",
 	avif: false,
 	ttl: 1000 * 60 * 60 * 24 * 7,
-	storePath: ".svelte-kit/output"
+	storePath: ".svelte-kit"
 });

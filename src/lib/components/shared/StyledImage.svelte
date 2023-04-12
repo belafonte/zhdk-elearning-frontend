@@ -38,6 +38,7 @@
 				height={800}
 				alt="Styled hero image with or without a Mask / Rotation"
 				important
+				prioritize={true}
 			/>
 		{:else}
 			<Image
@@ -46,6 +47,7 @@
 				height={image.height}
 				alt="Styled hero image with or without a Mask / Rotation"
 				important
+				prioritize={true}
 			/>
 		{/if}
 	</div>

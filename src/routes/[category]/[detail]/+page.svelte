@@ -20,6 +20,12 @@
 	$: titleTop = 0;
 	$: titlePosition = "relative";
 
+	const textReg = /\+\+(.*?)\+\+/;
+	const clean = data.title?.match(textReg)?.at(1);
+
+	const cleanTitle =
+		data.category === "Insights" && clean ? data.title?.replace(textReg, clean) : data.title;
+
 	function trans(status: any) {
 		titlePosition = "fixed";
 	}
@@ -33,9 +39,9 @@
 
 <svelte:window />
 <svelte:head>
-	<title>{data.title}</title>
-	<meta property="og:title" content={data.title} />
-	<meta property="og:description" content="ZHdK E-Learning {data.category.toUpperCase()}" />
+	<title>{cleanTitle}</title>
+	<meta property="og:title" content={cleanTitle} />
+	<meta property="og:description" content="ZHdK E-Learning {data.category?.toUpperCase()}" />
 
 	<meta property="og:url" content={location.href} />
 	<meta property="og:type" content="article" />
@@ -65,7 +71,7 @@
 					class="sticky pl-10 pr-7 font-serif text-60 sm:pl-[40px] sm:pr-[20px] sm:text-68 lg:text-130"
 					style:top="{titleTop}px"
 				>
-					{@html data.title}
+					{@html cleanTitle}
 				</h1>
 				<!-- Area that scrolls over the title -->
 

@@ -51,9 +51,10 @@
 		<div class="space-y-84">
 			<div class="flex flex-col items-center">
 				<MetaQuestion
+					color={data.highlights.highlight01.color.colors[0]}
+					text={data.highlights.highlight01.title}
 					link="/insights/{data.highlights.highlight01?.slug}"
-					path={PUBLIC_ASSETS + data.highlights.highlight01?.title_image.path}
-					mask={PUBLIC_ASSETS + data.highlights.highlight01?.mask.path}
+					mask={data.highlights.highlight01?.mask.path}
 				/>
 				<a href="/insights/overview">
 					<Tag rounded={true} text="Zu allen Insights" icon={true} />
@@ -99,9 +100,10 @@
 	<div class="mb-72 space-y-72 sm:hidden">
 		<div class="flex flex-col items-center">
 			<MetaQuestion
+				color={data.highlights.highlight01.color.colors[0]}
+				text={data.highlights.highlight01.title}
 				link="/insights/{data.highlights.highlight01?.slug}"
-				path={PUBLIC_ASSETS + data.highlights.highlight01?.title_image.path}
-				mask={PUBLIC_ASSETS + data.highlights.highlight01?.mask.path}
+				mask={data.highlights.highlight01?.mask.path}
 			/>
 			<a href="/insights/overview">
 				<Tag rounded={true} text="Zu allen Insights" icon={true} />

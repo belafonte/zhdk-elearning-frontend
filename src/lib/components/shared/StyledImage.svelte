@@ -22,7 +22,7 @@
 
 <div class={twMerge("relative flex aspect-square justify-center overflow-hidden", className)}>
 	<div
-		style="--url: url({mask !== undefined ? `/masks/${maskName}.png` : ''})"
+		style="--url: url({mask !== undefined ? `/masks/${maskName}.svg` : ''})"
 		class={twMerge(
 			"styled-image",
 			rotation === "Links" && !cover ? "rotate-left" : "",

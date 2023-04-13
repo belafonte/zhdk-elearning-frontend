@@ -1,16 +1,23 @@
 <script lang="ts">
 	import arrow from "$lib/assets/icons/arrow.svg";
+	import { twMerge } from "tailwind-merge";
 
-	export let text = "";
+	export let text: string | undefined | null = undefined;
 	export let rounded = false;
 	export let icon = false;
 	export let background = false;
 	export let dimmed = false;
+
+	let className: string | undefined = undefined;
+	export { className as class };
 </script>
 
 <div
 	data-link
-	class="flex h-max w-max px-7 pb-[2px] pt-[4px] font-sans text-12 text-black hover:opacity-100 sm:px-10 sm:pb-[2px] sm:pt-[6px] lg:text-14"
+	class={twMerge(
+		"flex h-max w-max px-7 pb-[2px] pt-[4px] font-sans text-12 text-black hover:opacity-100 sm:px-10 sm:pb-[2px] sm:pt-[6px] lg:text-14",
+		className
+	)}
 	class:border-black={!background}
 	class:border={!background}
 	class:rounded-full={rounded}

@@ -1,101 +1,147 @@
 import { gql } from "@urql/core";
 
-const FULL_INFO = gql`
-  fragment FullInfo on contentModel {
-    _id
-    slug
-    category
-    title
-    color
-    title_image
-    rotation
-    mask
-    event {
-      date
-      time
-      location
-      link
-    }
-    tags
-}`;
+const TILE_INFO = gql`
+	fragment TileInfo on contentModel {
+		_id
+		slug
+		category
+		title
+		color
+		title_image
+		rotation
+		mask
+		event {
+			fromDate
+			toDate
+			fromTime
+			toTime
+			location
+			link
+		}
+		tags
+	}
+`;
 
-export const GET_COMMUNITY = gql`
-  ${FULL_INFO}
-  query GetCommunity($limit: Int) {
-  contentModel(limit: $limit, sort: { _created: true }, filter: {category: "Community"}) {
-    ...FullInfo
-  }
-}`;
+const DETAIL_INFO = gql`
+	${TILE_INFO}
+	fragment DetailInfo on contentModel {
+		...TileInfo
+		subhead
+		caption
+		body
+		image
+		embed
+	}
+`;
 
-export const GET_EXPERIENCE = gql`
-  ${FULL_INFO}
-  query GetExperience($limit: Int) {
-  contentModel(limit: $limit, sort: { _created: true }, filter: {category: "Experience"}) {
-    ...FullInfo
-  }
-}`;
+export const GET_TILE_DATA = gql`
+	${TILE_INFO}
+	query GetTileData($filter: JsonType!, $limit: Int, $sort: JsonType = { _created: true }) {
+		contentModel(limit: $limit, sort: $sort, filter: $filter) {
+			...TileInfo
+		}
+	}
+`;
 
-export const GET_COSMOS = gql`
-  ${FULL_INFO}
-  query GetCosmos($limit: Int) {
-  contentModel(limit: $limit, sort: { _created: true }, filter: {category: "Cosmos"}) {
-    ...FullInfo
-  }
-}`;
+export const GET_DETAIL_DATA = gql`
+	${DETAIL_INFO}
+	query GetDetailData($filter: JsonType, $sort: JsonType, $limit: Int) {
+		contentModel(filter: $filter, limit: $limit, sort: $sort) {
+			...DetailInfo
+		}
+	}
+`;
+
+export const GET_RSS_DATA = gql`
+	query GetRssData {
+		contentModel(limit: 10, sort: { _modified: true }) {
+			title
+			title_image
+			slug
+			category
+			subhead
+			_created
+		}
+	}
+`;
 
 export const GET_GLOSSARY_SLIDER = gql`
-  query GetGlossarySlider {
-    glossaryModel {
-      slider {
-        image
-        link
-        display
-      }
-    }
-}`;
+	query GetGlossarySlider {
+		glossaryModel {
+			slider {
+				image
+				link
+				display
+			}
+		}
+	}
+`;
+
+export const GET_HIGHLIGHTS = gql`
+	query GetHighlights {
+		highlightsModel(populate: 1) {
+			highlight01
+			highlight02
+			highlight03
+			highlight04
+			highlight05
+		}
+	}
+`;
 
 export const GET_NEXT_EVENT = gql`
   query GetNextEvent {
+    ${TILE_INFO}
     contentModel(filter: {category: "Event"}, sort: {_modified: true}, limit: 1) {
-      _id
-      title
-      title_image
-      slug
-      subhead
-      title_image
-      rotation
-      mask
       caption
-      event {
-        date
-        time
-        location
-        link
-      }
       body
       image
+      ...TileInfo
     }
 }
 `;
 
-export const GetContentById = gql`
-  query GetContentById($id: String!) {
-    contentModel(_id: $id) {
-      _id
-      category
-      tags
-      title_image
-    }
-  }
+export const GET_GLOSSARY = gql`
+	query GetGlossary {
+		glossaryModel {
+			terms {
+				term
+				definition
+				image
+			}
+			colors
+		}
+	}
 `;
 
-export const GetAll = gql`
-  query GetContentById($id: String!) {
-    contentModel(_id: $id) {
-      _id
-      category
-      tags
-      title_image
-    }
-  }
+export const GET_INFORMATION = gql`
+	query GetInformation {
+		informationModel {
+			vision
+			team
+			team_member {
+				image
+				name
+				description
+				mask
+				link
+				mail
+				linked_in
+			}
+			contact
+		}
+	}
 `;
+
+export const GET_OFFER = gql`
+	query GetOffer {
+		offerModel {
+			offers {
+				text
+				image
+				link
+			}
+		}
+	}
+`;
+// export const

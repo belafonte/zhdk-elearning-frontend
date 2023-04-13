@@ -1,38 +1,38 @@
 import type { PageServerLoad } from "./$types";
-import { API_KEY } from "$env/static/private";
-import { PUBLIC_ENDPOINT } from "$env/static/public";
-
-import URQLClient from "../graphql/urqlClient";
+import URQLClient from "$graphql/urqlClient";
 import type {
-	GetCosmosQuery,
-	GetCommunityQuery,
-	GetExperienceQuery,
+	GetTileDataQuery,
 	GetGlossarySliderQuery,
-	GetNextEventQuery
-} from "../graphql/types";
+	GetNextEventQuery,
+	GetHighlightsQuery
+} from "$graphql/types";
 import {
-	GET_COSMOS,
-	GET_COMMUNITY,
-	GET_EXPERIENCE,
+	GET_TILE_DATA,
 	GET_GLOSSARY_SLIDER,
-	GET_NEXT_EVENT
-} from "../graphql/queries";
+	GET_NEXT_EVENT,
+	GET_HIGHLIGHTS
+} from "$graphql/queries";
+
+// export const prerender = "auto";
 
 export const load: PageServerLoad = async () => {
-	const communityQuery = await URQLClient.query<GetCommunityQuery>(GET_COMMUNITY, {
-		limit: 8
-	}).toPromise();
-	//
-	const community = communityQuery.data?.contentModel;
+	const community = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
+		limit: 8,
+		filter: { category: "Community" }
+	})
+		.toPromise()
+		.then((res) => res.data?.contentModel);
 
-	const cosmosResult = await URQLClient.query<GetCosmosQuery>(GET_COSMOS, {
-		limit: 8
-	}).toPromise();
-	//
-	const cosmos = cosmosResult.data?.contentModel;
+	const cosmos = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
+		limit: 8,
+		filter: { category: "Cosmos" }
+	})
+		.toPromise()
+		.then((res) => res.data?.contentModel);
 
-	const experience = await URQLClient.query<GetExperienceQuery>(GET_EXPERIENCE, {
-		limit: 8
+	const experience = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
+		limit: 8,
+		filter: { category: "Experience" }
 	})
 		.toPromise()
 		.then((res) => res.data?.contentModel);
@@ -43,38 +43,15 @@ export const load: PageServerLoad = async () => {
 		.toPromise()
 		.then((res) => res.data?.glossaryModel);
 
-	const highlights = await fetch(`${PUBLIC_ENDPOINT}/content/item/highlights?populate=1`, {
-		method: "GET",
-		headers: {
-			"api-key": API_KEY
-		}
-	})
-		.then((response) => response.json())
-		.then((response) => {
-			return response;
-		});
+	const highlights = await URQLClient.query<GetHighlightsQuery>(GET_HIGHLIGHTS, undefined)
+		.toPromise()
+		.then((res) => res.data?.highlightsModel);
 
-	// const event = await fetch(
-	// 	`${PUBLIC_ENDPOINT}/content/item/content?filter={category: "Event"}&limit=1`,
-	// 	{
-	// 		method: "GET",
-	// 		headers: {
-	// 			"api-key": API_KEY
-	// 		}
-	// 	}
-	// )
-	// 	.then((response) => response.json())
-	// 	.then((response) => {
-	// 		return response;
-	// 	});
-
-	const event = await URQLClient.query<GetNextEventQuery>(GET_NEXT_EVENT, {})
+	const event = await URQLClient.query<GetNextEventQuery>(GET_NEXT_EVENT, undefined)
 		.toPromise()
 		.then((res) => res.data?.contentModel?.at(0));
 
-	console.log(event);
-
-	const data = {
+	return {
 		highlightColor: "#EEEEEE",
 		community: community,
 		experience: experience,
@@ -83,6 +60,4 @@ export const load: PageServerLoad = async () => {
 		event: event,
 		highlights: highlights
 	};
-
-	return data;
 };

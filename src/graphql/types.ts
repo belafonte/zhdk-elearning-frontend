@@ -10,7 +10,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  JsonType: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"};
+  JsonType: any;
 };
 
 export type Mutation = {
@@ -33,7 +33,6 @@ export type MutationSaveContentItemArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  componentModel?: Maybe<Array<Maybe<ComponentModel>>>;
   content?: Maybe<Array<Maybe<Scalars['JsonType']>>>;
   contentModel?: Maybe<Array<Maybe<ContentModel>>>;
   contentTree?: Maybe<Array<Maybe<Scalars['JsonType']>>>;
@@ -48,18 +47,6 @@ export type Query = {
   pages?: Maybe<Array<Maybe<Scalars['JsonType']>>>;
   pagesMenu?: Maybe<Scalars['JsonType']>;
   pagesMenus?: Maybe<Array<Maybe<Scalars['JsonType']>>>;
-};
-
-
-export type QueryComponentModelArgs = {
-  _id?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<Scalars['JsonType']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Scalars['String']>;
-  populate?: InputMaybe<Scalars['Int']>;
-  projection?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  sort?: InputMaybe<Scalars['JsonType']>;
 };
 
 
@@ -164,10 +151,12 @@ export type QueryPagesMenusArgs = {
 
 export type SetEvent = {
   __typename?: 'SetEvent';
-  date?: Maybe<Scalars['String']>;
+  fromDate?: Maybe<Scalars['String']>;
+  fromTime?: Maybe<Scalars['String']>;
   link?: Maybe<Scalars['String']>;
   location?: Maybe<Scalars['String']>;
-  time?: Maybe<Scalars['String']>;
+  toDate?: Maybe<Scalars['String']>;
+  toTime?: Maybe<Scalars['String']>;
 };
 
 export type SetOffers = {
@@ -200,15 +189,6 @@ export type SetTerms = {
   definition?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['JsonType']>;
   term?: Maybe<Scalars['String']>;
-};
-
-export type ComponentModel = {
-  __typename?: 'componentModel';
-  Layout?: Maybe<Scalars['JsonType']>;
-  _created: Scalars['Int'];
-  _id: Scalars['String'];
-  _modified: Scalars['Int'];
-  comp?: Maybe<Scalars['JsonType']>;
 };
 
 export type ContentModel = {
@@ -293,42 +273,59 @@ export type SaveContentItemOutput = {
   item?: Maybe<Scalars['JsonType']>;
 };
 
-export type FullInfoFragment = { __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null };
+export type TileInfoFragment = { __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null };
 
-export type GetCommunityQueryVariables = Exact<{
+export type DetailInfoFragment = { __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null };
+
+export type GetTileDataQueryVariables = Exact<{
+  filter: Scalars['JsonType'];
+  limit?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Scalars['JsonType']>;
+}>;
+
+
+export type GetTileDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+
+export type GetDetailDataQueryVariables = Exact<{
+  filter?: InputMaybe<Scalars['JsonType']>;
+  sort?: InputMaybe<Scalars['JsonType']>;
   limit?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type GetCommunityQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetDetailDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
 
-export type GetExperienceQueryVariables = Exact<{
-  limit?: InputMaybe<Scalars['Int']>;
-}>;
+export type GetRssDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetExperienceQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
-
-export type GetCosmosQueryVariables = Exact<{
-  limit?: InputMaybe<Scalars['Int']>;
-}>;
-
-
-export type GetCosmosQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetRssDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', title: string, title_image?: any | null, slug?: string | null, category: string, subhead?: string | null, _created: number } | null> | null };
 
 export type GetGlossarySliderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlossarySliderQuery = { __typename?: 'Query', glossaryModel?: { __typename?: 'glossaryModel', slider?: Array<{ __typename?: 'SetSlider', image: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"}, link: string, display: string } | null> | null } | null };
+export type GetGlossarySliderQuery = { __typename?: 'Query', glossaryModel?: { __typename?: 'glossaryModel', slider?: Array<{ __typename?: 'SetSlider', image: any, link: string, display: string } | null> | null } | null };
+
+export type GetHighlightsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetHighlightsQuery = { __typename?: 'Query', highlightsModel?: { __typename?: 'highlightsModel', highlight01?: any | null, highlight02?: any | null, highlight03?: any | null, highlight04?: any | null, highlight05?: any | null } | null };
 
 export type GetNextEventQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetNextEventQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, title: string, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, slug?: string | null, subhead?: string | null, rotation?: string | null, mask?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, caption?: string | null, body?: string | null, image?: Array<{"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null> | null, event?: { __typename?: 'SetEvent', date?: string | null, time?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetNextEventQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', caption?: string | null, body?: string | null, image?: Array<any | null> | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
 
-export type GetContentByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
+export type GetGlossaryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetContentByIdQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, category: string, tags?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null, title_image?: {"path":"string","title":"string","mime":"string","type":"string","description":"string","tags":["string"],"size":"number","colors":["string"],"width":"number","height":"number","_hash":"strign","_created":"number","_modified":"number","_cby":"string","folder":"string","_id":"string"} | null } | null> | null };
+export type GetGlossaryQuery = { __typename?: 'Query', glossaryModel?: { __typename?: 'glossaryModel', colors?: any | null, terms?: Array<{ __typename?: 'SetTerms', term?: string | null, definition?: string | null, image?: any | null } | null> | null } | null };
+
+export type GetInformationQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetInformationQuery = { __typename?: 'Query', informationModel?: { __typename?: 'informationModel', vision?: string | null, team?: string | null, contact?: string | null, team_member?: Array<{ __typename?: 'SetTeam_member', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: string | null, mail?: string | null, linked_in?: string | null } | null> | null } | null };
+
+export type GetOfferQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetOfferQuery = { __typename?: 'Query', offerModel?: { __typename?: 'offerModel', offers?: Array<{ __typename?: 'SetOffers', text?: string | null, image?: any | null, link?: string | null } | null> | null } | null };

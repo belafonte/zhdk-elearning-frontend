@@ -4,7 +4,7 @@
 
 <footer class="z-40 mt-auto">
 	<!-- <GridBackground> -->
-	<div class="relative z-10 flex flex-col border-t bg-white ">
+	<div class="relative z-10 flex flex-col border-t bg-white">
 		<h1 class="self-center p-50 text-center text-24 sm:text-50">
 			Recherche zu digitalem Lehren und Lernen
 		</h1>
@@ -13,10 +13,10 @@
 			<div>
 				<a href="/information">Information</a>
 			</div>
-			<div class="border-t border-l sm:border-t-0 sm:border-l-0">
+			<div class="border-l border-t sm:border-l-0 sm:border-t-0">
 				<a href="/imprint">Impressum</a>
 			</div>
-			<a href="https://zhdk.ch" class="border-t sm:border-t-0"
+			<a href="https://zhdk.ch" target="_blank" class="border-t sm:border-t-0"
 				><img class="px-[15%]" src={logo} alt="ZHdK Logo" /></a
 			>
 		</div>

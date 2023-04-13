@@ -14,10 +14,13 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"@types/rss": "^0.0.30",
 		"@urql/core": "^3.2.2",
-		"@urql/exchange-auth": "^2.1.0",
+		"@urql/devtools": "^2.0.3",
+		"rss": "^1.2.2",
 		"sveltekit-image": "^0.5.9",
-		"swiper": "^9.2.0"
+		"swiper": "^9.2.0",
+		"tailwind-merge": "^1.12.0"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "^3.2.2",
@@ -26,7 +29,8 @@
 		"@graphql-codegen/typescript-operations": "^3.0.2",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-netlify": "^2.0.6",
-		"@sveltejs/kit": "^1.15.0",
+		"@sveltejs/adapter-static": "^2.0.2",
+		"@sveltejs/kit": "^1.15.4",
 		"@types/sharp": "^0.31.1",
 		"@typescript-eslint/eslint-plugin": "^5.57.1",
 		"@typescript-eslint/parser": "^5.57.1",

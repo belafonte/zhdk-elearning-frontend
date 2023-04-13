@@ -1,18 +1,12 @@
-import { API_KEY } from "$env/static/private";
-import { PUBLIC_ENDPOINT } from "$env/static/public";
+import URQLClient from "$graphql/urqlClient";
+import { GET_GLOSSARY } from "$graphql/queries";
+import type { GetGlossaryQuery } from "$graphql/types";
 import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async () => {
-	const data = await fetch(`${PUBLIC_ENDPOINT}/content/item/glossary`, {
-		method: "GET",
-		headers: {
-			"api-key": API_KEY
-		}
-	})
-		.then((response) => response.json())
-		.then((response) => {
-			return response;
-		});
+export const load = (async () => {
+	const data = await URQLClient.query<GetGlossaryQuery>(GET_GLOSSARY, {})
+		.toPromise()
+		.then((res) => res.data?.glossaryModel);
 
-	return data;
-};
+	return { ...data };
+}) satisfies PageServerLoad;

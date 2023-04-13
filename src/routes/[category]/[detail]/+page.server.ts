@@ -1,24 +1,20 @@
 import type { PageServerLoad } from "./$types";
-import type { Detail } from "./response";
-
-import { API_KEY } from "$env/static/private";
-import { PUBLIC_ENDPOINT } from "$env/static/public";
+import URQLClient from "$graphql/urqlClient";
+import type { GetDetailDataQuery } from "$graphql/types";
+import { GET_DETAIL_DATA } from "$graphql/queries";
 
 export const load = (async ({ params }) => {
-	const query = `${PUBLIC_ENDPOINT}/content/items/content?filter={ slug: '${params.detail}'}`;
-
-	const response = await fetch(query, {
-		method: "get",
-		headers: {
-			"api-key": API_KEY
-		}
+	const data = await URQLClient.query<GetDetailDataQuery>(GET_DETAIL_DATA, {
+		filter: { slug: params.detail }
 	})
+		.toPromise()
+		.then((res) => res.data?.contentModel?.at(0));
 
-	const [data]: [Detail] = await response.json();
+	const highlightColor = data && data.color ? data.color?.colors[0] : "#EEEEEE";
 
-	if (data !== undefined) {
-		data.highlightColor = data.color !== null ? data.color.colors[0] : "#EEEEEE";
-	}
+	// if (data && data.event && Object.values(data.event).some((prop) => prop)) {
+	// 	console.log("some have values", data.event);
+	// }
 
-	return data;
+	return { ...data, highlightColor };
 }) satisfies PageServerLoad;

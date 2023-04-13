@@ -75,7 +75,7 @@
 {#if $currentSettings !== undefined && category}
 	<a
 		href={`/${category.toLocaleLowerCase().replaceAll(" ", "-")}/${slug}`}
-		class="title h-min overflow-hidden p-[8px] font-serif sm:p-10 lg:p-15"
+		class="title h-min overflow-hidden p-[8px] font-serif transition-all hover:-translate-y-4 hover:shadow-2xl sm:p-10 lg:p-15"
 		class:ml-auto={offset === "l"}
 		class:mr-auto={offset === "r"}
 		style="flex: 0 0 {tileWidth}px; background-color: {color && color.colors

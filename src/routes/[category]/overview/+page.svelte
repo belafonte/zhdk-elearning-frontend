@@ -52,11 +52,7 @@
 
 {#if data.posts}
 	<TagLine bind:filteredTags {...tagLineProps} />
-	<div
-		style:padding-left="{extraPadding}px"
-		style:padding-right="{extraPadding}px"
-		class="pb-82 sm:pb-[168px]"
-	>
+	<div style:padding-left="{extraPadding}px" style:padding-right="{extraPadding}px">
 		<div
 			class="grid"
 			class:grid-cols-2={cols === 2}

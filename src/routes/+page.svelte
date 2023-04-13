@@ -91,7 +91,7 @@
 		<div class="flex flex-col space-y-84" style:margin-left="{$currentSettings.colWidth}px">
 			<!-- Events Tile -->
 			<div>
-				<Event eventData={data.event} />
+				<Event {...data.event} />
 			</div>
 			{#if data.highlights && data.highlights.highlight03}
 				<!-- Highlights -->
@@ -123,7 +123,7 @@
 		</div>
 		<!-- Events Tile -->
 		<div>
-			<Event eventData={data.event} />
+			<Event {...data.event} />
 		</div>
 		{#if data.highlights.highlight02}
 			<div class="flex">

@@ -10,8 +10,6 @@
 	export let rotation: string | undefined | null = undefined;
 	export let cover = false;
 
-	console.log(image);
-
 	let className: string | undefined = undefined;
 	export { className as class };
 

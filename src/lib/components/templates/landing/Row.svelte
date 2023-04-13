@@ -1,24 +1,31 @@
 <script lang="ts">
 	// imports
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
-	import { type IGridSettings, gridSettingsKey, type ICategory } from "$lib/constants";
 	import arrow from "$lib/assets/icons/arrow.svg";
 
-	export let title: string = "Title Missing";
+	export let title = "Title Missing";
 	export let url: string;
-
-	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 </script>
 
-<a class="flex" href="/{url}/overview">
-	<h1 class="text-36 sm:text-50 font-sans">{title}</h1>
-	<div class="w-[30px] sm:w-[40px] ml-auto mr-15 sm:mt-5"><img alt="Arrow" src={arrow} /></div>
-</a>
-<div
-	class="row relative mb-32 sm:mb-84  pb-15 pl-15 -ml-15 w-screen overflow-x-auto flex transition-all"
->
-	<slot />
+<div class="group">
+	<a class="flex" href="/{url}/overview">
+		<h1 class="font-sans text-36 sm:text-50">{title}</h1>
+		<div class="relative ml-auto mr-15 w-[30px] sm:mt-5 sm:w-[40px]">
+			<div
+				class="absolute bottom-0 right-[30px] hidden w-max
+				text-36 opacity-0 transition-all duration-1000
+				group-hover:right-[50px] group-hover:opacity-100 sm:block"
+			>
+				Click for More
+			</div>
+			<img alt="Arrow" src={arrow} />
+		</div>
+	</a>
+	<div
+		class="row relative -ml-15 -mt-4 mb-32 flex w-screen
+		overflow-x-auto pb-12 pl-15 pt-4 transition-all sm:mb-[51px]"
+	>
+		<slot />
+	</div>
 </div>
 
 <style>

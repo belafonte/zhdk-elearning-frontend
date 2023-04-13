@@ -48,10 +48,12 @@
 
 	.rotate-right {
 		rotate: 15deg;
+		scale: 0.8;
 	}
 
 	.rotate-left {
 		rotate: -15deg;
+		scale: 0.8;
 	}
 	:global(.mask img) {
 		mask-image: var(--url);

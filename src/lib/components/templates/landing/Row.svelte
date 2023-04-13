@@ -21,10 +21,12 @@
 		</div>
 	</a>
 	<div
-		class="row relative -ml-15 -mt-4 mb-32 flex w-screen
-		overflow-x-auto pb-12 pl-15 pt-4 transition-all sm:mb-[51px]"
+		class="row relative -ml-15 -mt-4 mb-32 block
+		w-screen overflow-x-auto pb-12 pl-15 pt-4 transition-all sm:mb-[51px]"
 	>
-		<slot />
+		<div class="flex w-max">
+			<slot />
+		</div>
 	</div>
 </div>
 

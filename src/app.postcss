@@ -10,6 +10,33 @@
 	--app-green: "#ABFF39";
 	--app-dark-green: "#1EA666";
 	--app-red: "#BB061A";
+
+	--app-grid-size-sm: 4;
+	--app-grid-size-md: 12;
+	--app-grid-size-lg: 16;
+	
+	--app-tile-size-sm: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 2);
+	--app-tile-size-md: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 3);
+	--app-tile-size-lg: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 4);
+	--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 4);
+}
+
+@media (min-width: 640px) {
+	:root {
+		--app-tile-size-sm: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 3);
+		--app-tile-size-md: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 4);
+		--app-tile-size-lg: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 5);
+		--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 5);
+		}
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--app-tile-size-sm: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 4);
+		--app-tile-size-md: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 6);
+		--app-tile-size-lg: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 7);
+		--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 7);
+		}
 }
 
 /* @font-face {
@@ -32,6 +59,22 @@
 	font-weight: normal;
 	font-style: normal;
 	font-display: block;
+}
+
+.tile-sm {
+	max-width: var(--app-tile-size-sm) !important;
+}
+.tile-md {
+	max-width: var(--app-tile-size-md) !important;
+
+}
+.tile-lg {
+	max-width: var(--app-tile-size-lg) !important;
+
+}
+.tile-xl {
+	max-width: var(--app-tile-size-xl) !important;
+
 }
 
 [class^="icon-"],

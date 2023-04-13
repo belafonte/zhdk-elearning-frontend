@@ -31,29 +31,6 @@
 
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
-	let tileWidth: number;
-
-	let tileSizes = {
-		l: {
-			mobile: 4,
-			tablet: 6,
-			laptop: 7,
-			desktop: 7
-		},
-		m: {
-			mobile: 3,
-			tablet: 4,
-			laptop: 5,
-			desktop: 5
-		},
-		s: {
-			mobile: 2,
-			tablet: 3,
-			laptop: 4,
-			desktop: 4
-		}
-	};
-
 	$: {
 		if (category === "Community") {
 			size = "l";
@@ -66,24 +43,20 @@
 		} else {
 			size = "s";
 		}
-		let type = $currentSettings.type as keyof object;
-		let colSpan = tileSizes[size as keyof object][type];
-
-		if (typeof colSpan === "number") {
-			tileWidth = $currentSettings.colWidth * colSpan;
-		}
 	}
 </script>
 
 {#if $currentSettings !== undefined && category}
 	<a
 		href={`/${category.toLocaleLowerCase().replaceAll(" ", "-")}/${slug}`}
-		class="title h-min overflow-hidden p-[8px] font-serif transition-all hover:-translate-y-4 hover:shadow-2xl sm:p-10 lg:p-15"
+		class="title inline-block h-min overflow-hidden p-[8px] font-serif transition-all
+			hover:-translate-y-4 hover:shadow-2xl sm:p-10 lg:p-15"
 		class:ml-auto={offset === "l"}
 		class:mr-auto={offset === "r"}
-		style="flex: 0 0 {tileWidth}px; background-color: {color && color.colors
-			? color.colors[0]
-			: '#EEEEEE'}"
+		class:tile-sm={category === "Experience"}
+		class:tile-md={category === "Cosmos"}
+		class:tile-lg={category === "Community"}
+		style="background-color: {color && color.colors ? color.colors[0] : '#EEEEEE'}"
 	>
 		<h1
 			class="line-clamp-6 overflow-hidden text-ellipsis pb-5 sm:line-clamp-5"

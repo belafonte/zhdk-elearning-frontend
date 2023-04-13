@@ -104,7 +104,4 @@
 			@apply text-30;
 		}
 	}
-	/* .colWidth {
-		width: var calc({$currentSettings.colWidth}* 7);
-	} */
 </style>

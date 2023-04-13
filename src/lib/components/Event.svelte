@@ -1,44 +1,20 @@
 <script lang="ts">
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
-	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
+	// lib imports
+	import type { SetEvent } from "$graphql/types";
+
+	// component imports
 	import StyledImage from "./shared/StyledImage.svelte";
 	import EventInfo from "./shared/EventInfo.svelte";
 	import Tag from "./Tag.svelte";
-	import type { SetEvent } from "$graphql/types";
 
 	// export let  (GetNextEventQuery["contentModel"] | null) | undefined | null;
 	export let title_image: any | undefined = undefined;
 	export let title: string | undefined = undefined;
 	export let event: SetEvent | undefined | null = undefined;
 	export let rotation: string | undefined | null = undefined;
-
-	let width: number;
-
-	let sizes = {
-		mobile: 3,
-		tablet: 5,
-		laptop: 5,
-		desktop: 5
-	};
-
-	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
-	$: {
-		let type = $currentSettings.type as keyof object;
-		let colSpan = sizes[type];
-
-		if (typeof colSpan === "number") {
-			width = $currentSettings.colWidth * colSpan;
-		}
-	}
 </script>
 
-<a
-	href="/event/overview"
-	id="event"
-	class="ml-auto flex flex-col items-center"
-	style:width="{width}px"
->
+<a href="/event/overview" id="event" class="tile-md ml-auto flex flex-col items-center">
 	<div class="h-10 w-[90%] bg-[#C7C7C7] transition-all" />
 	<div class="h-10 w-[95%] bg-[#D9D9D9] transition-all" />
 

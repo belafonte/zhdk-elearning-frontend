@@ -43,7 +43,9 @@ const config = {
 				50: "50px",
 				60: "60px",
 				72: "72px",
-				84: "84px"
+				84: "84px",
+				col: "var(--app-col-size)",
+				"grid-width": "var(--app-grid-width)"
 			},
 			colors: {
 				"light-gray": "#EEEEEE",

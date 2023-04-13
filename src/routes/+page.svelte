@@ -9,18 +9,16 @@
 
  -->
 <script lang="ts">
+	// lib imports
+	import type { PageServerData } from "./$types";
+	import { PUBLIC_ASSETS } from "$env/static/public";
+
 	// component imports
 	import Row from "$lib/components/templates/landing/Row.svelte";
 	import Tile from "$lib/components/shared/Tile.svelte";
 	import Tag from "$lib/components/Tag.svelte";
 	import Event from "$lib/components/Event.svelte";
 	import GlossarySlider from "$lib/components/templates/landing/GlossarySlider.svelte";
-	import type { PageServerData } from "./$types";
-	import { PUBLIC_ASSETS } from "$env/static/public";
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
-	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
-
 	import { register } from "swiper/element/bundle";
 
 	// Import Swiper styles
@@ -33,15 +31,6 @@
 	register();
 
 	export let data: PageServerData;
-
-	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
-	let dynamicMargin = 0;
-
-	$: if ($currentSettings.type === "tablet") {
-		dynamicMargin = 0;
-	} else {
-		dynamicMargin = $currentSettings.colWidth;
-	}
 </script>
 
 <svelte:head>
@@ -58,10 +47,7 @@
 </svelte:head>
 
 {#if data.highlights}
-	<div
-		class="hidden sm:grid sm:grid-cols-2"
-		style:margin="0 {dynamicMargin}px 84px {dynamicMargin}px"
-	>
+	<div class="mb-84 hidden sm:grid sm:grid-cols-2 sm:pl-col sm:pr-col">
 		<div class="space-y-84">
 			<div class="flex flex-col items-center">
 				<MetaQuestion
@@ -88,7 +74,7 @@
 		</div>
 
 		<!-- Second Column in Desktop -->
-		<div class="flex flex-col space-y-84" style:margin-left="{$currentSettings.colWidth}px">
+		<div class="ml-col flex flex-col space-y-84">
 			<!-- Events Tile -->
 			<div>
 				<Event {...data.event} />

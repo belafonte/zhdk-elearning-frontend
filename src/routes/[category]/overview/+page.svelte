@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
-	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
+	// lib imports
 	import type { PageServerData } from "./$types";
 	import { PUBLIC_ASSETS } from "$env/static/public";
 
@@ -17,33 +15,10 @@
 		title: data.category
 	};
 
-	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
-
-	let cols = 4;
-	let extraPadding = 0;
-
 	let filteredTags: Set<string>;
 	$: filteredTags;
 
-	// add padding to center 2 columns layout
-	$: if (
-		cols === 2 &&
-		$currentSettings.type !== "mobile" &&
-		$currentSettings.type !== "tablet" &&
-		data.category !== "insights"
-	) {
-		extraPadding = $currentSettings.colWidth;
-	} else {
-		extraPadding = 0;
-	}
-
-	$: if ($currentSettings.type === "mobile") {
-		cols = data.cols.mobile;
-	} else if ($currentSettings.type === "tablet") {
-		cols = data.cols.tablet;
-	} else {
-		cols = data.cols.desktop;
-	}
+	console.log(data.category);
 </script>
 
 <svelte:head>
@@ -52,13 +27,12 @@
 
 {#if data.posts}
 	<TagLine bind:filteredTags {...tagLineProps} />
-	<div style:padding-left="{extraPadding}px" style:padding-right="{extraPadding}px">
+	<div class:extra-padding={data.category === "community"}>
 		<div
 			class="grid"
-			class:grid-cols-2={cols === 2}
-			class:grid-cols-3={cols === 3}
-			class:grid-cols-4={cols === 4}
-			class:space-bottom={!(data.category === "community" && $currentSettings.type === "mobile")}
+			class:grid-corse={data.category === "community" || data.category === "insights"}
+			class:grid-fine={!(data.category === "community" || data.category === "insights")}
+			class:space-bottom={!(data.category === "community")}
 		>
 			{#if data.category === "insights"}
 				{#each data.posts as entry}
@@ -86,13 +60,42 @@
 {/if}
 
 <style>
+	.grid-corse {
+		@apply grid-cols-1;
+	}
+
+	.grid-fine {
+		@apply grid-cols-2;
+	}
+
+	.extra-padding {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
 	.space-bottom {
 		@apply gap-y-32;
 	}
 
 	@screen sm {
+		.extra-padding {
+			padding-left: var(--app-col-size);
+			padding-right: var(--app-col-size);
+		}
 		.space-bottom {
 			@apply gap-y-42;
+		}
+		.grid-corse {
+			@apply grid-cols-2;
+		}
+		.grid-fine {
+			@apply grid-cols-3;
+		}
+	}
+
+	@screen lg {
+		.grid-fine {
+			@apply grid-cols-4;
 		}
 	}
 </style>

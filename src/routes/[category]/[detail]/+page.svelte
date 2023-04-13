@@ -3,9 +3,6 @@
 
 	import { PUBLIC_ASSETS } from "$env/static/public";
 	import { fly } from "svelte/transition";
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
-	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 
 	// component imports
 	import StyledImage from "$lib/components/shared/StyledImage.svelte";
@@ -19,10 +16,6 @@
 
 	let title: HTMLElement | undefined;
 	let nav: HTMLElement | undefined;
-
-	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
-
-	$: containerWidth = $currentSettings.gridCols * $currentSettings.colWidth;
 
 	$: titleTop = 0;
 	$: titlePosition = "relative";
@@ -48,8 +41,7 @@
 		<GridBackground>
 			<div
 				bind:this={nav}
-				class="fixed z-50 grid w-max grid-cols-3 px-10 pb-32 pt-20 sm:px-[40px] sm:pt-32"
-				style:width="{containerWidth}px"
+				class="fixed z-50 grid w-grid-width grid-cols-3 px-10 pb-32 pt-20 sm:px-[40px] sm:pt-32"
 			>
 				<button
 					class="justify-self-start whitespace-nowrap text-12 uppercase tracking-wider sm:text-14"
@@ -60,7 +52,7 @@
 				<Tag class="justify-self-center" background={true} text={data.category?.toUpperCase()} />
 			</div>
 
-			<div bind:this={title} style:padding-top="{titleTop}px" style:width="{containerWidth}px">
+			<div class="w-grid-width" bind:this={title} style:padding-top="{titleTop}px">
 				<h1
 					class="sticky pl-10 pr-7 font-serif text-60 sm:pl-[40px] sm:pr-[20px] sm:text-68 lg:text-130"
 					style:top="{titleTop}px"

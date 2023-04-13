@@ -29,7 +29,7 @@
 	<TagLine bind:filteredTags {...tagLineProps} />
 	<div class:extra-padding={data.category === "community"}>
 		<div
-			class="grid"
+			class="overview grid"
 			class:grid-corse={data.category === "community" || data.category === "insights"}
 			class:grid-fine={!(data.category === "community" || data.category === "insights")}
 			class:space-bottom={!(data.category === "community")}
@@ -60,6 +60,9 @@
 {/if}
 
 <style>
+	:global(.overview > *) {
+		min-width: 100%;
+	}
 	.grid-corse {
 		@apply grid-cols-1;
 	}

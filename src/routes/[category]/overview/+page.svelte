@@ -6,7 +6,7 @@
 	import { PUBLIC_ASSETS } from "$env/static/public";
 
 	// component imports
-	import Tile from "$lib/components/shared/tile/Tile.svelte";
+	import Tile from "$lib/components/shared/Tile.svelte";
 	import MetaQuestion from "$lib/components/MetaQuestion.svelte";
 	import TagLine from "$lib/components/templates/overview/TagLine.svelte";
 

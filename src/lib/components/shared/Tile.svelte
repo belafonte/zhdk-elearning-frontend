@@ -1,14 +1,17 @@
 <script lang="ts">
+	// lib imports
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
 
+	// type imports
+	import type { ImageType } from "$graphql/image";
+	import type { EventType } from "$graphql/event";
+
 	// Component imports
 	import StyledImage from "$lib/components/shared/StyledImage.svelte";
 	import Tag from "$lib/components/shared/Tag.svelte";
-	import type { ImageType } from "$graphql/image";
-	import type { EventType } from "$graphql/event";
-	import EventInfo from "$lib/components/shared/tile/EventInfo.svelte";
+	import EventInfo from "$lib/components/shared/EventInfo.svelte";
 
 	export let slug: string | null | undefined = undefined;
 	export let category: string | undefined = undefined;

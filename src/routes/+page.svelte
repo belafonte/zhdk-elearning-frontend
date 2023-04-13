@@ -11,7 +11,7 @@
 <script lang="ts">
 	// component imports
 	import Row from "$lib/components/templates/landing/Row.svelte";
-	import Tile from "$lib/components/shared/tile/Tile.svelte";
+	import Tile from "$lib/components/shared/Tile.svelte";
 	import Tag from "$lib/components/Tag.svelte";
 	import Event from "$lib/components/Event.svelte";
 	import GlossarySlider from "$lib/components/templates/landing/GlossarySlider.svelte";

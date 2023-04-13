@@ -43,15 +43,11 @@
 	<div class="h-10 w-[95%] bg-[#D9D9D9] transition-all" />
 
 	<div class="bg-light-gray p-15">
-		<div
-			class="grid grid-cols-3 font-serif"
-			class:mb-16={title_image !== null}
-			class:mb-32={title_image === null}
-		>
+		<div class="grid grid-cols-3 font-serif" class:mb-16={title_image} class:mb-32={!title_image}>
 			<p
 				class=" line-clamp-5 text-19 sm:text-30"
-				class:col-span-2={title_image !== null}
-				class:col-span-3={title_image === null}
+				class:col-span-2={title_image}
+				class:col-span-3={!title_image}
 			>
 				{title}
 			</p>

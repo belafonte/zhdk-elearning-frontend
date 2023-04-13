@@ -18,24 +18,24 @@
 	--app-tile-size-sm: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 2);
 	--app-tile-size-md: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 3);
 	--app-tile-size-lg: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 4);
-	--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 4);
+	--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-sm) * 5);
 }
 
-@media (min-width: 640px) {
+@screen sm{
 	:root {
 		--app-tile-size-sm: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 3);
 		--app-tile-size-md: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 4);
 		--app-tile-size-lg: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 5);
-		--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 5);
+		--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-md) * 6);
 		}
 }
 
-@media (min-width: 1024px) {
+@screen lg {
 	:root {
 		--app-tile-size-sm: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 4);
-		--app-tile-size-md: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 6);
-		--app-tile-size-lg: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 7);
-		--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 7);
+		--app-tile-size-md: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 5);
+		--app-tile-size-lg: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 6);
+		--app-tile-size-xl: calc(calc(100vw - 30px) / var(--app-grid-size-lg) * 8);
 		}
 }
 

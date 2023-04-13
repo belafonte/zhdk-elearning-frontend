@@ -1,9 +1,4 @@
 <script lang="ts">
-	// lib imports
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
-	import { type IGridSettings, gridSettingsKey } from "$lib/constants";
-
 	// type imports
 	import type { ImageType } from "$graphql/image";
 	import type { EventType } from "$graphql/event";
@@ -26,27 +21,9 @@
 	export let tags: any | null = null;
 
 	export let event: EventType | null | undefined = undefined;
-
-	let size: string;
-
-	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
-
-	$: {
-		if (category === "Community") {
-			size = "l";
-		} else if (category === "Knowledge in use") {
-			if ($currentSettings.type === "mobile") {
-				size = "s";
-			} else {
-				size = "m";
-			}
-		} else {
-			size = "s";
-		}
-	}
 </script>
 
-{#if $currentSettings !== undefined && category}
+{#if category}
 	<a
 		href={`/${category.toLocaleLowerCase().replaceAll(" ", "-")}/${slug}`}
 		class="title inline-block h-min overflow-hidden p-[8px] font-serif transition-all
@@ -60,9 +37,9 @@
 	>
 		<h1
 			class="line-clamp-6 overflow-hidden text-ellipsis pb-5 sm:line-clamp-5"
-			class:title-large={size === "l"}
-			class:title-medium={size === "m"}
-			class:title-small={size === "s"}
+			class:title-large={category === "Community"}
+			class:title-medium={category === "Cosmos"}
+			class:title-small={category === "Experience"}
 		>
 			{@html title}
 		</h1>

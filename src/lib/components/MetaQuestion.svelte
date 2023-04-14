@@ -2,7 +2,7 @@
 	import { twMerge } from "tailwind-merge";
 	import type { ImageType } from "$graphql/image";
 
-	export let color: any;
+	export let color: string;
 	export let text: string | undefined;
 	export let mask: ImageType | string | undefined = undefined;
 	export let link: string;

@@ -310,10 +310,13 @@ export type GetHighlightsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetHighlightsQuery = { __typename?: 'Query', highlightsModel?: { __typename?: 'highlightsModel', highlight01?: any | null, highlight02?: any | null, highlight03?: any | null, highlight04?: any | null, highlight05?: any | null } | null };
 
-export type GetNextEventQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetNextEventQueryVariables = Exact<{
+  filter?: InputMaybe<Scalars['JsonType']>;
+  sort?: InputMaybe<Scalars['JsonType']>;
+}>;
 
 
-export type GetNextEventQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', caption?: string | null, body?: string | null, image?: Array<any | null> | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetNextEventQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', image?: Array<any | null> | null, title: string, title_image?: any | null, mask?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
 
 export type GetGlossaryQueryVariables = Exact<{ [key: string]: never; }>;
 

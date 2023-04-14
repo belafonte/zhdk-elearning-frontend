@@ -48,7 +48,10 @@ export const load: PageServerLoad = async () => {
 		.toPromise()
 		.then((res) => res.data?.highlightsModel);
 
-	const event = await URQLClient.query<GetNextEventQuery>(GET_NEXT_EVENT, undefined)
+	const event = await URQLClient.query<GetNextEventQuery>(GET_NEXT_EVENT, {
+		filter: { category: "Event", _state: PUBLIC_STATE },
+		sort: { "event.fromDate": true }
+	})
 		.toPromise()
 		.then((res) => res.data?.contentModel?.at(0));
 

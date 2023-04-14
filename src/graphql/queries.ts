@@ -37,7 +37,7 @@ const DETAIL_INFO = gql`
 
 export const GET_TILE_DATA = gql`
 	${TILE_INFO}
-	query GetTileData($filter: JsonType!, $limit: Int, $sort: JsonType = { _created: true }) {
+	query GetTileData($filter: JsonType!, $limit: Int, $sort: JsonType = { _modified: true }) {
 		contentModel(limit: $limit, sort: $sort, filter: $filter) {
 			...TileInfo
 		}
@@ -91,15 +91,22 @@ export const GET_HIGHLIGHTS = gql`
 `;
 
 export const GET_NEXT_EVENT = gql`
-  query GetNextEvent {
-    ${TILE_INFO}
-    contentModel(filter: {category: "Event", _state: PUBLIC_STATE}, sort: {_modified: true}, limit: 1) {
-      caption
-      body
-      image
-      ...TileInfo
-    }
-}
+	query GetNextEvent($filter: JsonType, $sort: JsonType) {
+		contentModel(filter: $filter, sort: $sort, limit: 1) {
+			image
+			title
+			title_image
+			mask
+			event {
+				fromDate
+				toDate
+				fromTime
+				toTime
+				location
+				link
+			}
+		}
+	}
 `;
 
 export const GET_GLOSSARY = gql`

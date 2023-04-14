@@ -11,7 +11,6 @@
 <script lang="ts">
 	// lib imports
 	import type { PageServerData } from "./$types";
-	import { PUBLIC_ASSETS, PUBLIC_STATE } from "$env/static/public";
 
 	// component imports
 	import Row from "$lib/components/templates/landing/Row.svelte";
@@ -31,6 +30,8 @@
 	register();
 
 	export let data: PageServerData;
+
+	console.log(data);
 </script>
 
 <svelte:head>

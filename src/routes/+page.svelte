@@ -53,8 +53,8 @@
 				<MetaQuestion
 					color={data.highlights.highlight01.color.colors[0]}
 					text={data.highlights.highlight01.title}
-					link="/insights/{data.highlights.highlight01?.slug}"
 					mask={data.highlights.highlight01?.mask.path}
+					link="/insights/{data.highlights.highlight01?.slug}"
 				/>
 				<a href="/insights/overview">
 					<Tag rounded={true} text="Zu allen Insights" icon={true} />

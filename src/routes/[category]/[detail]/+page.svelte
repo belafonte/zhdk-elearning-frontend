@@ -21,10 +21,13 @@
 	$: titlePosition = "relative";
 
 	const textReg = /\+\+(.*?)\+\+/;
+	const htmlReg = /<\/?[^>]+(>|$)/g;
 	const clean = data.title?.match(textReg)?.at(1);
 
 	const cleanTitle =
-		data.category === "Insights" && clean ? data.title?.replace(textReg, clean) : data.title;
+		data.category === "Insights" && clean
+			? data.title?.replace(textReg, clean).replace(htmlReg, "")
+			: data.title;
 
 	function trans(status: any) {
 		titlePosition = "fixed";

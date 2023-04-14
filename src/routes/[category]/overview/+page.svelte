@@ -1,7 +1,6 @@
 <script lang="ts">
 	// lib imports
 	import type { PageServerData } from "./$types";
-	import { PUBLIC_ASSETS } from "$env/static/public";
 
 	// component imports
 	import Tile from "$lib/components/shared/Tile.svelte";
@@ -35,11 +34,12 @@
 			class:space-bottom={!(data.category === "community")}
 		>
 			{#if data.category === "insights"}
-				{#each data.posts as entry}
+				{#each data.posts as post}
 					<MetaQuestion
-						path={PUBLIC_ASSETS + entry?.title_image.path}
-						mask={PUBLIC_ASSETS + entry?.mask.path}
-						link="/insights/{entry?.slug}"
+						color={post?.color.colors[0]}
+						text={post?.title}
+						mask={post?.mask.path}
+						link="/insights/{post?.slug}"
 					/>
 				{/each}
 			{:else}

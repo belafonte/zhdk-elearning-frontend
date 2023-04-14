@@ -13,8 +13,7 @@
 	let className: string | undefined = undefined;
 	export { className as class };
 
-	const assetApi = PUBLIC_ENDPOINT + "/assets/image/";
-	const path = assetApi + _id;
+	const path = PUBLIC_ENDPOINT + "/assets/image/" + _id;
 	const small = path + "?m=fitToWidth&w=480&q=80&mime=webp&o=1";
 	const large = path + "?m=fitToWidth&w=1024&q=80&mime=webp&o=1";
 

@@ -5,6 +5,7 @@
 	"scripts": {
 		"codegen": "graphql-codegen",
 		"dev": "graphql-codegen && vite dev",
+		"dev:preview": "graphql-codegen && vite dev --mode preview",
 		"dev:host": "vite dev --host",
 		"build": "vite build",
 		"preview": "vite preview",

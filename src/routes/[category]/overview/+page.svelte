@@ -16,8 +16,6 @@
 
 	let filteredTags: Set<string>;
 	$: filteredTags;
-
-	console.log(data.category);
 </script>
 
 <svelte:head>

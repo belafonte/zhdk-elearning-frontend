@@ -7,8 +7,6 @@
 	export let mask: ImageType | string | undefined = undefined;
 	export let link: string;
 
-	console.log(color);
-
 	let className: string | undefined = undefined;
 	export { className as class };
 

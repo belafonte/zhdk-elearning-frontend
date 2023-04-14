@@ -35,12 +35,8 @@
 			class:space-bottom={!(data.category === "community")}
 		>
 			{#if data.category === "insights"}
-				{#each data.posts as entry}
-					<MetaQuestion
-						path={PUBLIC_ASSETS + entry?.title_image.path}
-						mask={PUBLIC_ASSETS + entry?.mask.path}
-						link="/insights/{entry?.slug}"
-					/>
+				{#each data.posts as post}
+					<MetaQuestion text={post?.title} mask={post?.mask.path} link="/insights/{post?.slug}" />
 				{/each}
 			{:else}
 				{#each data?.posts as post}

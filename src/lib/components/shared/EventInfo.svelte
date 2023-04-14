@@ -9,11 +9,19 @@
 </script>
 
 {#if fromDate || fromTime || location}
-	<div class="md:ml-32">
+	<div class="ml-auto">
 		<p class="font-sans text-12">
 			<FormatDate {fromDate} {toDate} />
 			{fromTime && toTime ? `/ ${fromTime}-${toTime}` : ""}
 		</p>
-		<p class="hidden font-sans text-12 md:block">{location || ""}</p>
+		<p class="font-sans text-12">{location || ""}</p>
 	</div>
 {/if}
+
+<style>
+	@screen md {
+		.space-left {
+			margin-left: clamp(0px, 100%, 30px);
+		}
+	}
+</style>

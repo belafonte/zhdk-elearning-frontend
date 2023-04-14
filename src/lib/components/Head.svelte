@@ -15,9 +15,9 @@
 	const currentSettings: Writable<IGridSettings> = getContext(gridSettingsKey);
 
 	let body: HTMLElement | null = null;
-	let menuOpened: boolean = false;
-	let prevScroll: number = 0;
-	let scroll: number = 0;
+	let menuOpened = false;
+	let prevScroll = 0;
+	let scroll = 0;
 	let scrollDir: "up" | "down" = "down";
 
 	// let headerHeight: number;
@@ -93,13 +93,13 @@
 						<a href="/cosmos/overview">Cosmos</a>
 						<a href="/community/overview">Community</a>
 						<a href="/glossary">Glossary</a>
-						<div class="mt-auto mb-10 text-12 uppercase !text-black sm:!text-14 ">Journal</div>
+						<div class="mb-10 mt-auto text-12 uppercase !text-black sm:!text-14">Journal</div>
 					</div>
 					<div class="flex h-full flex-col border-t sm:border-l lg:border-t-0">
 						<a href="/offer">Angebot</a>
 						<a href="/information">Information</a>
 
-						<div class="mt-auto mb-10 text-12 uppercase !text-black sm:!text-14 ">Hintergrund</div>
+						<div class="mb-10 mt-auto text-12 uppercase !text-black sm:!text-14">Hintergrund</div>
 					</div>
 				</button>
 			{/if}
@@ -109,7 +109,7 @@
 
 <style>
 	#menu div > * {
-		@apply pt-10 pl-15 text-dark-gray;
+		@apply pl-15 pt-10 text-dark-gray;
 	}
 	#menu a:hover {
 		@apply text-black;

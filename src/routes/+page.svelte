@@ -11,7 +11,7 @@
 <script lang="ts">
 	// lib imports
 	import type { PageServerData } from "./$types";
-	import { PUBLIC_ASSETS } from "$env/static/public";
+	import { PUBLIC_ASSETS, PUBLIC_STATE } from "$env/static/public";
 
 	// component imports
 	import Row from "$lib/components/templates/landing/Row.svelte";

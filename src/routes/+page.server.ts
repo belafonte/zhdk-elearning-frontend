@@ -1,5 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import URQLClient from "$graphql/urqlClient";
+import { PUBLIC_STATE } from "$env/static/public";
 import type {
 	GetTileDataQuery,
 	GetGlossarySliderQuery,
@@ -18,21 +19,21 @@ import {
 export const load: PageServerLoad = async () => {
 	const community = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
 		limit: 8,
-		filter: { category: "Community" }
+		filter: { _state: PUBLIC_STATE, category: "Community" }
 	})
 		.toPromise()
 		.then((res) => res.data?.contentModel);
 
 	const cosmos = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
 		limit: 8,
-		filter: { category: "Cosmos" }
+		filter: { _state: PUBLIC_STATE, category: "Cosmos" }
 	})
 		.toPromise()
 		.then((res) => res.data?.contentModel);
 
 	const experience = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
 		limit: 8,
-		filter: { category: "Experience" }
+		filter: { _state: PUBLIC_STATE, category: "Experience" }
 	})
 		.toPromise()
 		.then((res) => res.data?.contentModel);

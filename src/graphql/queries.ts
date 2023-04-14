@@ -1,4 +1,5 @@
 import { gql } from "@urql/core";
+import { PUBLIC_STATE } from "$env/static/public";
 
 const TILE_INFO = gql`
 	fragment TileInfo on contentModel {
@@ -54,7 +55,7 @@ export const GET_DETAIL_DATA = gql`
 
 export const GET_RSS_DATA = gql`
 	query GetRssData {
-		contentModel(limit: 10, sort: { _modified: true }) {
+		contentModel(limit: 10, sort: { _modified: true }, filter: { _state: PUBLIC_STATE }) {
 			title
 			title_image
 			slug
@@ -92,7 +93,7 @@ export const GET_HIGHLIGHTS = gql`
 export const GET_NEXT_EVENT = gql`
   query GetNextEvent {
     ${TILE_INFO}
-    contentModel(filter: {category: "Event"}, sort: {_modified: true}, limit: 1) {
+    contentModel(filter: {category: "Event", _state: PUBLIC_STATE}, sort: {_modified: true}, limit: 1) {
       caption
       body
       image

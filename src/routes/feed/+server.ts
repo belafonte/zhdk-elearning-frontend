@@ -40,8 +40,8 @@ export const GET = (async () => {
 		feed_url: "https://elearning.zhdk.ch/feed",
 		site_url: "https://elearning.zhdk.ch",
 		image_url: "https://elearning.zhdk.ch/logo.png",
-		managingEditor: "Manuel Weibel",
-		webMaster: "Bureau 314",
+		managingEditor: "manuel.weibel@zhdk.ch",
+		webMaster: "hello@bureau314.ch",
 		language: "de-CH",
 		pubDate: new Date(),
 		ttl: 60

@@ -25,7 +25,7 @@
 				class:col-span-2={title_image}
 				class:col-span-3={!title_image}
 			>
-				{title}
+				{title || "No Planned Events"}
 			</p>
 			{#if title_image}
 				<StyledImage class="col-span-1" cover={true} image={title_image} {rotation} />

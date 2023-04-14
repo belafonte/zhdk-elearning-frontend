@@ -54,8 +54,8 @@ export const GET_DETAIL_DATA = gql`
 `;
 
 export const GET_RSS_DATA = gql`
-	query GetRssData {
-		contentModel(limit: 10, sort: { _modified: true }, filter: { _state: PUBLIC_STATE }) {
+	query GetRssData($filter: JsonType) {
+		contentModel(limit: 10, sort: { _modified: true }, filter: $filter) {
 			title
 			title_image
 			slug

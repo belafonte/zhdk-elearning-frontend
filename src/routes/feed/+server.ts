@@ -4,12 +4,13 @@ import rss from "rss";
 import URQLClient from "$graphql/urqlClient";
 import type { GetRssDataQuery } from "$graphql/types";
 import { GET_RSS_DATA } from "$graphql/queries";
-import { PUBLIC_ASSETS } from "$env/static/public";
+import { PUBLIC_ASSETS, PUBLIC_STATE } from "$env/static/public";
 
 export const GET = (async () => {
 	const posts = await URQLClient.query<GetRssDataQuery>(GET_RSS_DATA, {
 		limit: 10,
-		sort: { _modified: true }
+		sort: { _modified: true },
+		filter: { _state: PUBLIC_STATE }
 	})
 		.toPromise()
 		.then((res) => res.data?.contentModel);

@@ -30,8 +30,6 @@
 
 	register();
 
-	console.log("MY STATE ", PUBLIC_STATE);
-
 	export let data: PageServerData;
 </script>
 

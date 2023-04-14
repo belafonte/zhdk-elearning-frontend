@@ -2,6 +2,7 @@ import type { PageServerLoad } from "./$types";
 import URQLClient from "$graphql/urqlClient";
 import type { GetTileDataQuery } from "$graphql/types";
 import { GET_TILE_DATA } from "$graphql/queries";
+import { PUBLIC_STATE } from "$env/static/public";
 
 export const load: PageServerLoad = async ({ params }) => {
 	const category = params.category;
@@ -12,7 +13,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const posts = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
 		limit: null,
-		filter: { category: filterCategory, "event.fromDate": filterDate },
+		filter: { _state: PUBLIC_STATE, category: filterCategory, "event.fromDate": filterDate },
 		sort: sort
 	})
 		.toPromise()

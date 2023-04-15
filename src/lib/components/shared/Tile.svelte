@@ -30,16 +30,14 @@
 			hover:-translate-y-4 hover:shadow-2xl sm:p-10 lg:p-15"
 		class:ml-auto={offset === "l"}
 		class:mr-auto={offset === "r"}
-		class:tile-sm={category === "Experience"}
-		class:tile-md={category === "Cosmos"}
+		class:tile-sm={category === "Experience" || category === "Cosmos"}
 		class:tile-lg={category === "Community"}
 		style="background-color: {color && color.colors ? color.colors[0] : '#EEEEEE'}"
 	>
 		<h1
 			class="line-clamp-6 overflow-hidden text-ellipsis pb-5 sm:line-clamp-5"
 			class:title-large={category === "Community"}
-			class:title-medium={category === "Cosmos"}
-			class:title-small={category === "Experience"}
+			class:title-small={category === "Experience" || category === "Cosmos"}
 		>
 			{@html title}
 		</h1>

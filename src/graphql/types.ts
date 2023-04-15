@@ -40,13 +40,7 @@ export type Query = {
   highlightsModel?: Maybe<HighlightsModel>;
   imprintModel?: Maybe<ImprintModel>;
   informationModel?: Maybe<InformationModel>;
-  lokalize?: Maybe<Scalars['JsonType']>;
   offerModel?: Maybe<OfferModel>;
-  pageByID?: Maybe<Scalars['JsonType']>;
-  pageByRoute?: Maybe<Scalars['JsonType']>;
-  pages?: Maybe<Array<Maybe<Scalars['JsonType']>>>;
-  pagesMenu?: Maybe<Scalars['JsonType']>;
-  pagesMenus?: Maybe<Array<Maybe<Scalars['JsonType']>>>;
 };
 
 
@@ -107,46 +101,9 @@ export type QueryInformationModelArgs = {
 };
 
 
-export type QueryLokalizeArgs = {
-  locale?: InputMaybe<Scalars['String']>;
-  nested?: InputMaybe<Scalars['Int']>;
-  project: Scalars['String'];
-};
-
-
 export type QueryOfferModelArgs = {
   locale?: InputMaybe<Scalars['String']>;
   populate?: InputMaybe<Scalars['Int']>;
-};
-
-
-export type QueryPageByIdArgs = {
-  id: Scalars['String'];
-  locale?: InputMaybe<Scalars['String']>;
-  populate?: InputMaybe<Scalars['Int']>;
-};
-
-
-export type QueryPageByRouteArgs = {
-  locale?: InputMaybe<Scalars['String']>;
-  populate?: InputMaybe<Scalars['Int']>;
-  route: Scalars['String'];
-};
-
-
-export type QueryPagesArgs = {
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type QueryPagesMenuArgs = {
-  locale?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
-};
-
-
-export type QueryPagesMenusArgs = {
-  locale?: InputMaybe<Scalars['String']>;
 };
 
 export type SetEvent = {

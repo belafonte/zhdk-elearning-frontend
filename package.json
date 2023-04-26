@@ -19,6 +19,7 @@
 		"@urql/core": "^3.2.2",
 		"@urql/devtools": "^2.0.3",
 		"rss": "^1.2.2",
+		"sanitize-html": "^2.10.0",
 		"sveltekit-image": "^0.5.9",
 		"swiper": "^9.2.0",
 		"tailwind-merge": "^1.12.0"

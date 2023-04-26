@@ -16,9 +16,9 @@ export const GET = (async () => {
 		.toPromise()
 		.then((res) => res.data?.contentModel);
 
-	if (!posts) {
-		throw error(500, "No Items in Feed");
-	}
+	// if (!posts) {
+	// 	throw error(500, "No Items in Feed");
+	// }
 
 	// Define the RSS feed as a string
 	// const rssItems = posts.map((post) => {
@@ -84,13 +84,13 @@ export const GET = (async () => {
     <language>de-ch</language>
 		<managingEditor>manuel.weibel@zhdk.ch (Manuel Weibel)</managingEditor>
 		<webMaster>hello@bureau314.ch (Jan Pistor)</webMaster>
-<image>https://elearning.zhdk.ch/logo.png</image>
+		<image>https://elearning.zhdk.ch/logo.png</image>
     <pubDate>${new Date().toUTCString()}</pubDate>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <image>
-      <url>https://example.com/images/logo.png</url>
-      <title>My RSS Feed</title>
-      <link>https://example.com</link>
+      <url>https://elearning.zhdk.ch/logo.png</url>
+      <title>ZHdK E-Learning RSS Feed</title>
+      <link>https://elearning.zhdk.ch</link>
     </image>
 			${rssItems}
   </channel>

@@ -76,25 +76,25 @@ export const GET = (async () => {
 		</item>`;
 	});
 	const rssFeed = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>ZHdK E-Learning RSS Feed</title>
-    <description>RSS Feed showing the last ten modified posts</description>
-    <link>https://elearning.zhdk.ch/feed</link>
-    <language>de-ch</language>
-		<managingEditor>manuel.weibel@zhdk.ch (Manuel Weibel)</managingEditor>
-		<webMaster>hello@bureau314.ch (Jan Pistor)</webMaster>
-		<image>https://elearning.zhdk.ch/logo.png</image>
-    <pubDate>${new Date().toUTCString()}</pubDate>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <image>
-      <url>https://elearning.zhdk.ch/logo.png</url>
-      <title>ZHdK E-Learning RSS Feed</title>
-      <link>https://elearning.zhdk.ch</link>
-    </image>
-			${rssItems}
-  </channel>
-</rss>`;
+		<rss version="2.0">
+  		<channel>
+    		<title>ZHdK E-Learning RSS Feed</title>
+    		<description>RSS Feed showing the last ten modified posts</description>
+    		<link>https://elearning.zhdk.ch/feed</link>
+    		<language>de-ch</language>
+				<managingEditor>manuel.weibel@zhdk.ch (Manuel Weibel)</managingEditor>
+				<webMaster>hello@bureau314.ch (Jan Pistor)</webMaster>
+				<image>https://elearning.zhdk.ch/logo.png</image>
+    		<pubDate>${new Date().toUTCString()}</pubDate>
+    		<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    		<image>
+      		<url>https://elearning.zhdk.ch/logo.png</url>
+      		<title>ZHdK E-Learning RSS Feed</title>
+      		<link>https://elearning.zhdk.ch</link>
+    		</image>
+					${rssItems}
+  		</channel>
+		</rss>`;
 
 	const xml = rssFeed;
 	const headers = {

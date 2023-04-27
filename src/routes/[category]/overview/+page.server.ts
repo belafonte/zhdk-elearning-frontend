@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	const filterCategory = category.replace(/^./, category.charAt(0).toUpperCase());
 	const filterDate =
 		category === "event" ? { $gte: new Date().toISOString().substring(0, 10) } : null;
-	const sort = category === "event" ? { "event.fromDate": true } : { _created: true };
+	const sort = category === "event" ? { "event.fromDate": false } : { _created: true };
 
 	const posts = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
 		limit: null,

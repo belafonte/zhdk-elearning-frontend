@@ -92,7 +92,7 @@ export const GET_HIGHLIGHTS = gql`
 
 export const GET_NEXT_EVENT = gql`
 	query GetNextEvent($filter: JsonType, $sort: JsonType) {
-		contentModel(filter: $filter, sort: $sort, limit: 1) {
+		contentModel(filter: $filter, sort: $sort) {
 			image
 			title
 			title_image

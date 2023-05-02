@@ -1,4 +1,4 @@
-schema: https://elearningnext.lela.ch/api/gql
+schema: https://elearning.lela.ch/api/gql
 documents: ./src/graphql/queries.ts
 generates:
   ./src/graphql/types.ts:

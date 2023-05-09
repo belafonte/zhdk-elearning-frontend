@@ -19,8 +19,8 @@ export const GET = (async () => {
 	// if (!posts) {
 	// 	throw error(500, "No Items in Feed");
 	// }
-
-	// Define the RSS feed as a string
+	//
+	// // Define the RSS feed as a string
 	// const rssItems = posts.map((post) => {
 	// 	const date = post?._created ? new Date(post?._created * 1000) : "";
 	//
@@ -54,49 +54,50 @@ export const GET = (async () => {
 	// 	feed.item(rssItem);
 	// });
 
-	const rssItems = posts.map((post) => {
-		const date = post?._created ? new Date(post?._created * 1000) : "";
+	const rssItems = posts?.map((post) => {
+		const date = post?._created ? new Date(post?._created * 1000).toUTCString() : "";
+		if (!post) return "";
+
+		const link =
+			"https://elearning.zhdk.ch/" +
+			post?.category.toLowerCase() +
+			"/" +
+			sanitizeHtml(post?.slug || "", { allowedTags: [], allowedAttributes: [] });
 
 		return `
 		<item>
-			<title>${sanitizeHtml(post?.title, { allowedTags: [], allowedAttributes: [] }) || ""}</title>
-			<description>${
-				sanitizeHtml(post?.subhead, { allowedTags: [], allowedAttributes: [] }) || ""
+			<title>${sanitizeHtml(post?.title || "", { allowedTags: [], allowedAttributes: [] }) || ""}</title>
+			<description>${sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
 			}</description>
-			<link>${
-				"https://elearning.zhdk.ch/" +
-					post?.category.toLowerCase() +
-					"/" +
-					sanitizeHtml(post?.slug, { allowedTags: [], allowedAttributes: [] }) || ""
-			}</link>
+			<link>${link}</link>
+			<guid>${link}</guid>	
 			<pubDate>${date}</pubDate>
-			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime}" size="${
-			post?.title_image.size
-		}"></enclosure>
+			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime
+			}" length="${post?.title_image.size}"></enclosure>
 		</item>`;
 	});
-	const rssFeed = `<?xml version="1.0" encoding="UTF-8"?>
-		<rss version="2.0">
-  		<channel>
-    		<title>ZHdK E-Learning RSS Feed</title>
-    		<description>RSS Feed showing the last ten modified posts</description>
-    		<link>https://elearning.zhdk.ch/feed</link>
-    		<language>de-ch</language>
-				<managingEditor>manuel.weibel@zhdk.ch (Manuel Weibel)</managingEditor>
-				<webMaster>hello@bureau314.ch (Jan Pistor)</webMaster>
-				<image>https://elearning.zhdk.ch/logo.png</image>
-    		<pubDate>${new Date().toUTCString()}</pubDate>
-    		<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    		<image>
-      		<url>https://elearning.zhdk.ch/logo.png</url>
-      		<title>ZHdK E-Learning RSS Feed</title>
-      		<link>https://elearning.zhdk.ch</link>
-    		</image>
-					${rssItems}
-  		</channel>
+
+	console.debug(rssItems);
+	const feed = `<?xml version="1.0" encoding="UTF-8"?>
+			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	 		<channel>
+	   		<title>ZHdK E-Learning RSS Feed</title>
+	   		<description>RSS Feed showing the last ten modified posts</description>
+	   		<link>https://elearning.zhdk.ch/</link>
+				<atom:link href="http://elearning.zhdk.ch/feed" rel="self" type="application/rss+xml" />
+	   		<language>de-ch</language>
+	   		<pubDate>${new Date().toUTCString()}</pubDate>
+	   		<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+	   		<image>
+	     		<url>https://elearning.zhdk.ch/logo.png</url>
+	     		<title>ZHdK E-Learning RSS Feed</title>
+	     		<link>https://elearning.zhdk.ch/</link>
+	   		</image>
+					${rssItems?.join("")}
+	 		</channel>
 		</rss>`;
 
-	const xml = rssFeed;
+	const xml = feed;
 	const headers = {
 		"Cache-Control": "max-age=0, s-maxage=3600",
 		"Content-Type": "application/xml"

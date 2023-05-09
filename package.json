@@ -31,6 +31,7 @@
 		"@graphql-codegen/typescript": "^3.0.2",
 		"@graphql-codegen/typescript-operations": "^3.0.2",
 		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-cloudflare": "^2.2.2",
 		"@sveltejs/adapter-netlify": "^2.0.6",
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.15.4",

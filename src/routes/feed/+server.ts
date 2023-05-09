@@ -58,37 +58,42 @@ export const GET = (async () => {
 		const date = post?._created ? new Date(post?._created * 1000).toUTCString() : "";
 		if (!post) return "";
 
+		const link =
+			"https://elearning.zhdk.ch/" +
+			post?.category.toLowerCase() +
+			"/" +
+			sanitizeHtml(post?.slug || "", { allowedTags: [], allowedAttributes: [] });
+
 		return `
 		<item>
 			<title>${sanitizeHtml(post?.title || "", { allowedTags: [], allowedAttributes: [] }) || ""}</title>
 			<description>${sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
 			}</description>
-			<link>${"https://elearning.zhdk.ch/" +
-			post?.category.toLowerCase() +
-			"/" +
-			sanitizeHtml(post?.slug || "", { allowedTags: [], allowedAttributes: [] }) || ""
-			}</link>
+			<link>${link}</link>
+			<guid>${link}</guid>	
 			<pubDate>${date}</pubDate>
-			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime}" size="${post?.title_image.size
-			}"></enclosure>
+			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime
+			}" length="${post?.title_image.size}"></enclosure>
 		</item>`;
 	});
 
+	console.debug(rssItems);
 	const feed = `<?xml version="1.0" encoding="UTF-8"?>
-		<rss version="2.0">
+			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	 		<channel>
 	   		<title>ZHdK E-Learning RSS Feed</title>
 	   		<description>RSS Feed showing the last ten modified posts</description>
 	   		<link>https://elearning.zhdk.ch/</link>
+				<atom:link href="http://elearning.zhdk.ch/feed" rel="self" type="application/rss+xml" />
 	   		<language>de-ch</language>
 	   		<pubDate>${new Date().toUTCString()}</pubDate>
-	   		<lastBuildDate>${new Date().toString()}</lastBuildDate>
+	   		<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 	   		<image>
 	     		<url>https://elearning.zhdk.ch/logo.png</url>
 	     		<title>ZHdK E-Learning RSS Feed</title>
 	     		<link>https://elearning.zhdk.ch/</link>
 	   		</image>
-					${rssItems}
+					${rssItems?.join("")}
 	 		</channel>
 		</rss>`;
 

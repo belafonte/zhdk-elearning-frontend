@@ -1,7 +1,7 @@
 import { error } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import rss from "rss";
-// import sanitizeHtml from "sanitize-html";
+// import rss from "rss";
+import sanitizeHtml from "sanitize-html";
 import URQLClient from "$graphql/urqlClient";
 import type { GetRssDataQuery } from "$graphql/types";
 import { GET_RSS_DATA } from "$graphql/queries";
@@ -16,81 +16,81 @@ export const GET = (async () => {
 		.toPromise()
 		.then((res) => res.data?.contentModel);
 
-	if (!posts) {
-		throw error(500, "No Items in Feed");
-	}
-
-	// Define the RSS feed as a string
-	const rssItems = posts.map((post) => {
-		const date = post?._created ? new Date(post?._created * 1000) : "";
-
-		return {
-			title: post?.title || "",
-			description: post?.subhead || "",
-			url: `https://elearning.zhdk.ch/${post?.category}/${post?.slug}` || "",
-			date: date,
-			enclosure: {
-				url: PUBLIC_ASSETS + post?.title_image.path,
-				type: post?.title_image.mime,
-				size: post?.title_image.size
-			}
-		};
-	});
-
-	const feed = new rss({
-		title: "ZHdK E-Learning RSS Feed",
-		description: "RSS Feed showing the last ten modified posts",
-		feed_url: "https://elearning.zhdk.ch/feed",
-		site_url: "https://elearning.zhdk.ch",
-		image_url: "https://elearning.zhdk.ch/logo.png",
-		managingEditor: "manuel.weibel@zhdk.ch (Manuel Weibel)",
-		webMaster: "hello@bureau314.ch (Jan Pistor)",
-		language: "de-CH",
-		pubDate: new Date(),
-		ttl: 60
-	});
-
-	rssItems.forEach((rssItem) => {
-		feed.item(rssItem);
-	});
-
-	// const rssItems = posts?.map((post) => {
-	// 	const date = post?._created ? new Date(post?._created * 1000) : "";
-	// 	if (!post) return "";
+	// if (!posts) {
+	// 	throw error(500, "No Items in Feed");
+	// }
 	//
-	// 	return `
-	// 	<item>
-	// 		<title>${sanitizeHtml(post?.title || "", { allowedTags: [], allowedAttributes: [] }) || ""}</title>
-	// 		<description>${sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
-	// 		}</description>
-	// 		<link>${"https://elearning.zhdk.ch/" +
-	// 		post?.category.toLowerCase() +
-	// 		"/" +
-	// 		sanitizeHtml(post?.slug || "", { allowedTags: [], allowedAttributes: [] }) || ""
-	// 		}</link>
-	// 		<pubDate>${date}</pubDate>
-	// 		<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime}" size="${post?.title_image.size
-	// 		}"></enclosure>
-	// 	</item>`;
+	// // Define the RSS feed as a string
+	// const rssItems = posts.map((post) => {
+	// 	const date = post?._created ? new Date(post?._created * 1000) : "";
+	//
+	// 	return {
+	// 		title: post?.title || "",
+	// 		description: post?.subhead || "",
+	// 		url: `https://elearning.zhdk.ch/${post?.category}/${post?.slug}` || "",
+	// 		date: date,
+	// 		enclosure: {
+	// 			url: PUBLIC_ASSETS + post?.title_image.path,
+	// 			type: post?.title_image.mime,
+	// 			size: post?.title_image.size
+	// 		}
+	// 	};
 	// });
 	//
-	// const rssFeed = `<?xml version="1.0" encoding="UTF-8"?>
-	// 	<rss version="2.0">
-	//  		<channel>
-	//    		<title>ZHdK E-Learning RSS Feed</title>
-	//    		<description>RSS Feed showing the last ten modified posts</description>
-	//    		<link>https://elearning.zhdk.ch/</link>
-	//    		<language>de-ch</language>
-	//    		<pubDate>${new Date().toUTCString()}</pubDate>
-	//    		<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-	//    		<image>
-	//      		<url>https://elearning.zhdk.ch/logo.png</url>
-	//      		<title>ZHdK E-Learning RSS Feed</title>
-	//      		<link>https://elearning.zhdk.ch/</link>
-	//    		</image>
-	// 				${rssItems}
-	//  		</channel>
-	// 	</rss>`;
+	// const feed = new rss({
+	// 	title: "ZHdK E-Learning RSS Feed",
+	// 	description: "RSS Feed showing the last ten modified posts",
+	// 	feed_url: "https://elearning.zhdk.ch/feed",
+	// 	site_url: "https://elearning.zhdk.ch",
+	// 	image_url: "https://elearning.zhdk.ch/logo.png",
+	// 	managingEditor: "manuel.weibel@zhdk.ch (Manuel Weibel)",
+	// 	webMaster: "hello@bureau314.ch (Jan Pistor)",
+	// 	language: "de-CH",
+	// 	pubDate: new Date(),
+	// 	ttl: 60
+	// });
+	//
+	// rssItems.forEach((rssItem) => {
+	// 	feed.item(rssItem);
+	// });
+
+	const rssItems = posts?.map((post) => {
+		const date = post?._created ? new Date(post?._created * 1000).toUTCString() : "";
+		if (!post) return "";
+
+		return `
+		<item>
+			<title>${sanitizeHtml(post?.title || "", { allowedTags: [], allowedAttributes: [] }) || ""}</title>
+			<description>${sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
+			}</description>
+			<link>${"https://elearning.zhdk.ch/" +
+			post?.category.toLowerCase() +
+			"/" +
+			sanitizeHtml(post?.slug || "", { allowedTags: [], allowedAttributes: [] }) || ""
+			}</link>
+			<pubDate>${date}</pubDate>
+			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime}" size="${post?.title_image.size
+			}"></enclosure>
+		</item>`;
+	});
+
+	const feed = `<?xml version="1.0" encoding="UTF-8"?>
+		<rss version="2.0">
+	 		<channel>
+	   		<title>ZHdK E-Learning RSS Feed</title>
+	   		<description>RSS Feed showing the last ten modified posts</description>
+	   		<link>https://elearning.zhdk.ch/</link>
+	   		<language>de-ch</language>
+	   		<pubDate>${new Date().toUTCString()}</pubDate>
+	   		<lastBuildDate>${new Date().toString()}</lastBuildDate>
+	   		<image>
+	     		<url>https://elearning.zhdk.ch/logo.png</url>
+	     		<title>ZHdK E-Learning RSS Feed</title>
+	     		<link>https://elearning.zhdk.ch/</link>
+	   		</image>
+					${rssItems}
+	 		</channel>
+		</rss>`;
 
 	const xml = feed;
 	const headers = {
@@ -98,5 +98,5 @@ export const GET = (async () => {
 		"Content-Type": "application/xml"
 	};
 
-	return new Response(xml.xml(), { headers: headers });
+	return new Response(xml, { headers: headers });
 }) satisfies RequestHandler;

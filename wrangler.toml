@@ -1,7 +1,0 @@
-[site]
-bucket = "/.svelte-kit/cloudflare"
-
-[build]
-command = "npm run build"
-# Set platform to 'node'
-platform = "node"

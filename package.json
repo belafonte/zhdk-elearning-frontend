@@ -16,6 +16,7 @@
 	},
 	"dependencies": {
 		"@types/rss": "^0.0.30",
+		"@types/sanitize-html": "^2.9.0",
 		"@urql/core": "^3.2.2",
 		"@urql/devtools": "^2.0.3",
 		"rss": "^1.2.2",

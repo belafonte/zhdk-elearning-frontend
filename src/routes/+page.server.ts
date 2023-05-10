@@ -16,10 +16,17 @@ import {
 
 // export const prerender = "auto";
 
+const isRSS = (value: unknown): value is true => {
+	return value == true;
+};
+
 export const load: PageServerLoad = async () => {
 	const community = await URQLClient.query<GetTileDataQuery>(GET_TILE_DATA, {
 		limit: 8,
-		filter: { _state: PUBLIC_STATE, category: "Community" }
+		filter: {
+			_state: PUBLIC_STATE,
+			category: "Community"
+		}
 	})
 		.toPromise()
 		.then((res) => res.data?.contentModel);

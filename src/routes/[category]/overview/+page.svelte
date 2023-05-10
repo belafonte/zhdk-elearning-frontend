@@ -33,20 +33,22 @@
 		>
 			{#if data.category === "insights"}
 				{#each data.posts as post}
-					<MetaQuestion
-						color={post?.color.colors[0]}
-						text={post?.title}
-						mask={post?.mask.path}
-						link="/insights/{post?.slug}"
-					/>
+					{#if !post?.rss}
+						<MetaQuestion
+							color={post?.color.colors[0]}
+							text={post?.title}
+							mask={post?.mask.path}
+							link="/insights/{post?.slug}"
+						/>
+					{/if}
 				{/each}
 			{:else}
 				{#each data?.posts as post}
 					{#if filteredTags?.size > 0}
-						{#if post && post.tags.some((tag) => filteredTags.has(tag))}
+						{#if post && !post?.rss && post.tags.some((tag) => filteredTags.has(tag))}
 							<Tile {...post} />
 						{/if}
-					{:else}
+					{:else if !post?.rss}
 						<Tile {...post} />
 					{/if}
 				{/each}

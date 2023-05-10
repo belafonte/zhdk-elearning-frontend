@@ -162,6 +162,7 @@ export type ContentModel = {
   image?: Maybe<Array<Maybe<Scalars['JsonType']>>>;
   mask?: Maybe<Scalars['JsonType']>;
   rotation?: Maybe<Scalars['String']>;
+  rss?: Maybe<Scalars['Boolean']>;
   slug?: Maybe<Scalars['String']>;
   subhead?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['JsonType']>;
@@ -230,9 +231,9 @@ export type SaveContentItemOutput = {
   item?: Maybe<Scalars['JsonType']>;
 };
 
-export type TileInfoFragment = { __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null };
+export type TileInfoFragment = { __typename?: 'contentModel', _id: string, slug?: string | null, category: string, rss?: boolean | null, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null };
 
-export type DetailInfoFragment = { __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null };
+export type DetailInfoFragment = { __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, rss?: boolean | null, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null };
 
 export type GetTileDataQueryVariables = Exact<{
   filter: Scalars['JsonType'];
@@ -241,7 +242,7 @@ export type GetTileDataQueryVariables = Exact<{
 }>;
 
 
-export type GetTileDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetTileDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', _id: string, slug?: string | null, category: string, rss?: boolean | null, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
 
 export type GetDetailDataQueryVariables = Exact<{
   filter?: InputMaybe<Scalars['JsonType']>;
@@ -250,7 +251,7 @@ export type GetDetailDataQueryVariables = Exact<{
 }>;
 
 
-export type GetDetailDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
+export type GetDetailDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', subhead?: string | null, caption?: string | null, body?: string | null, image?: Array<any | null> | null, embed?: string | null, _id: string, slug?: string | null, category: string, rss?: boolean | null, title: string, color?: any | null, title_image?: any | null, rotation?: string | null, mask?: any | null, tags?: any | null, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null, fromTime?: string | null, toTime?: string | null, location?: string | null, link?: string | null } | null } | null> | null };
 
 export type GetRssDataQueryVariables = Exact<{
   filter?: InputMaybe<Scalars['JsonType']>;

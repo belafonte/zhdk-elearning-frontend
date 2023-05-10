@@ -6,6 +6,7 @@ const TILE_INFO = gql`
 		_id
 		slug
 		category
+		rss
 		title
 		color
 		title_image

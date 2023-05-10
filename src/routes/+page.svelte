@@ -145,7 +145,9 @@
 {#if data.experience}
 	<Row title="Experience" url="experience">
 		{#each data.experience as post}
-			<Tile {...post} />
+			{#if !post?.rss}
+				<Tile {...post} />
+			{/if}
 		{/each}
 	</Row>
 {/if}
@@ -153,7 +155,9 @@
 {#if data.community}
 	<Row title="Community" url="community">
 		{#each data.community as post}
-			<Tile {...post} />
+			{#if !post?.rss}
+				<Tile {...post} />
+			{/if}
 		{/each}
 	</Row>
 {/if}
@@ -161,7 +165,9 @@
 {#if data.cosmos}
 	<Row title="Cosmos" url="cosmos">
 		{#each data.cosmos as post}
-			<Tile {...post} />
+			{#if !post?.rss}
+				<Tile {...post} />
+			{/if}
 		{/each}
 	</Row>
 {/if}

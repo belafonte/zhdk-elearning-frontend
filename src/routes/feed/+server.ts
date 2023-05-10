@@ -77,14 +77,13 @@ export const GET = (async () => {
 		</item>`;
 	});
 
-	console.debug(rssItems);
 	const feed = `<?xml version="1.0" encoding="UTF-8"?>
 			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	 		<channel>
 	   		<title>ZHdK E-Learning RSS Feed</title>
 	   		<description>RSS Feed showing the last ten modified posts</description>
 	   		<link>https://elearning.zhdk.ch/</link>
-				<atom:link href="http://elearning.zhdk.ch/feed" rel="self" type="application/rss+xml" />
+				<atom:link href="https://elearning.zhdk.ch/feed" rel="self" type="application/rss+xml" />
 	   		<language>de-ch</language>
 	   		<pubDate>${new Date().toUTCString()}</pubDate>
 	   		<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

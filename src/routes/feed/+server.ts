@@ -75,8 +75,13 @@ export const GET = (async () => {
 			day: "numeric"
 		} as Intl.DateTimeFormatOptions;
 
-		const fromDate = new Date(post?.event?.fromDate || "").toLocaleDateString("de-DE", options);
-		const toDate = new Date(post?.event?.toDate || "").toLocaleDateString("de-DE", options);
+		const fromDate = post?.event?.fromDate
+			? new Date(post?.event?.fromDate || "").toLocaleDateString("de-DE", options)
+			: "";
+
+		const toDate = post?.event?.toDate
+			? new Date(post?.event?.toDate || "").toLocaleDateString("de-DE", options)
+			: "";
 
 		const title =
 			post?.category === "Event"

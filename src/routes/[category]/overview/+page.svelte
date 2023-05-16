@@ -33,7 +33,7 @@
 		>
 			{#if data.category === "insights"}
 				{#each data.posts as post}
-					{#if !post?.rss}
+					{#if !post?.rss && post?.color}
 						<MetaQuestion
 							color={post?.color.colors[0]}
 							text={post?.title}

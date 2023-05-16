@@ -35,7 +35,7 @@
 		style="background-color: {color && color.colors ? color.colors[0] : '#EEEEEE'}"
 	>
 		<h1
-			class="mb-5 line-clamp-6 overflow-hidden text-ellipsis sm:line-clamp-5"
+			class="mb-5 line-clamp-6 overflow-hidden text-ellipsis pb-[1px] sm:line-clamp-5"
 			class:title-large={category === "Community"}
 			class:title-small={category === "Experience" || category === "Cosmos"}
 		>

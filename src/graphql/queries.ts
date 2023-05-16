@@ -62,6 +62,10 @@ export const GET_RSS_DATA = gql`
 			slug
 			category
 			subhead
+			event {
+				fromDate
+				toDate
+			}
 			_created
 		}
 	}

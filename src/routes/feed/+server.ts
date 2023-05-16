@@ -53,6 +53,7 @@ export const GET = (async () => {
 	// rssItems.forEach((rssItem) => {
 	// 	feed.item(rssItem);
 	// });
+	//
 
 	const rssItems = posts?.map((post) => {
 		const date = post?._created ? new Date(post?._created * 1000).toUTCString() : "";
@@ -64,16 +65,36 @@ export const GET = (async () => {
 			"/" +
 			sanitizeHtml(post?.slug || "", { allowedTags: [], allowedAttributes: [] });
 
+		const sanatizedTitle =
+			sanitizeHtml(post?.title || "", { allowedTags: [], allowedAttributes: [] }) || "";
+
+		const options = {
+			weekday: undefined,
+			year: "2-digit",
+			month: "numeric",
+			day: "numeric"
+		} as Intl.DateTimeFormatOptions;
+
+		const fromDate = new Date(post?.event?.fromDate || "").toLocaleDateString("de-DE", options);
+		const toDate = new Date(post?.event?.toDate || "").toLocaleDateString("de-DE", options);
+
+		const title =
+			post?.category === "Event"
+				? `${fromDate}${" - " + toDate || ""} ${sanatizedTitle}`
+				: sanatizedTitle;
+
 		return `
 		<item>
-			<title>${sanitizeHtml(post?.title || "", { allowedTags: [], allowedAttributes: [] }) || ""}</title>
-			<description>${sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
+			<title>${title}</title>
+			<description>${
+				sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
 			}</description>
 			<link>${link}</link>
 			<guid>${link}</guid>	
 			<pubDate>${date}</pubDate>
-			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime
-			}" length="${post?.title_image.size}"></enclosure>
+			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${
+			post?.title_image.mime
+		}" length="${post?.title_image.size}"></enclosure>
 		</item>`;
 	});
 

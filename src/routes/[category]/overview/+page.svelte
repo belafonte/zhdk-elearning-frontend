@@ -61,6 +61,7 @@
 
 <style>
 	:global(.overview > *) {
+		width: fit-content;
 		min-width: 100%;
 	}
 	.grid-corse {

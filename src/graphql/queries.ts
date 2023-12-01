@@ -146,6 +146,26 @@ export const GET_INFORMATION = gql`
 	}
 `;
 
+export const GET_LABOR = gql`
+	query GetLabor($filter: JsonType) {
+		laborModel(filter: $filter) {
+			date
+			text
+			person {
+				image
+				name
+				description
+				mask
+				link {
+					display
+					url
+				}
+			}
+			note
+		}
+	}
+`;
+
 export const GET_OFFER = gql`
 	query GetOffer {
 		offerModel {

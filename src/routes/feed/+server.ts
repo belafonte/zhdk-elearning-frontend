@@ -11,11 +11,12 @@ export const GET = (async () => {
 	const posts = await URQLClient.query<GetRssDataQuery>(GET_RSS_DATA, {
 		limit: 10,
 		sort: { _modified: true },
-		filter: { _state: PUBLIC_STATE }
+		filter: { _state: 1 }
 	})
 		.toPromise()
 		.then((res) => res.data?.contentModel);
 
+	console.debug(posts);
 	// if (!posts) {
 	// 	throw error(500, "No Items in Feed");
 	// }
@@ -91,15 +92,13 @@ export const GET = (async () => {
 		return `
 		<item>
 			<title>${title}</title>
-			<description>${
-				sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
+			<description>${sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
 			}</description>
 			<link>${link}</link>
 			<guid>${link}</guid>	
 			<pubDate>${date}</pubDate>
-			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${
-			post?.title_image.mime
-		}" length="${post?.title_image.size}"></enclosure>
+			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime
+			}" length="${post?.title_image.size}"></enclosure>
 		</item>`;
 	});
 

@@ -40,7 +40,9 @@ export type Query = {
   highlightsModel?: Maybe<HighlightsModel>;
   imprintModel?: Maybe<ImprintModel>;
   informationModel?: Maybe<InformationModel>;
+  laborModel?: Maybe<Array<Maybe<LaborModel>>>;
   offerModel?: Maybe<OfferModel>;
+  programModel?: Maybe<ProgramModel>;
 };
 
 
@@ -101,7 +103,25 @@ export type QueryInformationModelArgs = {
 };
 
 
+export type QueryLaborModelArgs = {
+  _id?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<Scalars['JsonType']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  populate?: InputMaybe<Scalars['Int']>;
+  projection?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Scalars['JsonType']>;
+};
+
+
 export type QueryOfferModelArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  populate?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryProgramModelArgs = {
   locale?: InputMaybe<Scalars['String']>;
   populate?: InputMaybe<Scalars['Int']>;
 };
@@ -116,11 +136,37 @@ export type SetEvent = {
   toTime?: Maybe<Scalars['String']>;
 };
 
+export type SetLink = {
+  __typename?: 'SetLink';
+  display?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
 export type SetOffers = {
   __typename?: 'SetOffers';
   image?: Maybe<Scalars['JsonType']>;
   link?: Maybe<Scalars['String']>;
   text?: Maybe<Scalars['String']>;
+};
+
+export type SetPerson = {
+  __typename?: 'SetPerson';
+  description?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['JsonType']>;
+  link?: Maybe<Array<Maybe<SetLink>>>;
+  mask?: Maybe<Scalars['JsonType']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+export type SetPersons = {
+  __typename?: 'SetPersons';
+  description?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['JsonType']>;
+  link?: Maybe<Scalars['String']>;
+  linked_in?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  mask?: Maybe<Scalars['JsonType']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type SetSlider = {
@@ -217,12 +263,33 @@ export type InformationModel = {
   vision?: Maybe<Scalars['String']>;
 };
 
+export type LaborModel = {
+  __typename?: 'laborModel';
+  _created: Scalars['Int'];
+  _id: Scalars['String'];
+  _modified: Scalars['Int'];
+  date?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  person?: Maybe<Array<Maybe<SetPerson>>>;
+  text?: Maybe<Scalars['String']>;
+};
+
 export type OfferModel = {
   __typename?: 'offerModel';
   _created?: Maybe<Scalars['Int']>;
   _id?: Maybe<Scalars['String']>;
   _modified?: Maybe<Scalars['Int']>;
   offers?: Maybe<Array<Maybe<SetOffers>>>;
+};
+
+export type ProgramModel = {
+  __typename?: 'programModel';
+  _created?: Maybe<Scalars['Int']>;
+  _id?: Maybe<Scalars['String']>;
+  _modified?: Maybe<Scalars['Int']>;
+  notes?: Maybe<Scalars['String']>;
+  persons?: Maybe<Array<Maybe<SetPersons>>>;
+  text?: Maybe<Scalars['String']>;
 };
 
 export type SaveContentItemOutput = {
@@ -287,6 +354,11 @@ export type GetInformationQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetInformationQuery = { __typename?: 'Query', informationModel?: { __typename?: 'informationModel', vision?: string | null, team?: string | null, contact?: string | null, team_member?: Array<{ __typename?: 'SetTeam_member', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: string | null, mail?: string | null, linked_in?: string | null } | null> | null } | null };
+
+export type GetLaborQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLaborQuery = { __typename?: 'Query', laborModel?: Array<{ __typename?: 'laborModel', date?: string | null, text?: string | null, note?: string | null, person?: Array<{ __typename?: 'SetPerson', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null };
 
 export type GetOfferQueryVariables = Exact<{ [key: string]: never; }>;
 

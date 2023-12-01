@@ -42,7 +42,6 @@ export type Query = {
   informationModel?: Maybe<InformationModel>;
   laborModel?: Maybe<Array<Maybe<LaborModel>>>;
   offerModel?: Maybe<OfferModel>;
-  programModel?: Maybe<ProgramModel>;
 };
 
 
@@ -120,12 +119,6 @@ export type QueryOfferModelArgs = {
   populate?: InputMaybe<Scalars['Int']>;
 };
 
-
-export type QueryProgramModelArgs = {
-  locale?: InputMaybe<Scalars['String']>;
-  populate?: InputMaybe<Scalars['Int']>;
-};
-
 export type SetEvent = {
   __typename?: 'SetEvent';
   fromDate?: Maybe<Scalars['String']>;
@@ -154,17 +147,6 @@ export type SetPerson = {
   description?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['JsonType']>;
   link?: Maybe<Array<Maybe<SetLink>>>;
-  mask?: Maybe<Scalars['JsonType']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-export type SetPersons = {
-  __typename?: 'SetPersons';
-  description?: Maybe<Scalars['String']>;
-  image?: Maybe<Scalars['JsonType']>;
-  link?: Maybe<Scalars['String']>;
-  linked_in?: Maybe<Scalars['String']>;
-  mail?: Maybe<Scalars['String']>;
   mask?: Maybe<Scalars['JsonType']>;
   name?: Maybe<Scalars['String']>;
 };
@@ -282,16 +264,6 @@ export type OfferModel = {
   offers?: Maybe<Array<Maybe<SetOffers>>>;
 };
 
-export type ProgramModel = {
-  __typename?: 'programModel';
-  _created?: Maybe<Scalars['Int']>;
-  _id?: Maybe<Scalars['String']>;
-  _modified?: Maybe<Scalars['Int']>;
-  notes?: Maybe<Scalars['String']>;
-  persons?: Maybe<Array<Maybe<SetPersons>>>;
-  text?: Maybe<Scalars['String']>;
-};
-
 export type SaveContentItemOutput = {
   __typename?: 'saveContentItemOutput';
   error?: Maybe<Scalars['String']>;
@@ -355,7 +327,9 @@ export type GetInformationQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetInformationQuery = { __typename?: 'Query', informationModel?: { __typename?: 'informationModel', vision?: string | null, team?: string | null, contact?: string | null, team_member?: Array<{ __typename?: 'SetTeam_member', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: string | null, mail?: string | null, linked_in?: string | null } | null> | null } | null };
 
-export type GetLaborQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetLaborQueryVariables = Exact<{
+  filter?: InputMaybe<Scalars['JsonType']>;
+}>;
 
 
 export type GetLaborQuery = { __typename?: 'Query', laborModel?: Array<{ __typename?: 'laborModel', date?: string | null, text?: string | null, note?: string | null, person?: Array<{ __typename?: 'SetPerson', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null };

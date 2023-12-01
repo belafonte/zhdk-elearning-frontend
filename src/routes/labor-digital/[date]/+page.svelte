@@ -20,7 +20,7 @@
 </script>
 
 <svelte:head>
-	<title>Information</title>
+	<title>Labor Digital</title>
 </svelte:head>
 
 <p
@@ -38,7 +38,10 @@
 				<div class="">{person?.description || ""}</div>
 				<div class="pt-5" data-links>
 					{#each person.link as link}
-						<a href={link.url || ""}>
+						<a
+							href={link.url || ""}
+							target={link.url.search("elearning.zhdk.ch") !== -1 ? "_self" : "_blank"}
+						>
 							<Tag text={link.display} icon={true} rounded={true} />
 						</a>
 					{/each}

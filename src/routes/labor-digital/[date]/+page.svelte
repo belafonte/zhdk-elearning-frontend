@@ -37,7 +37,7 @@
 				<div class="">{person?.name || ""}</div>
 				<div class="">{person?.description || ""}</div>
 				<div class="pt-5" data-links>
-					{#each person.link as link}
+					{#each person?.link as link}
 						<a
 							href={link.url || ""}
 							target={link.url.search("elearning.zhdk.ch") !== -1 ? "_self" : "_blank"}
@@ -61,6 +61,10 @@
 
 	:global(.text ul) {
 		@apply mt-[32px];
+	}
+
+	:global(.text a) {
+		@apply underline;
 	}
 
 	:global(.text li) {

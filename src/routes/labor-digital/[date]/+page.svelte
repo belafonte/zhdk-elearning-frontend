@@ -29,26 +29,36 @@
 	{@html data.text}
 </p>
 
-{#if data.person}
-	<div class="person mb-72 grid grid-cols-2 gap-y-32 sm:mb-84 sm:grid-cols-4 sm:gap-y-42">
-		{#each data.person as person}
-			<div class="pl-10 pr-7 font-serif text-22 sm:pl-15 sm:pr-10">
-				<StyledImage image={person?.image} mask={person?.mask} />
-				<div class="">{person?.name || ""}</div>
-				<div class="">{person?.description || ""}</div>
-				<div class="pt-5" data-links>
-					{#each person?.link as link}
-						<a
-							href={link.url || ""}
-							target={link.url.search("elearning.zhdk.ch") !== -1 ? "_self" : "_blank"}
-						>
-							<Tag text={link.display} icon={true} rounded={true} />
-						</a>
-					{/each}
-				</div>
+{#if data.persons}
+	{#each data.persons as personBlock}
+		<!-- {person.person?.at(0).name} -->
+		{#if personBlock?.person}
+			<p class="hyphens-auto pl-10 pr-7 text-23 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50">
+				{@html personBlock?.text}
+			</p>
+			<div class="person mb-72 grid grid-cols-2 gap-y-32 sm:mb-84 sm:grid-cols-4 sm:gap-y-42">
+				{#each personBlock.person as p}
+					<div class="pl-10 pr-7 font-serif text-22 sm:pl-15 sm:pr-10">
+						<StyledImage image={p?.image} mask={p?.mask} />
+						<div class="">{p?.name || ""}</div>
+						<div class="">{p?.description || ""}</div>
+						<div class="pt-5" data-links>
+							{#if p?.link}
+								{#each p?.link as link}
+									<a
+										href={link?.url || ""}
+										target={link?.url?.search("elearning.zhdk.ch") !== -1 ? "_self" : "_blank"}
+									>
+										<Tag text={link?.display || ""} icon={true} rounded={true} />
+									</a>
+								{/each}
+							{/if}
+						</div>
+					</div>
+				{/each}
 			</div>
-		{/each}
-	</div>
+		{/if}
+	{/each}
 {/if}
 <p class="hyphens-auto pl-10 pr-7 text-23 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50">
 	{@html data.note}

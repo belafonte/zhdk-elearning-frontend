@@ -151,6 +151,19 @@ export const GET_LABOR = gql`
 		laborModel(filter: $filter) {
 			date
 			text
+			persons {
+				text
+				person {
+					image
+					name
+					description
+					mask
+					link {
+						display
+						url
+					}
+				}
+			}
 			person {
 				image
 				name

@@ -11,5 +11,6 @@ export const load = (async ({ params }) => {
 		.toPromise()
 		.then((res) => res.data?.laborModel?.at(0));
 
+	console.debug(data.persons.at(0).person);
 	return { ...data };
 }) satisfies PageServerLoad;

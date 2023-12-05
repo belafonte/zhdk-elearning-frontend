@@ -33,7 +33,9 @@
 	{#each data.persons as personBlock}
 		<!-- {person.person?.at(0).name} -->
 		{#if personBlock?.person}
-			<p class="hyphens-auto pl-10 pr-7 text-23 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50">
+			<p
+				class="text hyphens-auto pl-10 pr-7 text-23 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50"
+			>
 				{@html personBlock?.text}
 			</p>
 			<div class="person mb-72 grid grid-cols-2 gap-y-32 sm:mb-84 sm:grid-cols-4 sm:gap-y-42">
@@ -60,7 +62,7 @@
 		{/if}
 	{/each}
 {/if}
-<p class="hyphens-auto pl-10 pr-7 text-23 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50">
+<p class="text hyphens-auto pl-10 pr-7 text-23 sm:pl-[40px] sm:pr-[20px] sm:text-36 lg:text-50">
 	{@html data.note}
 </p>
 
@@ -74,7 +76,12 @@
 	}
 
 	:global(.text a) {
-		@apply underline;
+		@apply underline !important;
+	}
+
+	:global(.text a::after) {
+		font-family: "icomoon" !important;
+		content: "\e900";
 	}
 
 	:global(.text li) {

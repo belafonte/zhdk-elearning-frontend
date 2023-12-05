@@ -271,6 +271,8 @@ export type LaborModel = {
   _created: Scalars['Int'];
   _id: Scalars['String'];
   _modified: Scalars['Int'];
+  color_bg?: Maybe<Scalars['JsonType']>;
+  color_lines?: Maybe<Scalars['JsonType']>;
   date?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
   person?: Maybe<Array<Maybe<SetPerson>>>;
@@ -354,7 +356,7 @@ export type GetLaborQueryVariables = Exact<{
 }>;
 
 
-export type GetLaborQuery = { __typename?: 'Query', laborModel?: Array<{ __typename?: 'laborModel', date?: string | null, text?: string | null, note?: string | null, persons?: Array<{ __typename?: 'SetPersons', text?: string | null, person?: Array<{ __typename?: 'SetPerson1', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink1', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null, person?: Array<{ __typename?: 'SetPerson', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null };
+export type GetLaborQuery = { __typename?: 'Query', laborModel?: Array<{ __typename?: 'laborModel', date?: string | null, text?: string | null, note?: string | null, color_bg?: any | null, color_lines?: any | null, persons?: Array<{ __typename?: 'SetPersons', text?: string | null, person?: Array<{ __typename?: 'SetPerson1', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink1', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null, person?: Array<{ __typename?: 'SetPerson', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null };
 
 export type GetOfferQueryVariables = Exact<{ [key: string]: never; }>;
 

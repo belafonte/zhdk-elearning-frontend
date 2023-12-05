@@ -175,6 +175,8 @@ export const GET_LABOR = gql`
 				}
 			}
 			note
+			color_bg
+			color_lines
 		}
 	}
 `;

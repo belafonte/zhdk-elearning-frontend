@@ -135,12 +135,6 @@ export type SetLink = {
   url?: Maybe<Scalars['String']>;
 };
 
-export type SetLink1 = {
-  __typename?: 'SetLink1';
-  display?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
-};
-
 export type SetOffers = {
   __typename?: 'SetOffers';
   image?: Maybe<Scalars['JsonType']>;
@@ -157,18 +151,9 @@ export type SetPerson = {
   name?: Maybe<Scalars['String']>;
 };
 
-export type SetPerson1 = {
-  __typename?: 'SetPerson1';
-  description?: Maybe<Scalars['String']>;
-  image?: Maybe<Scalars['JsonType']>;
-  link?: Maybe<Array<Maybe<SetLink1>>>;
-  mask?: Maybe<Scalars['JsonType']>;
-  name?: Maybe<Scalars['String']>;
-};
-
 export type SetPersons = {
   __typename?: 'SetPersons';
-  person?: Maybe<Array<Maybe<SetPerson1>>>;
+  person?: Maybe<Array<Maybe<SetPerson>>>;
   text?: Maybe<Scalars['String']>;
 };
 
@@ -275,7 +260,6 @@ export type LaborModel = {
   color_lines?: Maybe<Scalars['JsonType']>;
   date?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
-  person?: Maybe<Array<Maybe<SetPerson>>>;
   persons?: Maybe<Array<Maybe<SetPersons>>>;
   text?: Maybe<Scalars['String']>;
 };
@@ -356,7 +340,7 @@ export type GetLaborQueryVariables = Exact<{
 }>;
 
 
-export type GetLaborQuery = { __typename?: 'Query', laborModel?: Array<{ __typename?: 'laborModel', date?: string | null, text?: string | null, note?: string | null, color_bg?: any | null, color_lines?: any | null, persons?: Array<{ __typename?: 'SetPersons', text?: string | null, person?: Array<{ __typename?: 'SetPerson1', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink1', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null, person?: Array<{ __typename?: 'SetPerson', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null };
+export type GetLaborQuery = { __typename?: 'Query', laborModel?: Array<{ __typename?: 'laborModel', date?: string | null, text?: string | null, note?: string | null, color_bg?: any | null, color_lines?: any | null, persons?: Array<{ __typename?: 'SetPersons', text?: string | null, person?: Array<{ __typename?: 'SetPerson', image?: any | null, name?: string | null, description?: string | null, mask?: any | null, link?: Array<{ __typename?: 'SetLink', display?: string | null, url?: string | null } | null> | null } | null> | null } | null> | null } | null> | null };
 
 export type GetOfferQueryVariables = Exact<{ [key: string]: never; }>;
 

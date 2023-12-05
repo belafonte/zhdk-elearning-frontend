@@ -11,6 +11,5 @@ export const load = (async ({ params }) => {
 		.toPromise()
 		.then((res) => res.data?.laborModel?.at(0));
 
-	// console.debug(data?.color_bg);
 	return { ...data };
 }) satisfies PageServerLoad;

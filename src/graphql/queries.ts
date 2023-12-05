@@ -164,16 +164,6 @@ export const GET_LABOR = gql`
 					}
 				}
 			}
-			person {
-				image
-				name
-				description
-				mask
-				link {
-					display
-					url
-				}
-			}
 			note
 			color_bg
 			color_lines

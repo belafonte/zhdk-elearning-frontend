@@ -16,7 +16,6 @@ export const GET = (async () => {
 		.toPromise()
 		.then((res) => res.data?.contentModel);
 
-	console.debug(posts);
 	// if (!posts) {
 	// 	throw error(500, "No Items in Feed");
 	// }
@@ -58,6 +57,7 @@ export const GET = (async () => {
 
 	const rssItems = posts?.map((post) => {
 		const date = post?._created ? new Date(post?._created * 1000).toUTCString() : "";
+		console.log(post);
 		if (!post) return "";
 
 		const link =
@@ -89,6 +89,11 @@ export const GET = (async () => {
 				? `${fromDate}${" - " + toDate || ""} ${sanatizedTitle}`
 				: sanatizedTitle;
 
+		console.debug(post);
+		const image = post?.title_image === null ? post?.image?.at(0) : post?.title_image;
+
+		console.debug(image);
+
 		return `
 		<item>
 			<title>${title}</title>
@@ -97,8 +102,8 @@ export const GET = (async () => {
 			<link>${link}</link>
 			<guid>${link}</guid>	
 			<pubDate>${date}</pubDate>
-			<enclosure url="${PUBLIC_ASSETS + post?.title_image.path}" type="${post?.title_image.mime
-			}" length="${post?.title_image.size}"></enclosure>
+			<enclosure url="${PUBLIC_ASSETS + image.path || ""}" type="${image.mime || ""}" length="${image.size || ""
+			}"></enclosure>
 		</item>`;
 	});
 

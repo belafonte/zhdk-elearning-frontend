@@ -305,7 +305,7 @@ export type GetRssDataQueryVariables = Exact<{
 }>;
 
 
-export type GetRssDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', title: string, title_image?: any | null, slug?: string | null, category: string, subhead?: string | null, _created: number, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null } | null } | null> | null };
+export type GetRssDataQuery = { __typename?: 'Query', contentModel?: Array<{ __typename?: 'contentModel', title: string, title_image?: any | null, slug?: string | null, category: string, subhead?: string | null, image?: Array<any | null> | null, _created: number, event?: { __typename?: 'SetEvent', fromDate?: string | null, toDate?: string | null } | null } | null> | null };
 
 export type GetGlossarySliderQueryVariables = Exact<{ [key: string]: never; }>;
 

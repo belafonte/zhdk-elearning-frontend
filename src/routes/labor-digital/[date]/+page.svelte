@@ -15,7 +15,7 @@
 	// component imports
 	import Tag from "$lib/components/Tag.svelte";
 	import StyledImage from "$lib/components/shared/StyledImage.svelte";
-	import { onMount } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 
 	export let data: PageServerData;
 
@@ -28,6 +28,17 @@
 			Array.from(ref.children).map((child: any, index: number) => {
 				if (index === 0) child.style.borderLeft = `solid 1px ${lines}`;
 				child.style.borderRight = `solid 1px ${lines}`;
+			});
+		}
+	});
+
+	onDestroy(() => {
+		const ref = document.getElementById("reference");
+		if (ref) {
+			ref.style.background = "";
+			Array.from(ref.children).map((child: any, index: number) => {
+				if (index === 0) child.style.borderLeft = "";
+				child.style.borderRight = "";
 			});
 		}
 	});

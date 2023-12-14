@@ -91,19 +91,22 @@ export const GET = (async () => {
 
 		console.debug(post);
 		const image = post?.title_image === null ? post?.image?.at(0) : post?.title_image;
-
-		console.debug(image);
+		const enclosure = image
+			? `<enclosure url="${PUBLIC_ASSETS + image?.path || ""}" type="${
+					image?.mime || ""
+			  }" length="${image?.size || ""}"></enclosure>`
+			: "";
 
 		return `
 		<item>
 			<title>${title}</title>
-			<description>${sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
+			<description>${
+				sanitizeHtml(post?.subhead || "", { allowedTags: [], allowedAttributes: [] }) || ""
 			}</description>
 			<link>${link}</link>
 			<guid>${link}</guid>	
 			<pubDate>${date}</pubDate>
-			<enclosure url="${PUBLIC_ASSETS + image.path || ""}" type="${image.mime || ""}" length="${image.size || ""
-			}"></enclosure>
+			${enclosure}
 		</item>`;
 	});
 

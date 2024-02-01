@@ -10,7 +10,7 @@
 
 <div
 	data-link
-	class="flex h-max w-max px-7 pb-[2px] pt-[4px] font-sans text-12 text-black hover:opacity-100 sm:px-10 sm:pb-[2px] sm:pt-[6px] lg:text-14"
+	class="flex h-max max-w-fit px-7 pb-[2px] pt-[4px] font-sans text-12 text-black hover:opacity-100 sm:px-10 sm:pb-[2px] sm:pt-[6px] lg:text-14"
 	class:border-black={!background}
 	class:border={!background}
 	class:rounded-full={rounded}
@@ -18,8 +18,12 @@
 	class:bg-opacity-60={background}
 	class:opacity-30={dimmed}
 >
-	<div class="flex w-full">
-		<p class="whitespace-nowrap text-12 uppercase tracking-wider sm:text-14">{text}</p>
+	<div class="flex max-w-full">
+		<p
+			class="whitespace-nowrap text-12 uppercase tracking-wider sm:text-14 overflow-ellipsis overflow-hidden max-w-min"
+		>
+			{text}
+		</p>
 		{#if icon}
 			<img id="image" class="arrow ml-4 transition-all" src={arrow} alt="Open Section" />
 		{/if}

@@ -9,6 +9,7 @@
 	import Tag from "$lib/components/shared/Tag.svelte";
 	import GridBackground from "$lib/components/GridBackground.svelte";
 	import FormatDate from "$lib/components/shared/FormatDate.svelte";
+	import CpImage from "$lib/components/shared/CpImage.svelte";
 	import Image from "sveltekit-image";
 	import { onMount } from "svelte/internal";
 
@@ -144,12 +145,7 @@
 					>
 						{#each data.image as img}
 							<div>
-								<Image
-									src={PUBLIC_ASSETS + img.path}
-									alt="Gallery"
-									width={img.width}
-									height={img.height}
-								/>
+								<CpImage _id={img._id} alt="Gallery" width={img.width} height={img.height} />
 								<p class="text-14">{img.description}</p>
 							</div>
 						{/each}
